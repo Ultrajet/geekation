@@ -1,7 +1,12 @@
 security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    encoders:
+        App\Entity\Membre: 'auto'
     providers:
-        in_memory: { memory: null }
+        membre_provider:
+            entity:
+                class: App\Entity\Membre
+                property: username
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
