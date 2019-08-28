@@ -35,7 +35,15 @@ class ProduitController extends AbstractController
     /**
      * @Route("/univers/{uni}", name="univers")
      */
-    public function univers($uni)
+    public function universCategories($uni)
+    {
+        return $this->render('produit/index.html.twig', []);
+    }
+
+    /**
+     * @Route("/univers", name="univers")
+     */
+    public function univers()
     {
         return $this->render('produit/univers.html.twig', []);
     }
