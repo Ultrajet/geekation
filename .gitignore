@@ -6,6 +6,7 @@
 /public/bundles/
 /var/
 /vendor/
+.env
 ###< symfony/framework-bundle ###
 
 ###> symfony/phpunit-bridge ###
@@ -18,4 +19,3 @@
 /.web-server-pid
 ###< symfony/web-server-bundle ###
 composer.lock
-.env
