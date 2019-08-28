@@ -83,6 +83,11 @@ class Membres
      */
     private $commandes;
 
+    /**
+     * @ORM\Column(type="string", length=3)
+     */
+    private $sexe;
+
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
@@ -264,6 +269,18 @@ class Membres
                 $commande->setMembre(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSexe(): ?string
+    {
+        return $this->sexe;
+    }
+
+    public function setSexe(string $sexe): self
+    {
+        $this->sexe = $sexe;
 
         return $this;
     }
