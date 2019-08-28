@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Membres;
+use App\Form\MembreType;
+
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -12,10 +15,16 @@ class MembreController extends AbstractController
     /**
      * @Route("/inscription", name="inscription")
      */
-    public function inscription(Request $request, userPasswordEncoderInterface $encoder)
+    public function inscription(Request $request)
     {	
-		
+        
+        $membre = new Membres;
+        
+        $form = $this->createForm(MembreType::class, $membre);
+        $form -> handleRequest($request);
+        
 		return $this -> render('membre/inscription.html.twig', [
+            'membreForm' => $form -> createView()
          	]);
     }
 

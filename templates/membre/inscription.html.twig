@@ -1,5 +1,23 @@
-{% extends 'base.html.twig' %}
 
-{% block body %}
-<h1> Inscription </h1>
+
+{% block title %} Geekation Inscription {% endblock %}
+
+
+{% block content %}
+
+
+<h1>Inscription</h1>
+
+{{form_start(membreForm)}}
+
+{% for form in membreForm %}
+<div>
+   {{ form_row(form) }}
+</div>
+{% endfor %}
+
+
+{{form_end(membreForm)}}
+
+
 {% endblock %}
