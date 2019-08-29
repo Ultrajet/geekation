@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="script.js">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -13,127 +13,78 @@
 </head>
 
 <body>
-    <div class="page-wrapper chiller-theme toggled">
-        <!-- sidebar-header  -->
-        <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
-            <!-- <i class="fas fa-bars"></i> -->
-        </a>
-        <nav id="sidebar" class="sidebar-wrapper">
-            <div class="sidebar-content">
-                <div class="sidebar-brand">
-                    <a href="#">GEEK'ation</a>
-                    <div id="close-sidebar">
-                        <!-- <i class="fas fa-times"></i> -->
-                    </div>
-                </div>
 
-                <!-- sidebar-search  -->
-                <div class="sidebar-search">
-                    <div>
-                        <div class="input-group">
-                            <input type="text" class="form-control search-menu" placeholder="Search...">
-                            <div class="input-group-append">
-                                <span class="input-group-text">
-                                    <i class="fa fa-search" aria-hidden="true"></i>
-                                </span>
-                            </div>
+    <div id="sidebar" >
+        <nav class="navbar navbar-expand-lg">
+            <div class="row logotop justify-content-center">
+                <a class="logo" href="#"> LOGO </a>
+            </div>
+            <div class="rowsearch">
+                <input type="text" placeholder="Search...">
+                <div class="search"></div>
+            </div>
+
+            <div class="row">
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                   <i class="fas fa-bars"></i>
+                </button>
+            </div>
+
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Consoles</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Jeux </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Accessoires</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Univers
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Playstation</a>
+                            <a class="dropdown-item" href="#">XBox</a>
+                            <a class="dropdown-item" href="#">Nintendo Switch</a>
                         </div>
+                    </li>
+                </ul>
+
+                <div class="connect mr-auto">
+                    <div class="nav-item">
+                        <a class="nav-link" href="#">Connexion</a>
+                    </div>
+                    <div class="nav-item">
+                        <a class="nav-link" href="#">Inscription</a>
                     </div>
                 </div>
 
-                <!-- sidebar-menu  -->
-                <div class="sidebar-menu">
-                    <ul>
-                        <li class="sidebar">
-                            <a href="#">
-                                <i class="fa fa-home"></i>
-                                <span>Accueil</span>
-                            </a>
-                        </li>
-                        <li class="sidebar">
-                            <a href="#">
-                                <i class="fa fa-puzzle-piece"></i>
-                                <span>Parcourir les jeux</span>
-                            </a>
-                        </li>
-                        <li class="sidebar">
-                            <a href="#">
-                                <i class="fas fa-chess-board"></i>
-                                <span>Consoles</span>
-                            </a>
-                        </li>
-                        <li class="sidebar">
-                            <a href="#">
-                                <i class="fa fa-gamepad"></i>
-                                <span>Accessoires</span>
-                            </a>
-                        </li>
-                        <li class="sidebar">
-                            <a href="#">
-                                <i class="fas fa-tags"></i>
-                                <span>Offre</span>
-                                <span class="badge badge-pill badge-warning">A VENIR</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="sidebar-menu">
-                    <ul>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-shopping-bag"></i>
-                                <span>Panier</span>
-                                <!-- <span class="badge badge-pill badge-primary">Beta</span> -->
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="sidebar-menu">
-                    <ul>
-                        <li>
-                            <a href="#">
-                                <!-- <i class="fa fa-calendar"></i> -->
-                                <span>Connexion</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <!-- <i class="fa fa-folder"></i> -->
-                                <span>Inscription</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
             </div>
 
 
-            <!-- sidebar-footer  -->
-            <div class="sidebar-footer">
-                <a href="#">
-                    <i class="fa fa-bell"></i>
-                    <span class="badge badge-pill badge-warning notification">3</span>
-                </a>
-                <a href="#">
-                    <i class="fa fa-shopping-bag"></i>
-                    <span class="badge badge-pill badge-success notification">7</span>
-                </a>
-                <a href="#">
-                    <i class="fa fa-cog"></i>
-                    <span class="badge-sonar"></span>
-                </a>
-                <a href="#">
-                    <i class="fa fa-power-off"></i>
-                </a>
-            </div>
         </nav>
+
+       
     </div>
 
 
+    <div id="cont">
+            <div class="row panier justify-content-end">
+                    <div class="cart"> <i class="fa fa-shopping-basket"></i></div>
+                 </div>
+    </div>
 
-
-
-
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
