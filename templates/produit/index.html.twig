@@ -1,5 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    La liste des produits
+
+<div class="col-9 mx-auto">
+    {% for produit in produits %}
+        {{ dump(produit) }}
+    {% endfor %}
+</div>
+
 {% endblock %}

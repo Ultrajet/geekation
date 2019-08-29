@@ -2,18 +2,23 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Produits;
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\Produit;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProduitController extends AbstractController
 {
     /**
      * @Route("/", name="accueil")
      */
-    public function index()
+    public function index(ObjectManager $manager)
     {
-        return $this->render('produit/index.html.twig', []);
+        $produits = $manager->getRepository(Produits::class)->findAllDisctinctProduits();
+
+        return $this->render('produit/index.html.twig', [
+            'produits' => $produits
+        ]);
     }
 
     /**
