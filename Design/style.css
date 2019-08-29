@@ -71,6 +71,11 @@ margin: 0 auto;
     height: auto;
     background-color: rgb(109, 11, 11)!important;
   }
+
+  .slideprod{
+    height: 30vh;
+    background: yellowgreen;
+  }
 }
 
 
