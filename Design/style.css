@@ -63,6 +63,13 @@ margin: 0 auto;
   .connect {
     position: absolute;
     bottom: 0;
+    z-index: 99;
+  }
+
+  #cont{ 
+    padding-left: 280px;
+    height: auto;
+    background-color: rgb(109, 11, 11)!important;
   }
 }
 
@@ -115,6 +122,7 @@ margin: 0 auto;
         position: fixed;
         font-size: 1.2em;
         color: white; 
+        z-index: 99;
       }
 
 }
@@ -125,13 +133,10 @@ margin: 0 auto;
            CONTENU
 *********************************************************************/ 
 
-#cont{ 
-  padding-left: 280px;
-  height: auto;
-  background-color: rgb(109, 11, 11)!important;
+footer {
+  background-color: silver;
+  width: 100%;
 }
-
-
 
 
 
@@ -248,3 +253,7 @@ margin: 0 auto;
   opacity: 0.5;
   font-weight: bolder;
 }
+
+
+/************************ CAROUSEL **********************/
+
