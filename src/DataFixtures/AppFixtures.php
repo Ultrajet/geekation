@@ -19,24 +19,24 @@ class AppFixtures extends Fixture
         // FIXTURE PRODUITS
         //---------------------
 
-        // $type = ["jeu", "console", "accessoire"];
-        // $univers = ["Playstation", "Xbox", "Switch"];
+        $type = ["jeu", "console", "accessoire"];
+        $univers = ["Playstation", "Xbox", "Switch"];
 
-        // for ($i = 0; $i < 10; $i++) {
-        //     $nom = "Lorem-$i";
-        //     $prix = rand(10,30);
-        //     $typeProduit = $type[array_rand($type)];
-        //     $universProduit = $univers[array_rand($univers)];
-        //     $nb = rand(3,5);
-        //     for ($j = 0; $j < $nb; $j++) {
-        //         $produit = new Produits();
-        //         $produit->setNom($nom);
-        //         $produit->setPrix($prix);
-        //         $produit->setType($typeProduit);
-        //         $produit->setUnivers($universProduit);
-        //         $manager->persist($produit);
-        //     }
-        // }
+        for ($i = 0; $i < 10; $i++) {
+            $nom = "Lorem-$i";
+            $prix = rand(10,30);
+            $typeProduit = $type[array_rand($type)];
+            $universProduit = $univers[array_rand($univers)];
+            $nb = rand(3,5);
+            for ($j = 0; $j < $nb; $j++) {
+                $produit = new Produits();
+                $produit->setNom($nom);
+                $produit->setPrix($prix);
+                $produit->setType($typeProduit);
+                $produit->setUnivers($universProduit);
+                $manager->persist($produit);
+            }
+        }
 
         //---------------------
         // FIXTURE MEMBRES
@@ -69,54 +69,54 @@ class AppFixtures extends Fixture
         // FIXTURE PRODUIT-COMMANDES
         //---------------------
 
-        $commandes = $manager->getRepository(Commandes::class)->findAll();
-        $produits = $manager->getRepository(Produits::class)->findAll();
+        // $commandes = $manager->getRepository(Commandes::class)->findAll();
+        // $produits = $manager->getRepository(Produits::class)->findAll();
 
-        foreach ($commandes as $commande) {
+        // foreach ($commandes as $commande) {
 
-            //-----------------------
-            // HEURE DEBUT LOCATION
-            //-----------------------
+        //     //-----------------------
+        //     // HEURE DEBUT LOCATION
+        //     //-----------------------
             
-            $commandeDateDebut = $commande->getDateEnregistrement();
+        //     $commandeDateDebut = $commande->getDateEnregistrement();
 
-            // si la commande est passée après 17h, la location démarre le lendemain 18h
-            if ($commandeDateDebut->format('H') >= 17) {
-                $commandeDateDebut->modify('+1 day');
-            };
+        //     // si la commande est passée après 17h, la location démarre le lendemain 18h
+        //     if ($commandeDateDebut->format('H') >= 17) {
+        //         $commandeDateDebut->modify('+1 day');
+        //     };
 
-            $commandeDateDebut->setTime(18, 00);
+        //     $commandeDateDebut->setTime(18, 00);
 
-            //-----------------------
-            // HEURE FIN LOCATION
-            //-----------------------
+        //     //-----------------------
+        //     // HEURE FIN LOCATION
+        //     //-----------------------
 
-            $dureeLocation = ["+1 day", "+2 days", "+3 days", "+1 week"];
+        //     $dureeLocation = ["+1 day", "+2 days", "+3 days", "+1 week"];
 
-            $commandeDateFin = clone $commandeDateDebut;
-            $commandeDateFin->modify($dureeLocation[array_rand($dureeLocation)]);
+        //     $commandeDateFin = clone $commandeDateDebut;
+        //     $commandeDateFin->modify($dureeLocation[array_rand($dureeLocation)]);
 
-            //----------------------------------
-            //----------------------------------
+        //     //----------------------------------
+        //     //----------------------------------
 
             
-            $nb = rand(1, 4);
+        //     $nb = rand(1, 4);
 
-            for ($i = 0; $i < $nb; $i++) {
-                $produit = $produits[array_rand($produits)];
+        //     for ($i = 0; $i < $nb; $i++) {
+        //         $produit = $produits[array_rand($produits)];
 
-                // par exemple, la personne fait sa commande le 2019-06-29 à 02:38:18
-                // la commande est donc disponible à partir du 18h le jour-même, jusqu'à 18h jour de fin de commande
-                // on empêche (arbitrairement) une personne de passer commande pour le jour-même, après 17h
+        //         // par exemple, la personne fait sa commande le 2019-06-29 à 02:38:18
+        //         // la commande est donc disponible à partir du 18h le jour-même, jusqu'à 18h jour de fin de commande
+        //         // on empêche (arbitrairement) une personne de passer commande pour le jour-même, après 17h
     
-                $produitCommande = new ProduitsCommandes;
-                $produitCommande->setDateDebutLocation($commandeDateDebut);
-                $produitCommande->setDateFinLocation($commandeDateFin);
-                $produitCommande->setProduit($produit);
-                $produitCommande->setCommande($commande);
-                $manager->persist($produitCommande);
-            }
-        }
+        //         $produitCommande = new ProduitsCommandes;
+        //         $produitCommande->setDateDebutLocation($commandeDateDebut);
+        //         $produitCommande->setDateFinLocation($commandeDateFin);
+        //         $produitCommande->setProduit($produit);
+        //         $produitCommande->setCommande($commande);
+        //         $manager->persist($produitCommande);
+        //     }
+        // }
 
         //---------------------
         // FIXTURE COMMANDES

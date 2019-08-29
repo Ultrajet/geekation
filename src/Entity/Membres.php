@@ -88,6 +88,16 @@ class Membres
      */
     private $sexe;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $salt;
+
+    /**
+     * @ORM\Column(type="string", length=20)
+     */
+    private $role;
+
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
@@ -281,6 +291,30 @@ class Membres
     public function setSexe(string $sexe): self
     {
         $this->sexe = $sexe;
+
+        return $this;
+    }
+
+    public function getSalt(): ?string
+    {
+        return $this->salt;
+    }
+
+    public function setSalt(?string $salt): self
+    {
+        $this->salt = $salt;
+
+        return $this;
+    }
+
+    public function getRole(): ?string
+    {
+        return $this->role;
+    }
+
+    public function setRole(string $role): self
+    {
+        $this->role = $role;
 
         return $this;
     }
