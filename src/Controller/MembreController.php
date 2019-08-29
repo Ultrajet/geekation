@@ -27,7 +27,7 @@ class MembreController extends AbstractController
 
             $manager -> persist($membre);
 
-            if($membre -> getDateDeNaissance() -> format('Y') > date('Y') - 18){
+            if($membre -> getDateDeNaissance() -> getTimeStamp() > time() - (18 * 365.25 * 24 * 60 * 60)){
                 $this -> addFlash('errors','Vous etes trop jeune');
                 return $this -> redirectToRoute('accueil');
             }
