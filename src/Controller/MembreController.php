@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Membres;
 use App\Form\MembreType;
 
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,13 +16,28 @@ class MembreController extends AbstractController
     /**
      * @Route("/inscription", name="inscription")
      */
-    public function inscription(Request $request)
+    public function inscription(Request $request, ObjectManager $manager)
     {	
         
         $membre = new Membres;
         
         $form = $this->createForm(MembreType::class, $membre);
         $form -> handleRequest($request);
+        if($form ->isSubmitted() && $form ->isValid()){
+
+            $manager -> persist($membre);
+
+            if($membre -> getDateDeNaissance() -> format('Y') > date('Y') - 18){
+                $this -> addFlash('errors','Vous etes trop jeune');
+                return $this -> redirectToRoute('accueil');
+            }
+
+            $manager -> flush();
+
+            $this -> addFlash('success', 'Votre inscription a bien été prise en compte !');
+			return $this -> redirectToRoute('connexion');
+
+        }
         
 		return $this -> render('membre/inscription.html.twig', [
             'membreForm' => $form -> createView()

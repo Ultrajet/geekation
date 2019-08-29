@@ -52,6 +52,12 @@ class MembreType extends AbstractType
                 'constraints' => array(
                     new Assert\NotBlank(array(
                         'message' => 'Veuillez remplir le champ'
+                    )),
+                    new Assert\Length(array(
+                        'min' => 3,
+                        'max' => 25,
+                        'minMessage' => 'Veuillez mettre un prenom avec 3 caractère minimum ',
+                        'maxMessage' => 'Veuillez mettre un prenom avec 25 caractère maximum '
                     ))
                 )
             ))
@@ -60,6 +66,12 @@ class MembreType extends AbstractType
                 'constraints' => array(
                     new Assert\NotBlank(array(
                         'message' => 'Veuillez remplir le champ'
+                    )),
+                    new Assert\Length(array(
+                        'min' => 3,
+                        'max' => 25,
+                        'minMessage' => 'Veuillez mettre un nom avec 3 caractère minimum ',
+                        'maxMessage' => 'Veuillez mettre un nom avec 25 caractère maximum '
                     ))
                 )
             ))
@@ -71,6 +83,12 @@ class MembreType extends AbstractType
                     )),
                     new Assert\Email(array(
                         'message' => '{{ value }} n est pas un email valide'
+                    )),
+                    new Assert\Length(array(
+                        'min' => 3,
+                        'max' => 40,
+                        'minMessage' => 'Veuillez mettre un email avec 3 caractère minimum ',
+                        'maxMessage' => 'Veuillez mettre un email avec 40 caractère maximum '
                     ))
                 )
             ))
@@ -87,6 +105,10 @@ class MembreType extends AbstractType
                 'constraints' => array(
                     new Assert\NotBlank(array(
                         'message' => 'Veuillez remplir le champ'
+                    )),
+                    new Assert\Length(array(
+                        'min' => 5,
+                        'max' => 5,
                     ))
                 )
             ))
@@ -95,6 +117,12 @@ class MembreType extends AbstractType
                 'constraints' => array(
                     new Assert\NotBlank(array(
                         'message' => 'Veuillez remplir le champ'
+                    )),
+                    new Assert\Length(array(
+                        'min' => 3,
+                        'max' => 30,
+                        'minMessage' => 'Veuillez mettre un ville avec 3 caractère minimum ',
+                        'maxMessage' => 'Veuillez mettre une ville avec 40 caractère maximum '
                     ))
                 )
             ))
@@ -111,8 +139,12 @@ class MembreType extends AbstractType
                 'constraints' => array(
                     new Assert\NotBlank(array(
                         'message' => 'Veuillez remplir le champ'
+                    )),
+                    new Assert\Regex(array(
+                        'pattern' => "/^[1-68]([-. ]?[0-9]{2}){4}$/",
+                        'message' => "Numero de téléphone non valide"
                     ))
-                )
+                )    
             ))
 
             ->add('scan_CNI')
