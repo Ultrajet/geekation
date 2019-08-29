@@ -4,10 +4,9 @@ namespace App\Form;
 
 use App\Entity\Membres;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -43,8 +42,8 @@ class MembreType extends AbstractType
                         'message' => 'Veuillez remplir le champ'
                     )),
                     new  Assert\Regex(array(
-                        'pattern'=> '"/^\S*(?=\S{6,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$/"',
-                        'message'=>"Veuillez saisir un MP composer d'une minuscule, d'une majuscule et d un chiffre (8 caracteres mini)"
+                        'pattern'=> '/^\S*(?=\S{6,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$/',
+                        'message'=>"Veuillez saisir un Mot de Passe composer d'une minuscule, d'une majuscule et d un chiffre (6 caracteres mini)"
                     ))
                 )
             ))
@@ -71,7 +70,7 @@ class MembreType extends AbstractType
                         'message' => 'Veuillez remplir le champ'
                     )),
                     new Assert\Email(array(
-                        'message' => 'Veuillez remplir un Email Valide!'
+                        'message' => '{{ value }} n est pas un email valide'
                     ))
                 )
             ))
@@ -100,7 +99,13 @@ class MembreType extends AbstractType
                 )
             ))
 
-            ->add('date_de_naissance',DateTimeType::class)
+            ->add('date_de_naissance',BirthdayType::class,array(
+                'constraints' => array(
+                    new Assert\NotBlank(array(
+                        'message' => 'Veuillez remplir le champ'
+                    ))
+                )
+            ))
 
             ->add('telephone',IntegerType::class,array(
                 'constraints' => array(
