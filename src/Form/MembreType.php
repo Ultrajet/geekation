@@ -135,13 +135,13 @@ class MembreType extends AbstractType
                 )
             ))
 
-            ->add('telephone',IntegerType::class,array(
+            ->add('telephone',TextType::class,array(
                 'constraints' => array(
                     new Assert\NotBlank(array(
                         'message' => 'Veuillez remplir le champ'
                     )),
                     new Assert\Regex(array(
-                        'pattern' => "/^[1-68]([-. ]?[0-9]{2}){4}$/",
+                        'pattern' => "/^0[1-68]([-. ]?[0-9]{2}){4}$/",
                         'message' => "Numero de téléphone non valide"
                     ))
                 )    
