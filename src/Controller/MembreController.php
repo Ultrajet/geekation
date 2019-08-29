@@ -17,37 +17,34 @@ class MembreController extends AbstractController
      * @Route("/inscription", name="inscription")
      */
     public function inscription(Request $request, ObjectManager $manager)
-    {	
-        
+    {
         $membre = new Membres;
         
         $form = $this->createForm(MembreType::class, $membre);
         $form -> handleRequest($request);
-        if($form ->isSubmitted() && $form ->isValid()){
-
+        if ($form ->isSubmitted() && $form ->isValid()) {
             $manager -> persist($membre);
 
-            if($membre -> getDateDeNaissance() -> getTimeStamp() > time() - (18 * 365.25 * 24 * 60 * 60)){
-                $this -> addFlash('errors','Vous etes trop jeune');
+            if ($membre -> getDateDeNaissance() -> getTimeStamp() > time() - (18 * 365.25 * 24 * 60 * 60)) {
+                $this -> addFlash('error', 'Vous êtes trop jeune !');
                 return $this -> redirectToRoute('accueil');
             }
 
             $manager -> flush();
 
             $this -> addFlash('success', 'Votre inscription a bien été prise en compte !');
-			return $this -> redirectToRoute('connexion');
-
+            return $this -> redirectToRoute('connexion');
         }
         
-		return $this -> render('membre/inscription.html.twig', [
+        return $this -> render('membre/inscription.html.twig', [
             'membreForm' => $form -> createView()
-         	]);
+             ]);
     }
 
 
-     /**
-     * @Route("/profil", name="profil")
-     */
+    /**
+    * @Route("/profil", name="profil")
+    */
     public function profil()
     {
         return $this->render('membre/profil.html.twig', [
@@ -55,9 +52,9 @@ class MembreController extends AbstractController
         ]);
     }
 
-     /**
-     * @Route("/profil/modifier_profil", name="modification_profil")
-     */
+    /**
+    * @Route("/profil/modifier_profil", name="modification_profil")
+    */
     public function modifier_profil()
     {
         return $this->render('membre/inscription.html.twig', [
@@ -65,9 +62,9 @@ class MembreController extends AbstractController
         ]);
     }
 
- /**
-     * @Route("/gestion_panier", name="gestion_panier")
-     */
+    /**
+        * @Route("/gestion_panier", name="gestion_panier")
+        */
     public function gestion_panier()
     {
         return $this->render('membre/gestion_panier.html.twig', [
@@ -75,9 +72,9 @@ class MembreController extends AbstractController
         ]);
     }
 
-     /**
-     * @Route("/historique_commandes", name="historique_commandes")
-     */
+    /**
+    * @Route("/historique_commandes", name="historique_commandes")
+    */
     public function historique_commandes()
     {
         return $this->render('membre/historique_commandes.html.twig', [
