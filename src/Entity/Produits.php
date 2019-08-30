@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProduitsRepository")
@@ -37,6 +38,12 @@ class Produits
      * @ORM\Column(type="string", length=30)
      */
     private $univers;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Gedmo\Slug(fields={"nom"}, unique=false)
+     */
+    private $slug;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\ProduitsCommandes", mappedBy="produit")
@@ -97,6 +104,18 @@ class Produits
     public function setUnivers(string $univers): self
     {
         $this->univers = $univers;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

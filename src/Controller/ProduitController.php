@@ -14,7 +14,7 @@ class ProduitController extends AbstractController
      */
     public function index(ObjectManager $manager)
     {
-        $produits = $manager->getRepository(Produits::class)->findAllDisctinctProduits();
+        $produits = $this->getDoctrine()->getRepository(Produits::class)->findAllDisctinctProduits();
 
         return $this->render('produit/index.html.twig', [
             'produits' => $produits
@@ -22,11 +22,15 @@ class ProduitController extends AbstractController
     }
 
     /**
-     * @Route("/produit/{id}", name="produit")
+     * @Route("/produit/{slug}", name="produit")
      */
-    public function produit($id)
+    public function produit($slug)
     {
-        return $this->render('produit/show.html.twig', []);
+        $produit = $this->getDoctrine()->getRepository(Produits::class)->findOneBy(['slug' => $slug]);
+
+        return $this->render('produit/show.html.twig', [
+            'produit' => $produit
+        ]);
     }
 
     /**

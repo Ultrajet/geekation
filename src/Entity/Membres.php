@@ -5,11 +5,13 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MembresRepository")
  */
-class Membres
+class Membres implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -87,6 +89,17 @@ class Membres
      * @ORM\Column(type="string", length=3)
      */
     private $sexe;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $salt;
+
+    /**
+     * @ORM\Column(type="string", length=20)
+     * 
+     */
+    private $role = 'ROLE_USER' ;
 
     public function __construct()
     {
@@ -283,5 +296,38 @@ class Membres
         $this->sexe = $sexe;
 
         return $this;
+    }
+
+    public function getSalt(): ?string
+    {
+        return $this->salt;
+    }
+
+    public function setSalt(?string $salt): self
+    {
+        $this->salt = $salt;
+
+        return $this;
+    }
+
+    public function getRole(): ?string
+    {
+        return $this->role;
+    }
+
+    public function setRole(string $role): self
+    {
+        $this->role = $role;
+
+        return $this;
+    }
+    public function getRoles(){
+       
+        return [$this -> role];
+    }
+
+    public function eraseCredentials()
+    {
+        
     }
 }

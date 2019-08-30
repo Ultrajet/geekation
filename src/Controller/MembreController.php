@@ -16,7 +16,7 @@ class MembreController extends AbstractController
     /**
      * @Route("/inscription", name="inscription")
      */
-    public function inscription(Request $request, ObjectManager $manager)
+    public function inscription(Request $request, ObjectManager $manager,  userPasswordEncoderInterface $encoder)
     {
         $membre = new Membres;
         
@@ -29,6 +29,15 @@ class MembreController extends AbstractController
                 $this -> addFlash('error', 'Vous êtes trop jeune !');
                 return $this -> redirectToRoute('accueil');
             }
+
+            $membre -> setRole('ROLE_USER');
+			
+			$password = $membre -> getPassword(); 
+			
+            $password_crypte = $encoder -> encodePassword($membre, $password);
+            
+			$membre -> setPassword($password_crypte);
+
 
             $manager -> flush();
 
