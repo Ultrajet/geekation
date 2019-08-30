@@ -27,9 +27,13 @@ class ProduitController extends AbstractController
     /**
      * @Route("/produit/{slug}", name="produit")
      */
-    public function produit($slug)
+    public function produit($slug, Request $request)
     {
         $produit = $this->getDoctrine()->getRepository(Produits::class)->findOneBy(['slug' => $slug]);
+
+        // if ($this->handleRequest($request)) {
+        //     echo "Ouais!";
+        // }
 
         return $this->render('produit/show.html.twig', [
             'produit' => $produit
@@ -37,7 +41,7 @@ class ProduitController extends AbstractController
     }
 
     /**
-     * @Route("/ajoutpanier/{slug}"), name="ajoutpanier")
+     * @Route("/ajoutpanier/{slug}", name="ajoutpanier", methods={"POST"})
      */
     public function ajoutPanier($slug, Request $request)
     {
@@ -48,12 +52,24 @@ class ProduitController extends AbstractController
         };
 
         $panier = $session->get("panier");
-        
-        $nb = count($panier) + 1;
-        $panier[$nb] = $produit->getSlug();
+        array_push($panier, $slug);
         $session->set("panier", $panier);
 
-        return $this->redirectToRoute("ajoutPanier", ['slug' => $slug]);
+        return $this->redirectToRoute("gestion_panier");
+    }
+
+    /**
+     * @Route("/viderpanier", name="viderpanier")
+     */
+    public function viderPanier(Request $request)
+    {
+        $session = $request->getSession();
+
+        if ($session->get("panier")) {
+            $panier = $session->set("panier", []);
+
+            return $this->redirectToRoute("gestion_panier");
+        };
     }
 
     /**

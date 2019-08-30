@@ -3,5 +3,7 @@
 {% block content %}
     <p>Voici la page du produit : {{ produit.nom }}</p>
     {{dump(produit)}}
-    <a href="{{ path('ajoutpanier', ['slug' => produit]) }}" class="btn btn-primary">Ajouter au panier</a>
+    <form action="{{ path('ajoutpanier', {slug: produit.slug}) }}" method="post">
+        <button type="submit" class="btn btn-primary">Ajouter au panier</button>
+    </form>
 {% endblock %}

@@ -1,11 +1,18 @@
 html {
   height: 100%;
 }
+
 body {
   min-height: 100%;
   margin: 0;
   padding: 0;
   position: relative;
+  overflow-x: hidden;
+}
+
+row {
+  margin: 0;
+  padding: 0;
 }
 
 /******************************************************************** 
@@ -40,21 +47,6 @@ color: black;
 margin: 0 auto; 
   }
 
-   
-  .cart {
-    text-align: center;
-    background-color: red;
-    padding: 10px;
-    width: 50px;
-    height: 50px;
-    right: 1vw;
-    bottom: 1vh;
-    border-radius: 50%;
-    position: fixed;
-    font-size: 1.2em;
-    color: white; 
-    z-index: 1;
-  }
 
   .connect {
     position: absolute;
@@ -116,22 +108,35 @@ margin: 0 auto;
       }
      
    
-      .cart {
-        text-align: center;
-        background-color: red;
-        padding: 10px;
-        width: 50px;
-        height: 50px;
-        right: 1vw;
-        bottom: 1vh;
-        border-radius: 50%;
-        position: fixed;
-        font-size: 1.2em;
-        color: white; 
-        z-index: 99;
-      }
+   
 
 }
+
+.cart {
+  text-align: center;
+  background-color: red;
+  padding: 10px;
+  width: 50px;
+  height: 50px;
+  right: 1vw;
+  bottom: 1vh;
+  border-radius: 50%;
+  position: fixed;
+  font-size: 1.2em;
+  color: white; 
+  z-index: 99;
+}
+
+.cart:hover {
+  background-color: rgb(64, 155, 12);
+  color: rgb(63, 63, 179)!important;
+}
+
+a.cart-lien {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+}
+
 
 
 
@@ -273,10 +278,7 @@ footer {
 .row-equal > div[class*='col-'] {
   display: flex;
   flex: 1 0 auto;
-}
 
-.row-equal .card {
- width: 100%;
 }
 
 /* ensure equal card height inside carousel */
@@ -284,6 +286,7 @@ footer {
 .carousel-inner>.row-equal.next,
 .carousel-inner>.row-equal.prev {
   display: flex;
+  justify-content: space-around;
 }
 
 /* prevent flicker during transition */
@@ -293,9 +296,24 @@ footer {
   display: flex;
 }
 
+
+ .carousel-item-next,
+.carousel-item-previous,
+ .carousel-item-left,
+  .carousel-item-right {
+  display: flex !important;
+}
+
+.padpad {
+padding-left: 30px;
+}
+
+/************************ SLIDER > CARDS  **********************/
+
+
 /* control image height */
 .card-img-top-250 {
-  max-height: 250px;
+  max-height: 190px;
   overflow:hidden;
 }
 
@@ -304,10 +322,50 @@ footer {
   color:dodgerblue;
 }
 
-/* MES MODIFICATIONS SUR LE CODE DU SLIDER PRODUIT */
-.carousel-item-next,
-.carousel-item-previous{
-  display: flex !important;
+.row-equal .card {
+  width: 100%;
+ }
+
+.card-titre {
+  color: blue; 
+font-size: 1.2em;
+text-align: center;
+padding-top: 1vh;
+}
+
+.card-spec {
+  padding-top: 1vh;
+  color: dimgrey;
+  font-size: 0.7em;
+  text-align: center;
+}
+
+.card-prix {
+  font-weight: lighter;
+  color: orangered;
+  font-size: 1.2em;
+  padding-bottom: 1vh;
+  text-align: center;
+}
+
+.card-resa {
+  background-color: orangered!important; 
+  padding-bottom: 1vh;
+}
+
+.card-resa:hover {
+  background-color: red!important; 
+}
+
+a.reserv {
+  text-transform: uppercase;
+  color: white;
+  text-decoration: none; 
+}
+
+a.reserv:hover {
+  text-decoration: none; 
+  color: white;
 }
 
 /************************ FOOTER **********************/
