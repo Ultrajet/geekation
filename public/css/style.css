@@ -1,0 +1,386 @@
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+/******************************************************************** 
+              SIDEBAR de NAVIGATION
+*********************************************************************/ 
+
+@media screen and (min-width: 992px) {
+
+  #sidebar{
+    width: 280px;
+    position: fixed;
+    height: 100%;
+    background-color: rgb(53, 49, 49);
+    margin: 0;
+    padding: 0;
+
+  }
+  
+  .navbar, .navbar-expand-lg, .navbar-collapse {
+    display: block !important;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .navbar-nav {
+    display: block !important;
+  }
+
+  a.logo, a.logo:hover {
+text-decoration: none;
+color: black;
+margin: 0 auto; 
+  }
+
+   
+  .cart {
+    text-align: center;
+    background-color: red;
+    padding: 10px;
+    width: 50px;
+    height: 50px;
+    right: 1vw;
+    bottom: 1vh;
+    border-radius: 50%;
+    position: fixed;
+    font-size: 1.2em;
+    color: white; 
+    z-index: 1;
+  }
+
+  .connect {
+    position: absolute;
+    bottom: 0;
+    z-index: 99;
+  }
+
+  #cont{ 
+    padding-left: 280px;
+    height: auto;
+    background-color: rgb(109, 11, 11)!important;
+  }
+
+  .slideprod{
+    background: blue;
+    padding: 20px 0 20px 0 !important;
+    width: 90%;
+  }
+
+  .card-reduc{
+    width: 20vh;
+  }
+}
+
+
+
+@media screen and (max-width: 992px) {
+
+  #sidebar{
+    background-color: dimgrey;
+  }
+
+  .navbar {
+    display: flex !important;
+    flex-direction: column;
+  }
+
+  .navbar-collapse {
+    width: 100%;
+  }
+
+  a.lien-panier {
+    display: none;
+   
+  }
+
+  .fa-bars {
+    color: white;
+  }
+
+  button:focus{outline:1px dotted;
+    outline:5px auto red !important;}
+
+
+  a.logo, a.logo:hover {
+    text-decoration: none;
+    color: black;
+    margin: 0 auto; 
+      }
+     
+   
+      .cart {
+        text-align: center;
+        background-color: red;
+        padding: 10px;
+        width: 50px;
+        height: 50px;
+        right: 1vw;
+        bottom: 1vh;
+        border-radius: 50%;
+        position: fixed;
+        font-size: 1.2em;
+        color: white; 
+        z-index: 99;
+      }
+
+}
+
+
+
+/******************************************************************** 
+           CONTENU
+*********************************************************************/ 
+
+footer {
+  background-color: silver;
+  width: 100%;
+}
+
+
+
+/************************ FONCTION SEARCH **********************/
+
+.rowsearch {
+  position: relative;
+  margin: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 250px;
+  height: 100px;
+}
+.rowsearch .search {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  background: crimson;
+  border-radius: 50%;
+  transition: all 1s;
+  z-index: 4;
+  font-size: 1em;
+}
+.rowsearch .search:hover {
+  cursor: pointer;
+}
+.rowsearch .search::before {
+  content: "";
+  position: absolute;
+  margin: auto;
+  top: 12px;
+  right: 0;
+  bottom: 0;
+  left: 12px;
+  width: 6px;
+  height: 2px;
+  background: white;
+  transform: rotate(45deg);
+  transition: all .5s;
+}
+.rowsearch .search::after {
+  content: "";
+  position: absolute;
+  margin: auto;
+  top: -5px;
+  right: 0;
+  bottom: 0;
+  left: -5px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 2px solid white;
+  transition: all .5s;
+}
+.rowsearch input {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 30px;
+  outline: none;
+  border: none;
+  background: crimson;
+  color: white;
+  padding: 0 80px 0 10px;
+  border-radius: 30px;
+  transition: all 1s;
+  opacity: 0;
+  z-index: 5;
+  font-weight: bolder;
+  letter-spacing: 0.1em;
+}
+.rowsearch input:hover {
+  cursor: pointer;
+}
+.rowsearch input:focus {
+  width: 240px;
+  opacity: 1;
+  cursor: text;
+  margin-left: 0;
+}
+.rowsearch input:focus ~ .search {
+  right: -200px;
+  background: #151515;
+  z-index: 6;
+}
+.rowsearch input:focus ~ .search::before {
+  top: 0;
+  left: 0;
+  width: 25px;
+}
+.rowsearch input:focus ~ .search::after {
+  top: 0;
+  left: 0;
+  width: 25px;
+  height: 2px;
+  border: none;
+  background: white;
+  border-radius: 0%;
+  transform: rotate(-45deg);
+}
+.rowsearch input::placeholder {
+  color: white;
+  opacity: 0.5;
+  font-weight: bolder;
+}
+
+
+/************************ CAROUSEL **********************/
+
+
+
+
+/******************************************************************** 
+                      FONCTION SLIDER VIGNETTE
+*********************************************************************/ 
+/* equal card height */
+.row-equal > div[class*='col-'] {
+  display: flex;
+  flex: 1 0 auto;
+}
+
+.row-equal .card {
+ width: 100%;
+}
+
+/* ensure equal card height inside carousel */
+.carousel-inner>.row-equal.active,
+.carousel-inner>.row-equal.next,
+.carousel-inner>.row-equal.prev {
+  display: flex;
+}
+
+/* prevent flicker during transition */
+.carousel-inner>.row-equal.active.left,
+.carousel-inner>.row-equal.active.right {
+  opacity: 0.5;
+  display: flex;
+}
+
+/* control image height */
+.card-img-top-250 {
+  max-height: 250px;
+  overflow:hidden;
+}
+
+
+.card-header{
+  color:dodgerblue;
+}
+
+/* MES MODIFICATIONS SUR LE CODE DU SLIDER PRODUIT */
+.carousel-item-next,
+.carousel-item-previous{
+  display: flex !important;
+}
+
+/************************ FOOTER **********************/
+
+footer {
+  background-color: silver; 
+  border-top: 1px solid dimgrey; 
+  color: dimgrey; 
+  padding: 2vh 1vw 2vh 1vw;
+  font-size: 0.9em;
+}
+
+.footer-titre {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 1.2em;
+  padding-bottom: 1vh;
+}
+
+a.footer-liens{
+  display: block;
+  text-decoration: none;
+  color:dimgrey;
+  padding: 1vh;
+}
+
+a.footer-liens:hover{
+  display: block;
+  text-decoration: none;
+  color: orangered;
+  border-left: 1px solid orangered;
+}
+
+a.footer-lien-mail, a.footer-lien-form {
+color: dimgrey;
+text-decoration: none;
+font-weight: bolder; 
+display: block;
+}
+
+a.footer-lien-mail:hover, a.footer-lien-form:hover {
+  color: rgb(25, 163, 13);
+  text-decoration: none;
+  font-weight: bolder; 
+  }
+
+.footer-phone {
+  font-weight: bolder; 
+  font-weight: 2em;
+}
+
+a.footer-socials {
+  font-size: 2em!important ;
+  color: orangered;
+  text-decoration: none;
+}
+
+a.footer-socials:hover {
+  text-decoration: none;
+  color: red; 
+}
+
+a.footer-socials-mess {
+  font-size: 1em!important ;
+  color: rgb(41, 67, 212);
+  text-decoration: none;
+}
+
+a.footer-socials-messs:hover {
+  text-decoration: none;
+  color: rgb(0, 60, 255); 
+}
+
+.copyright {
+  padding-top: 2vh;
+}
