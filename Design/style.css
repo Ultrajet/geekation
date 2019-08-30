@@ -262,3 +262,82 @@ footer {
 
 /************************ CAROUSEL **********************/
 
+
+
+
+
+
+/************************ FOOTER **********************/
+
+footer {
+  background-color: silver; 
+  border-top: 1px solid dimgrey; 
+  color: dimgrey; 
+  padding: 2vh 1vw 2vh 1vw;
+  font-size: 0.9em;
+}
+
+.footer-titre {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 1.2em;
+  padding-bottom: 1vh;
+}
+
+a.footer-liens{
+  display: block;
+  text-decoration: none;
+  color:dimgrey;
+  padding: 1vh;
+}
+
+a.footer-liens:hover{
+  display: block;
+  text-decoration: none;
+  color: orangered;
+  border-left: 1px solid orangered;
+}
+
+a.footer-lien-mail, a.footer-lien-form {
+color: dimgrey;
+text-decoration: none;
+font-weight: bolder; 
+display: block;
+}
+
+a.footer-lien-mail:hover, a.footer-lien-form:hover {
+  color: rgb(25, 163, 13);
+  text-decoration: none;
+  font-weight: bolder; 
+  }
+
+.footer-phone {
+  font-weight: bolder; 
+  font-weight: 2em;
+}
+
+a.footer-socials {
+  font-size: 2em!important ;
+  color: orangered;
+  text-decoration: none;
+}
+
+a.footer-socials:hover {
+  text-decoration: none;
+  color: red; 
+}
+
+a.footer-socials-mess {
+  font-size: 1em!important ;
+  color: rgb(41, 67, 212);
+  text-decoration: none;
+}
+
+a.footer-socials-messs:hover {
+  text-decoration: none;
+  color: rgb(0, 60, 255); 
+}
+
+.copyright {
+  padding-top: 2vh;
+}
