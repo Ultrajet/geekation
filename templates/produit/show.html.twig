@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    Voici la page du produit {{ dump(produit) }}
+    <p>Voici la page du produit : {{ produit.nom }}</p>
+    {{dump(produit)}}
+    <a href="{{ path('ajoutpanier', ['slug' => produit]) }}" class="btn btn-primary">Ajouter au panier</a>
 {% endblock %}

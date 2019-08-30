@@ -74,10 +74,12 @@ class MembreController extends AbstractController
     /**
         * @Route("/gestion_panier", name="gestion_panier")
         */
-    public function gestion_panier()
+    public function gestion_panier(Request $request)
     {
+        $session = $request->getSession()->all()["panier"];
+
         return $this->render('membre/gestion_panier.html.twig', [
-          
+          'session' => $session
         ]);
     }
 

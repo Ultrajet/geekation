@@ -3,9 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Produits;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Session\SessionBagInterface;
 
 class ProduitController extends AbstractController
 {
@@ -31,6 +34,26 @@ class ProduitController extends AbstractController
         return $this->render('produit/show.html.twig', [
             'produit' => $produit
         ]);
+    }
+
+    /**
+     * @Route("/ajoutpanier/{slug}"), name="ajoutpanier")
+     */
+    public function ajoutPanier($slug, Request $request)
+    {
+        $session = $request->getSession();
+
+        if (!$session->get("panier")) {
+            $panier = $session->set("panier", []);
+        };
+
+        $panier = $session->get("panier");
+        
+        $nb = count($panier) + 1;
+        $panier[$nb] = $produit->getSlug();
+        $session->set("panier", $panier);
+
+        return $this->redirectToRoute("ajoutPanier", ['slug' => $slug]);
     }
 
     /**
