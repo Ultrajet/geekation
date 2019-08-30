@@ -8,11 +8,6 @@ body {
   position: relative;
 }
 
-.row {
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
 /******************************************************************** 
               SIDEBAR de NAVIGATION
 *********************************************************************/ 
@@ -310,14 +305,10 @@ footer {
 }
 
 /* MES MODIFICATIONS SUR LE CODE DU SLIDER PRODUIT */
-/* .carousel-item-next,
+.carousel-item-next,
 .carousel-item-previous{
   display: flex !important;
-} */
-
-.taille{
-  width: 80vh !important;
-
+}
 
 /************************ FOOTER **********************/
 
