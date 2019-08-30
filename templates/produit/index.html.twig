@@ -2,9 +2,13 @@
 
 {% block content %}
 
-<div class="col-9 mx-auto">
+<div class="container">
     {% for produit in produits %}
-        {{ dump(produit) }}
+        <div class="col-3 mx-auto my-2 p-2 border border-dark text-center">
+            <p>{{ produit.nom }}</p>
+            <p>{{ produit.prix }}€</p>
+            <a class="btn btn-info" href="{{path('produit', {slug: produit.slug})}}">Fiche produit</a>
+        </div>
     {% endfor %}
 </div>
 
