@@ -3,9 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Produits;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Session\SessionBagInterface;
 
 class ProduitController extends AbstractController
 {
@@ -24,13 +27,49 @@ class ProduitController extends AbstractController
     /**
      * @Route("/produit/{slug}", name="produit")
      */
-    public function produit($slug)
+    public function produit($slug, Request $request)
     {
         $produit = $this->getDoctrine()->getRepository(Produits::class)->findOneBy(['slug' => $slug]);
+
+        // if ($this->handleRequest($request)) {
+        //     echo "Ouais!";
+        // }
 
         return $this->render('produit/show.html.twig', [
             'produit' => $produit
         ]);
+    }
+
+    /**
+     * @Route("/ajoutpanier/{slug}", name="ajoutpanier", methods={"POST"})
+     */
+    public function ajoutPanier($slug, Request $request)
+    {
+        $session = $request->getSession();
+
+        if (!$session->get("panier")) {
+            $panier = $session->set("panier", []);
+        };
+
+        $panier = $session->get("panier");
+        array_push($panier, $slug);
+        $session->set("panier", $panier);
+
+        return $this->redirectToRoute("gestion_panier");
+    }
+
+    /**
+     * @Route("/viderpanier", name="viderpanier")
+     */
+    public function viderPanier(Request $request)
+    {
+        $session = $request->getSession();
+
+        if ($session->get("panier")) {
+            $panier = $session->set("panier", []);
+
+            return $this->redirectToRoute("gestion_panier");
+        };
     }
 
     /**
