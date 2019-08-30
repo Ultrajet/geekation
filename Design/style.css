@@ -2,22 +2,15 @@
                           GENERAL
 *********************************************************************/
 
-html {
-  height: 100%;
-}
 
-body {
+html, body {
   min-height: 100%;
-  margin: 0;
-  padding: 0;
   position: relative;
   overflow-x: hidden;
+  font-family: 'Raleway', sans-serif !important;
+
 }
 
-row {
-  margin: 0;
-  padding: 0;
-}
 
 /******************************************************************** 
                     SIDEBAR de NAVIGATION
@@ -50,10 +43,11 @@ row {
     bottom: 0;
     z-index: 99;
   }
+
   #cont {
-    padding-left: 280px;
+    margin-left: 280px;
     height: auto;
-    background-color: rgb(109, 11, 11)!important;
+    background-color: gainsboro;
   }
   .slideprod {
     background: blue;
@@ -91,6 +85,7 @@ row {
     color: black;
     margin: 0 auto;
   }
+  
 }
 
 /******************************************************************** 
@@ -443,8 +438,58 @@ a.footer-socials-messs:hover {
 
 .titre-consoles {
   font-size: 3em;
-  
+  text-transform: uppercase;
+  font-weight: bolder;
 }
 
 
-.bloc-console {}
+.bloc-console {
+  margin: 2vh; 
+  background-color: dimgrey;
+  box-shadow: rgb(172, 172, 172) 0px 0px 15px;
+}
+
+.image-console {}
+
+.img-console {}
+
+.card-console { 
+  background-color: rgb(43, 43, 43);
+  color: white; 
+  opacity: 0.8;
+
+}
+
+.titre-console {
+  text-transform: uppercase;
+  color: blue;
+  font-weight: bold;
+  font-size: 2em;
+}
+
+.desc-console {
+text-align: justify;
+}
+
+.bottom-console {
+  padding-top: 1vh;
+}
+
+.bottom-prix {
+  font-size: 0.8em;
+  text-align: center;
+}
+
+.prix-console {
+  color: orangered;
+  font-size: 1.3em;
+}
+
+.bottom-resa {
+  background-color: orangered!important;
+  padding: 1vh;
+}
+
+.bottom-resa:hover {
+  background-color: red!important;
+}
