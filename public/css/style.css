@@ -319,6 +319,11 @@ margin: 0 auto;
   display: flex !important;
 }
 
+.logoGA{
+  width: 60%;
+  margin-left: 46px;
+}
+
 /************************ FOOTER **********************/
 
 .footer-titre {
