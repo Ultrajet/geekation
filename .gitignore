@@ -20,3 +20,6 @@
 ###< symfony/web-server-bundle ###
 composer.lock
 .env
+Design/style.css
+Design/index.html
+Design/style.css
