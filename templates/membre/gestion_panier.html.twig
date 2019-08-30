@@ -5,4 +5,7 @@
 {% for produit in session %}
 <div class="col-3 my-2 border border-dark text-center">{{produit}}</div>
 {% endfor %}
+<form action="{{ path('viderpanier') }}" method="post">
+    <button class="btn btn-danger">Vider le panier</button>
+</form>
 {% endblock %}
