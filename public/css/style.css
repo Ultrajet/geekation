@@ -1,11 +1,10 @@
-html {
-  height: 100%;
-}
-body {
+
+html, body {
   min-height: 100%;
-  margin: 0;
-  padding: 0;
   position: relative;
+  overflow-x: hidden;
+  font-family: 'Raleway', sans-serif !important;
+
 }
 
 /******************************************************************** 
@@ -38,6 +37,7 @@ body {
 text-decoration: none;
 color: black;
 margin: 0 auto; 
+text-align: center;
   }
 
    
@@ -82,6 +82,7 @@ margin: 0 auto;
     background-color: silver;
     width: calc(100% - 280px);
    margin-left: 280px;
+   padding: 2vh 1vw 2vh 1vw;
   }
 }
 
@@ -119,6 +120,7 @@ margin: 0 auto;
     text-decoration: none;
     color: black;
     margin: 0 auto; 
+    text-align: center;
       }
      
    
@@ -136,6 +138,7 @@ margin: 0 auto;
         color: white; 
         z-index: 99;
       }
+
       footer {
         background-color: silver; 
         border-top: 1px solid dimgrey; 
@@ -321,7 +324,6 @@ margin: 0 auto;
 
 .logoGA{
   width: 60%;
-  margin-left: 46px;
 }
 
 /************************ FOOTER **********************/
