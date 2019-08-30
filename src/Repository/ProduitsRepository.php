@@ -26,7 +26,7 @@ class ProduitsRepository extends ServiceEntityRepository
     public function findAllDisctinctProduits() {
         $builder = $this->createQueryBuilder('p');
         $builder
-            ->select('p.nom')
+            ->select('p.nom', 'p.prix', 'p.type', 'p.univers', 'p.slug')
             ->distinct(true)
             ->orderBy('p.nom', 'ASC');
         return $builder->getQuery()->getResult();

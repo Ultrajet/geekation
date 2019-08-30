@@ -26,7 +26,7 @@ class ProduitController extends AbstractController
      */
     public function produit($slug)
     {
-        $produit = $this->getDoctrine()->getRepository(Produits::class)->findOneBy($slug);
+        $produit = $this->getDoctrine()->getRepository(Produits::class)->findOneBy(['slug' => $slug]);
 
         return $this->render('produit/show.html.twig', [
             'produit' => $produit
