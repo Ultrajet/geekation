@@ -58,6 +58,7 @@ margin: 0 auto;
     position: fixed;
     font-size: 1.2em;
     color: white; 
+    z-index: 1;
   }
 
   .connect {
@@ -73,8 +74,13 @@ margin: 0 auto;
   }
 
   .slideprod{
-    height: 30vh;
-    background: yellowgreen;
+    background: blue;
+    padding: 20px 0 20px 0 !important;
+    width: 90%;
+  }
+
+  .card-reduc{
+    width: 20vh;
   }
 }
 
@@ -262,3 +268,53 @@ footer {
 
 /************************ CAROUSEL **********************/
 
+
+
+
+/******************************************************************** 
+                      FONCTION SLIDER VIGNETTE
+*********************************************************************/ 
+/* equal card height */
+.row-equal > div[class*='col-'] {
+  display: flex;
+  flex: 1 0 auto;
+}
+
+.row-equal .card {
+ width: 100%;
+}
+
+/* ensure equal card height inside carousel */
+.carousel-inner>.row-equal.active,
+.carousel-inner>.row-equal.next,
+.carousel-inner>.row-equal.prev {
+  display: flex;
+}
+
+/* prevent flicker during transition */
+.carousel-inner>.row-equal.active.left,
+.carousel-inner>.row-equal.active.right {
+  opacity: 0.5;
+  display: flex;
+}
+
+/* control image height */
+.card-img-top-250 {
+  max-height: 250px;
+  overflow:hidden;
+}
+
+
+.card-header{
+  color:dodgerblue;
+}
+
+/* MES MODIFICATIONS SUR LE CODE DU SLIDER PRODUIT */
+/* .carousel-item-next,
+.carousel-item-previous{
+  display: flex !important;
+} */
+
+.taille{
+  width: 80vh !important;
+}
