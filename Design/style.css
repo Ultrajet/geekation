@@ -1,3 +1,7 @@
+/******************************************************************** 
+                          GENERAL
+*********************************************************************/
+
 html {
   height: 100%;
 }
@@ -16,101 +20,82 @@ row {
 }
 
 /******************************************************************** 
-              SIDEBAR de NAVIGATION
-*********************************************************************/ 
+                    SIDEBAR de NAVIGATION
+*********************************************************************/
 
 @media screen and (min-width: 992px) {
-
-  #sidebar{
+  #sidebar {
     width: 280px;
     position: fixed;
     height: 100%;
     background-color: rgb(53, 49, 49);
     margin: 0;
     padding: 0;
-
   }
-  
   .navbar, .navbar-expand-lg, .navbar-collapse {
     display: block !important;
     flex-direction: column;
     height: 100%;
   }
-  
   .navbar-nav {
     display: block !important;
   }
-
   a.logo, a.logo:hover {
-text-decoration: none;
-color: black;
-margin: 0 auto; 
+    text-decoration: none;
+    color: black;
+    margin: 0 auto;
   }
-
-
   .connect {
     position: absolute;
     bottom: 0;
     z-index: 99;
   }
-
-  #cont{ 
+  #cont {
     padding-left: 280px;
     height: auto;
     background-color: rgb(109, 11, 11)!important;
   }
-
-  .slideprod{
+  .slideprod {
     background: blue;
     padding: 20px 0 20px 0 !important;
     width: 90%;
   }
-
-  .card-reduc{
+  .card-reduc {
     width: 20vh;
   }
 }
 
-
-
 @media screen and (max-width: 992px) {
-
-  #sidebar{
+  #sidebar {
     background-color: dimgrey;
   }
-
   .navbar {
     display: flex !important;
     flex-direction: column;
   }
-
   .navbar-collapse {
     width: 100%;
   }
-
   a.lien-panier {
     display: none;
-   
   }
-
   .fa-bars {
     color: white;
   }
-
-  button:focus{outline:1px dotted;
-    outline:5px auto red !important;}
-
-
+  button:focus {
+    outline: 1px dotted;
+    outline: 5px auto red !important;
+  }
   a.logo, a.logo:hover {
     text-decoration: none;
     color: black;
-    margin: 0 auto; 
-      }
-     
-   
-   
-
+    margin: 0 auto;
+  }
 }
+
+/******************************************************************** 
+                            CART
+*********************************************************************/
 
 .cart {
   text-align: center;
@@ -123,7 +108,7 @@ margin: 0 auto;
   border-radius: 50%;
   position: fixed;
   font-size: 1.2em;
-  color: white; 
+  color: white;
   z-index: 99;
 }
 
@@ -141,17 +126,8 @@ a.cart-lien {
 
 
 /******************************************************************** 
-           CONTENU
-*********************************************************************/ 
-
-footer {
-  background-color: silver;
-  width: 100%;
-}
-
-
-
-/************************ FONCTION SEARCH **********************/
+                            FONCTION SEARCH
+*********************************************************************/
 
 .rowsearch {
   position: relative;
@@ -163,6 +139,7 @@ footer {
   width: 250px;
   height: 100px;
 }
+
 .rowsearch .search {
   position: absolute;
   margin: auto;
@@ -178,9 +155,11 @@ footer {
   z-index: 4;
   font-size: 1em;
 }
+
 .rowsearch .search:hover {
   cursor: pointer;
 }
+
 .rowsearch .search::before {
   content: "";
   position: absolute;
@@ -195,6 +174,7 @@ footer {
   transform: rotate(45deg);
   transition: all .5s;
 }
+
 .rowsearch .search::after {
   content: "";
   position: absolute;
@@ -209,6 +189,7 @@ footer {
   border: 2px solid white;
   transition: all .5s;
 }
+
 .rowsearch input {
   position: absolute;
   margin: auto;
@@ -230,26 +211,31 @@ footer {
   font-weight: bolder;
   letter-spacing: 0.1em;
 }
+
 .rowsearch input:hover {
   cursor: pointer;
 }
+
 .rowsearch input:focus {
   width: 240px;
   opacity: 1;
   cursor: text;
   margin-left: 0;
 }
-.rowsearch input:focus ~ .search {
+
+.rowsearch input:focus~.search {
   right: -200px;
   background: #151515;
   z-index: 6;
 }
-.rowsearch input:focus ~ .search::before {
+
+.rowsearch input:focus~.search::before {
   top: 0;
   left: 0;
   width: 25px;
 }
-.rowsearch input:focus ~ .search::after {
+
+.rowsearch input:focus~.search::after {
   top: 0;
   left: 0;
   width: 25px;
@@ -259,6 +245,7 @@ footer {
   border-radius: 0%;
   transform: rotate(-45deg);
 }
+
 .rowsearch input::placeholder {
   color: white;
   opacity: 0.5;
@@ -266,71 +253,62 @@ footer {
 }
 
 
-/************************ CAROUSEL **********************/
-
-
-
 
 /******************************************************************** 
                       FONCTION SLIDER VIGNETTE
-*********************************************************************/ 
+*********************************************************************/
+
 /* equal card height */
-.row-equal > div[class*='col-'] {
+
+.row-equal>div[class*='col-'] {
   display: flex;
   flex: 1 0 auto;
-
 }
 
 /* ensure equal card height inside carousel */
-.carousel-inner>.row-equal.active,
-.carousel-inner>.row-equal.next,
-.carousel-inner>.row-equal.prev {
+
+.carousel-inner>.row-equal.active, .carousel-inner>.row-equal.next, .carousel-inner>.row-equal.prev {
   display: flex;
   justify-content: space-around;
 }
 
 /* prevent flicker during transition */
-.carousel-inner>.row-equal.active.left,
-.carousel-inner>.row-equal.active.right {
+
+.carousel-inner>.row-equal.active.left, .carousel-inner>.row-equal.active.right {
   opacity: 0.5;
   display: flex;
 }
 
-
- .carousel-item-next,
-.carousel-item-previous,
- .carousel-item-left,
-  .carousel-item-right {
+.carousel-item-next, .carousel-item-previous, .carousel-item-left, .carousel-item-right {
   display: flex !important;
 }
 
 .padpad {
-padding-left: 30px;
+  padding-left: 30px;
 }
 
 /************************ SLIDER > CARDS  **********************/
 
-
 /* control image height */
+
 .card-img-top-250 {
   max-height: 190px;
-  overflow:hidden;
+  overflow: hidden;
 }
 
-
-.card-header{
-  color:dodgerblue;
+.card-header {
+  color: dodgerblue;
 }
 
 .row-equal .card {
   width: 100%;
- }
+}
 
 .card-titre {
-  color: blue; 
-font-size: 1.2em;
-text-align: center;
-padding-top: 1vh;
+  color: blue;
+  font-size: 1.2em;
+  text-align: center;
+  padding-top: 1vh;
 }
 
 .card-spec {
@@ -349,31 +327,37 @@ padding-top: 1vh;
 }
 
 .card-resa {
-  background-color: orangered!important; 
+  background-color: orangered!important;
   padding-bottom: 1vh;
 }
 
 .card-resa:hover {
-  background-color: red!important; 
+  background-color: red!important;
 }
 
 a.reserv {
   text-transform: uppercase;
   color: white;
-  text-decoration: none; 
+  text-decoration: none;
 }
 
 a.reserv:hover {
-  text-decoration: none; 
+  text-decoration: none;
   color: white;
 }
 
-/************************ FOOTER **********************/
+/*************************************************
+                    FOOTER 
+************************************************/
+footer {
+  background-color: silver;
+  width: 100%;
+}
 
 footer {
-  background-color: silver; 
-  border-top: 1px solid dimgrey; 
-  color: dimgrey; 
+  background-color: silver;
+  border-top: 1px solid dimgrey;
+  color: dimgrey;
   padding: 2vh 1vw 2vh 1vw;
   font-size: 0.9em;
 }
@@ -385,14 +369,14 @@ footer {
   padding-bottom: 1vh;
 }
 
-a.footer-liens{
+a.footer-liens {
   display: block;
   text-decoration: none;
-  color:dimgrey;
+  color: dimgrey;
   padding: 1vh;
 }
 
-a.footer-liens:hover{
+a.footer-liens:hover {
   display: block;
   text-decoration: none;
   color: orangered;
@@ -400,43 +384,43 @@ a.footer-liens:hover{
 }
 
 a.footer-lien-mail, a.footer-lien-form {
-color: dimgrey;
-text-decoration: none;
-font-weight: bolder; 
-display: block;
+  color: dimgrey;
+  text-decoration: none;
+  font-weight: bolder;
+  display: block;
 }
 
 a.footer-lien-mail:hover, a.footer-lien-form:hover {
   color: rgb(25, 163, 13);
   text-decoration: none;
-  font-weight: bolder; 
-  }
+  font-weight: bolder;
+}
 
 .footer-phone {
-  font-weight: bolder; 
+  font-weight: bolder;
   font-weight: 2em;
 }
 
 a.footer-socials {
-  font-size: 2em!important ;
+  font-size: 2em!important;
   color: orangered;
   text-decoration: none;
 }
 
 a.footer-socials:hover {
   text-decoration: none;
-  color: red; 
+  color: red;
 }
 
 a.footer-socials-mess {
-  font-size: 1em!important ;
+  font-size: 1em!important;
   color: rgb(41, 67, 212);
   text-decoration: none;
 }
 
 a.footer-socials-messs:hover {
   text-decoration: none;
-  color: rgb(0, 60, 255); 
+  color: rgb(0, 60, 255);
 }
 
 .copyright {

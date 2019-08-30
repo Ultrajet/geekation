@@ -77,6 +77,12 @@ margin: 0 auto;
   .card-reduc{
     width: 20vh;
   }
+
+  footer {
+    background-color: silver;
+    width: calc(100% - 280px);
+   margin-left: 280px;
+  }
 }
 
 
@@ -130,7 +136,13 @@ margin: 0 auto;
         color: white; 
         z-index: 99;
       }
-
+      footer {
+        background-color: silver; 
+        border-top: 1px solid dimgrey; 
+        color: dimgrey; 
+        padding: 2vh 1vw 2vh 1vw;
+        font-size: 0.9em;
+      }
 }
 
 
@@ -139,10 +151,7 @@ margin: 0 auto;
            CONTENU
 *********************************************************************/ 
 
-footer {
-  background-color: silver;
-  width: 100%;
-}
+
 
 
 
@@ -311,14 +320,6 @@ footer {
 }
 
 /************************ FOOTER **********************/
-
-footer {
-  background-color: silver; 
-  border-top: 1px solid dimgrey; 
-  color: dimgrey; 
-  padding: 2vh 1vw 2vh 1vw;
-  font-size: 0.9em;
-}
 
 .footer-titre {
   text-transform: uppercase;

@@ -1,9 +1,5 @@
 <!DOCTYPE html>
-<html>
-
-<!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -104,98 +100,6 @@
                 </div>
             </nav>
         </div>
-    {% endblock %}
-
-
-
-
-    {# <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{{ path('accueil') }}">GEEKation</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-                {% if not is_granted('IS_AUTHENTICATED_FULLY')%}
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('inscription') }}">Inscription</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('connexion') }}">Connexion</a>
-                </li>
-                endif
-
-                {% else %}
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Profil
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="{{ path('profil') }}">Profil</a>
-                        <a class="dropdown-item" href="{{ path('deconnexion') }}">Deconnexion</a>
-                    </div>
-                </li>
-                {% endif %}
-                <li class="nav-item">
-                        <a class="nav-link" href="{{ path('univers') }}">Univers</a>
-                    </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Consoles
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Playstation</a>
-                        <a class="dropdown-item" href="#">XBox</a>
-                        <a class="dropdown-item" href="#">Nintendo Switch</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Jeux
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Playstation</a>
-                        <a class="dropdown-item" href="#">XBox</a>
-                        <a class="dropdown-item" href="#">Nintendo Switch</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Accessoires
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Playstation</a>
-                        <a class="dropdown-item" href="#">XBox</a>
-                        <a class="dropdown-item" href="#">Nintendo Switch</a>
-                    </div>
-                </li>
-                {% if is_granted('ROLE_ADMIN') %}
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Admin
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="{{ path('admin_membres') }}">Admin Membres</a>
-                        <a class="dropdown-item" href="{{ path('admin_produits') }}">Admin Produits</a>
-                        <a class="dropdown-item" href="{{ path('admin_comandes') }}">Admin Commandes</a>
-                    </div>
-                </li>
-                {% endif %}
-                
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('gestion_panier') }}">Panier
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav> #}
-    
 
     {% for message in app.flashes('success') %}
     <div class="alert alert-success">
@@ -213,7 +117,7 @@
     {% endblock %}
 
     <footer>
-    <div class="container ">
+    
         <div class="row justify-content-center">
             <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
                 <a href="#" class="footer-liens"> CGU </a>
@@ -246,7 +150,7 @@
                 <div class="copyright"> © GEEK'ation - 2019 </div>
             </div>
         </div>
-    </div>
+    
     </footer>
 
     {% block javascripts %}
@@ -255,6 +159,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     {% endblock %}
+{% endblock %}
 </body>
 
 </html>
