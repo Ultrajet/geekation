@@ -392,3 +392,35 @@ a.footer-socials-messs:hover {
 .copyright {
   padding-top: 2vh;
 }
+
+
+/******************************************************************** 
+                      FORMULAIRE
+*********************************************************************/ 
+
+.formulaire {
+border-radius: 15px;
+background-color: dimgrey;
+}
+
+label, legend {
+  color: orangered!important;
+  text-transform: uppercase;
+  font-weight: bolder;
+}
+
+input, select {
+  background-color: silver!important;
+  border: none!important;
+  box-shadow: 1px 1px 5px black;
+  color: black;
+  border-radius: 10px;
+  display: flex;
+  margin: 1vw;
+}
+
+.loginbtn {
+  background-color: orangered!important;
+  color: white !important; 
+  text-transform: uppercase;
+}
