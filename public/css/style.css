@@ -67,7 +67,7 @@ text-align: center;
   #cont{ 
     padding-left: 280px;
     height: auto;
-    background-color: rgb(109, 11, 11)!important;
+    background-color: #e4e4e4!important;
   }
 
   .slideprod{
@@ -436,6 +436,14 @@ ul, li, a{
   list-style-type: none;
 }
 
+a{
+  font-weight: bold;
+}
+
+/* h1{
+  text-align: center;
+} */
+
 /****************PROFIL*******************/
 .mdp{
   color: #52ae49;
@@ -455,11 +463,22 @@ ul, li, a{
 
 .identifiant,
 .information,
-.adresse,
+.adresseclient,
+.docs,
 .cdes{
-  background: #e4e4e4;
+  /* background: #e4e4e4; */
   text-align: center;
+}
+
+.identifiant,
+.information,
+.adresseclient,
+.docs{
   width: 110vh;
+}
+
+.cdes{
+  width: auto;
 }
 
 .donnees{
@@ -467,8 +486,11 @@ ul, li, a{
 }
 
 .btn-dark{
-  box-shadow: inset 4px 4px 15px 0px #000000;
+  box-shadow: inset 4px 4px 15px 0px grey;
 }
 
 /****************COMMANDE*******************/
 
+.cdes .vdc{
+  margin-top: 0 !important;
+}
