@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-<h1 class="col-12 text-center text-white">Profil de ...</h1>
+<h1 class="col-12 text-center text-white">Profil de <strong>{{ app.user.username }}</strong></h1>
 
 <div class="row pt-2 mx-auto identifiant">
     <h3 class="col-6 offset-3 btn-dark pb-2 pt-2">Identifiants de connexion</h3>
     <ul class="col-12 offset-4 donnees">
-        <li>Identifiant</li>
+        <li>{{ app.user.username }}</li>
         <li>Mot de passe</li><a href="#" class="mdp">Modifier le mot de passe</a>
     </ul>
 </div>
@@ -14,18 +14,17 @@
 <div class="row mx-auto information">
     <h3 class="col-6 offset-3 btn-dark pb-2 pt-2">Informations Personnelles</h3>
     <ul class="col-12 offset-4 donnees">
-        <li>Nom . Prénom</li>
-        <li>Date de naissance</li>
-        <li>Adresse E-mail</li><a href="#" class="email">Changer l'E-mail</a>
+        <li>{{ app.user.nom }} . {{ app.user.prenom }}</li>
+        <li>{{ app.user.telephone }}</li>
+        <li>{{ app.user.email }}</li><a href="#" class="email">Changer l'E-mail</a>
     </ul>
 </div>
 
 <div class="row mx-auto adresseclient">
     <h3 class="col-6 offset-3 btn-dark pb-2 pt-2">Votre adresse de facturation</h3>
     <ul class="col-12 offset-4 donnees">
-        <li>Adresse</li>
-        <li>Code Postal</li>
-        <li>Ville</li>
+        <li>{{ app.user.adresse }}</li>
+        <li>{{ app.user.ville }}</li>
     </ul>
 </div>
 
