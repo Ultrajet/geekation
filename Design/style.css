@@ -37,7 +37,24 @@ html, body {
     text-decoration: none;
     color: black;
     margin: 0 auto;
+    text-align: center;
   }
+
+  .cart {
+    text-align: center;
+    background-color: red;
+    padding: 10px;
+    width: 50px;
+    height: 50px;
+    right: 1vw;
+    bottom: 1vh;
+    border-radius: 50%;
+    position: fixed;
+    font-size: 1.2em;
+    color: white; 
+    z-index: 1;
+  }
+
   .connect {
     position: absolute;
     bottom: 0;
@@ -47,7 +64,7 @@ html, body {
   #cont {
     margin-left: 280px;
     height: auto;
-    background-color: gainsboro;
+    background-color: #e4e4e4!important;
   }
   .slideprod {
     background: blue;
@@ -56,6 +73,11 @@ html, body {
   }
   .card-reduc {
     width: 20vh;
+  }
+
+  footer {
+    background-color: silver;
+   padding: 2vh 1vw 2vh 1vw;
   }
 }
 
@@ -84,6 +106,30 @@ html, body {
     text-decoration: none;
     color: black;
     margin: 0 auto;
+    text-align: center;
+  }
+
+  .cart {
+    text-align: center;
+    background-color: red;
+    padding: 10px;
+    width: 50px;
+    height: 50px;
+    right: 1vw;
+    bottom: 1vh;
+    border-radius: 50%;
+    position: fixed;
+    font-size: 1.2em;
+    color: white; 
+    z-index: 99;
+  }
+
+  footer {
+    background-color: silver; 
+    border-top: 1px solid dimgrey; 
+    color: dimgrey; 
+    padding: 2vh 1vw 2vh 1vw;
+    font-size: 0.9em;
   }
   
 }
@@ -247,8 +293,6 @@ a.cart-lien {
   font-weight: bolder;
 }
 
-
-
 /******************************************************************** 
                       FONCTION SLIDER VIGNETTE
 *********************************************************************/
@@ -261,25 +305,36 @@ a.cart-lien {
 }
 
 /* ensure equal card height inside carousel */
-
-.carousel-inner>.row-equal.active, .carousel-inner>.row-equal.next, .carousel-inner>.row-equal.prev {
+.carousel-inner>.row-equal.active, 
+.carousel-inner>.row-equal.next, 
+.carousel-inner>.row-equal.prev {
   display: flex;
-  justify-content: space-around;
 }
 
 /* prevent flicker during transition */
-
-.carousel-inner>.row-equal.active.left, .carousel-inner>.row-equal.active.right {
+.carousel-inner>.row-equal.active.left, 
+.carousel-inner>.row-equal.active.right {
   opacity: 0.5;
   display: flex;
 }
 
-.carousel-item-next, .carousel-item-previous, .carousel-item-left, .carousel-item-right {
+/* control image height */
+.card-img-top-250 {
+  max-height: 250px;
+  overflow:hidden;
+}
+
+.card-header{
+  color:dodgerblue;
+}
+
+.carousel-item-next, 
+.carousel-item-previous{
   display: flex !important;
 }
 
-.padpad {
-  padding-left: 30px;
+.logoGA{
+  width: 60%;
 }
 
 /************************ SLIDER > CARDS  **********************/
@@ -344,18 +399,6 @@ a.reserv:hover {
 /*************************************************
                     FOOTER 
 ************************************************/
-footer {
-  background-color: silver;
-  width: 100%;
-}
-
-footer {
-  background-color: silver;
-  border-top: 1px solid dimgrey;
-  color: dimgrey;
-  padding: 2vh 1vw 2vh 1vw;
-  font-size: 0.9em;
-}
 
 .footer-titre {
   text-transform: uppercase;
@@ -421,14 +464,6 @@ a.footer-socials-messs:hover {
 .copyright {
   padding-top: 2vh;
 }
-
-
-
-
-
-
-
-
 
 
 
@@ -565,3 +600,7 @@ a.lien-savoir, a.lien-savoir:hover {
  a.lien-savoir:hover { 
 font-weight: bolder;
 }
+
+/*************************************************
+                   PANIER
+************************************************/

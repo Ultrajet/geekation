@@ -2,9 +2,38 @@
 
 {% block content %}
 
-<div class="col-6 mx-auto border border-dark">
-    <h1> Gestion du Panier </h1>
-    {{ dump(panier) }}
+<div class="col-10 mx-auto border border-dark">
+
+    <div class="row mx-auto cdes">
+        <h3 class="col-12 mt-5 btn-dark pb-2 pt-2 vdc">Votre Panier de réservation</h3>
+        <table class="table table-stripped">
+            <thead>
+                <tr>
+                    
+                    <th>Article</th>
+                    <th>Date de disponibilité</th>
+                    <th>Date de rendu</th>
+                    <th>Prix du produit</th>
+                    <th>Statut</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+            <tr>
+                <th>Montant de votre commande</th>
+            </tr>
+        </table>
+    </div>
+
+    {# {{ dump(panier) }} #}
     <!-- {% for produit in panier %}
     <div class="col-3 my-2 border border-dark text-center">
         {% for value in produit %}
@@ -12,12 +41,14 @@
         {% endfor %}
     </div>
     {% endfor %} -->
-    <form action="{{ path('viderpanier') }}">
-        <button class="btn btn-warning">Vider le panier</button>
-    </form>
-    <form action="{{ path('vidersession') }}">
-        <button class="btn btn-danger">Vider la session</button>
-    </form>
+    <div class="row justify-content-end">
+        <form class="clo-6" action="{{ path('viderpanier') }}">
+            <button class="btn btn-warning">Vider</button>
+        </form>
+        <form class="clo-6" action="#">
+            <button class="btn btn-info">Réserver</button>
+        </form>
+    </div>
 </div>
 
 {% endblock %}

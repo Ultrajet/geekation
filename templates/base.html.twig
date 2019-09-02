@@ -38,23 +38,12 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('accueil') }}">Accueil</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Consoles</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Jeux
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Accessoires</a>
-                        </li>
+                        <li class="nav-item"><a class="nav-link" href="{{ path('accueil') }}">Accueil</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Consoles</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Jeux</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Accessoires</a></li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="{{ path('univers') }}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Univers
-                            </a>
+                            <a class="nav-link dropdown-toggle" href="{{ path('univers') }}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Univers</a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="#">Playstation</a>
                                 <a class="dropdown-item" href="#">XBox</a>
@@ -65,9 +54,7 @@
 
                     {% if is_granted('ROLE_ADMIN') %}
                         <div class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Admin
-                            </a>
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>    
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="{{ path('admin_membres') }}">Admin Membres</a>
                                 <a class="dropdown-item" href="{{ path('admin_produits') }}">Admin Produits</a>
@@ -78,21 +65,13 @@
 
                     {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
                         <div class="connect mr-auto">
-                            <div class="nav-item">
-                                <a class="nav-link" href="{{ path('connexion') }}">Connexion</a>
-                            </div>
-                            <div class="nav-item">
-                                <a class="nav-link" href="{{ path('inscription') }}">Inscription</a>
-                            </div>
+                            <div class="nav-item"><a class="nav-link" href="{{ path('connexion') }}">Connexion</a></div>
+                            <div class="nav-item"><a class="nav-link" href="{{ path('inscription') }}">Inscription</a></div>
                         </div>
                     {% else %}
                         <div class="connect mr-auto">
-                            <div class="nav-item">
-                                <a class="nav-link" href="{{ path('profil') }}">Profil</a>
-                            </div>
-                            <div class="nav-item">
-                                <a class="nav-link" href="{{ path('deconnexion') }}">Deconnexion</a>
-                            </div>
+                            <div class="nav-item"><a class="nav-link" href="{{ path('profil') }}">Profil</a></div>
+                            <div class="nav-item"><a class="nav-link" href="{{ path('deconnexion') }}">Deconnexion</a></div>
                         </div>
                     {% endif %}
                 </div>
@@ -113,7 +92,7 @@
 
         <div id="cont">
             <div class="row panier justify-content-end">
-                <a href="#" class="cart-lien">
+                <a href="{{ path('gestion_panier')}}" class="cart-lien">
                     <div class="cart">
                         <i class="fa fa-shopping-basket"></i>
                     </div>
@@ -123,84 +102,43 @@
             {% block content %}{% endblock %}
 
             <footer>
-
                 <div class="row justify-content-center">
                     <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                        <a href="#" class="footer-liens">
-                            CGU
-                        </a>
-                        <a href="#" class="footer-liens">
-                            CGV
-                        </a>
-                        <a href="#" class="footer-liens">
-                            Protection des données</a>
-                        <a href="#" class="footer-liens">
-                            Cookies
-                        </a>
-                        <a href="#" class="footer-liens">
-                            Mentions légales
-                        </a>
+                        <a href="#" class="footer-liens">CGU</a>
+                        <a href="#" class="footer-liens">CGV</a>                        
+                        <a href="#" class="footer-liens">Protection des données</a>
+                        <a href="#" class="footer-liens">Cookies</a>                        
+                        <a href="#" class="footer-liens">Mentions légales</a>
+                    </div>
 
-                    </div>
                     <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12 offset-md-1 offset-lg-1">
-                        <div class="footer-titre">
-                            Nous contacter
-                        </div>
-                        <a href="mailto:contact@geekation.com" class="footer-lien-mail">
-                            contact@geekation.com
-                        </a>
-                        <br>
-                        Du lundi au vendredi de 9h à 19h
-                        <br>
-                        <div class="footer-phone">
-                            <i class="fa fa-phone"></i>
-                            01 23 45 67 89
-                        </div><br>
-                        <a href="#" class="footer-lien-form">
-                            Formulaire de contact</a><br>
-                        Réponse rapide sur Messenger
-                        <a class="footer-socials-mess" href="">
-                            <i class="fab fa-facebook-messenger"></i>
-                        </a>
+                        <div class="footer-titre">Nous contacter</div> 
+                        <a href="mailto:contact@geekation.com" class="footer-lien-mail">contact@geekation.com</a><br>Du lundi au vendredi de 9h à 19h<br>
+                        <div class="footer-phone"><i class="fa fa-phone"></i>01 23 45 67 89</div><br>   
+                        <a href="#" class="footer-lien-form">Formulaire de contact</a><br>Réponse rapide sur Messenger
+                        <a class="footer-socials-mess" href=""><i class="fab fa-facebook-messenger"></i></a>
                     </div>
+
                     <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12 offset-md-1 offset-lg-1">
-                        <div class="footer-titre">
-                            GEEK'ation</div>
-                        <div class="adresseboutique">
-                            Adresse de la boutique
-                            <br>75020 - Paris</div>
-                        <br>
-                        Nous suivre sur les réseaux sociaux
+                        <div class="footer-titre">GEEK'ation</div>   
+                        <div class="adresseboutique">Adresse de la boutique<br>75020 - Paris</div>Nous suivre sur les réseaux sociaux
                         <div class="row justify-content-around">
-                            <a class="footer-socials" href="">
-                                <i class="fab fa-facebook"></i>
-                            </a>
-                            <a class="footer-socials" href="">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                            <a class="footer-socials" href="">
-                                <i class="fab fa-youtube"></i>
-                            </a>
-                            <a class="footer-socials" href="">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                            <a class="footer-socials" href="">
-                                <i class="fab fa-twitch"></i>
-                            </a>
+                            <a class="footer-socials" href=""><i class="fab fa-facebook"></i></a>
+                            <a class="footer-socials" href=""><i class="fab fa-twitter"></i></a>
+                            <a class="footer-socials" href=""><i class="fab fa-youtube"></i></a>
+                            <a class="footer-socials" href=""><i class="fab fa-instagram"></i></a>
+                            <a class="footer-socials" href=""><i class="fab fa-twitch"></i></a>
                         </div>
-                        <div class="copyright">
-                            © GEEK'ation - 2019
-                        </div>
+                        <div class="copyright"> © GEEK'ation - 2019</div>  
                     </div>
                 </div>
-
             </footer>
         </div>
 
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-            <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> -->
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
             
         {% block javascript %}
         {% endblock %}
