@@ -20,3 +20,5 @@
 ###< symfony/web-server-bundle ###
 composer.lock
 .env
+.env
+composer.lock
