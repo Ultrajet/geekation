@@ -75,17 +75,7 @@ body {
 
 /*On retire le Prev et Next cree grace a la fonction et on rajoute de < > (on peut mettre ce que l on veut)*/
 
-.ui-datepicker-prev span, .ui-datepicker-next span {
-    display: none;
-}
 
-.ui-datepicker-prev::after {
-    content: '<';
-}
-
-.ui-datepicker-next::after {
-    content: '>';
-}
 
 /*Custom de la barre Jours du calendrier*/
 

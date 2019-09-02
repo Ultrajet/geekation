@@ -1,6 +1,17 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<link rel="stylesheet" href="{{ asset('/DatePicker/Datepicker.css') }}">
+
+{% endblock %}
+
+
 {% block content %}
+
+
 <div class="mx-auto p-2 border bg-light" style="width: 30vw">
 
     <p class="align-text-right">Voici la page du produit : {{ produit.nom }}</p>
@@ -23,6 +34,9 @@
 
         <button type="submit" class="btn btn-primary">Ajouter au panier</button>
     </form>
+
+    <div>Debut de Location: <input type="text" id="datepicker-debut"></div>
+    <div>Fin de Location: <input type="text" id="datepicker-fin"></div>
 
 </div>
 {% endblock %}
@@ -72,4 +86,51 @@
         //     form.setAttribute('action', "{{ path('ajoutpanier', {slug: produit.slug, date_debut: " + date_debut_envoi + ", date_fin: " + date_fin_envoi + "}) }}");
         // })
 </script>
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    //fonction a rajouter sur le Datepicker
+    $(function () {
+        $("#datepicker").datepicker({
+            inline: true,
+            showOtherMonths: true,
+            //abbreviation des jours en FR
+            dayNamesMin: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+            monthNames: ["Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre"],
+            dateFormat: "dd/mm/yy",
+        });
+    });
+    $(function () {
+
+
+        //Function 
+        $("#datepicker-debut").datepicker({
+
+            minDate: 0,
+            prevText: "click for previous months",
+            nextText: "click for next months",
+            showOtherMonths: true,
+            selectOtherMonths: false,
+            monthNames: ["Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre"],
+            dayNamesMin: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+            dateFormat: "dd/mm/yy",
+            onSelect: function (selectedDate) {
+                $("#datepicker-fin").datepicker("option", "minDate", selectedDate);
+            }
+        });
+        $("#datepicker-fin").datepicker({
+            prevText: "Mois precedent",
+            nextText: "Prochain Mois",
+            showOtherMonths: true,
+            selectOtherMonths: true,
+            monthNames: ["Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre"],
+            dayNamesMin: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+            dateFormat: "dd/mm/yy",
+            onSelect: function (selectedDate) {
+                $("#datepicker-debut").datepicker("option", "maxDate", selectedDate);
+            }
+        });
+    });
+</script>
+
 {% endblock %}
