@@ -494,3 +494,77 @@ a{
 .cdes .vdc{
   margin-top: 0 !important;
 }
+
+
+
+
+/*************************************************
+                   UNIVERS 
+************************************************/
+
+.univers-1 {
+  background-image: url('https://images-na.ssl-images-amazon.com/images/I/81cVRUdocTL._SL1500_.jpg');
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: auto;
+}
+
+.univers-2 {
+  background-image: url('');
+  width: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin: auto;
+}
+
+.univers-3 {
+  background-image: url('');
+  width: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin: auto;
+}
+
+.univers-bottom-desc{
+  margin-top: 30vh;
+  position: relative;
+  bottom: 0;
+background-color: rgb(29, 29, 29);
+opacity: 0.9;
+color: white; 
+}
+
+.univers-titre {
+text-transform: uppercase;
+letter-spacing: 1px;
+font-weight: bolder;
+color: orangered;
+font-size: 1.7rem;
+}
+
+.univers-desc {
+text-align: justify;
+}
+
+.univers-savoir-1 {
+  background-color: blue!important;
+}
+
+.univers-savoir-2 {
+  background-color: rgb(115, 255, 0)!important;
+}
+
+.univers-savoir-3 {
+  background-color: rgb(255, 51, 0)!important;
+}
+
+a.lien-savoir, a.lien-savoir:hover { 
+  text-decoration: none;
+  color: white;
+  text-transform: uppercase;
+}
+
+ a.lien-savoir:hover { 
+font-weight: bolder;
+}
