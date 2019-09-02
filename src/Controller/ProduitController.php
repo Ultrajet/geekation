@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use DateTime;
 use App\Entity\Produits;
+use App\Entity\ProduitsCommandes;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -29,14 +31,33 @@ class ProduitController extends AbstractController
      */
     public function produit($slug, Request $request)
     {
-        $produit = $this->getDoctrine()->getRepository(Produits::class)->findOneBy(['slug' => $slug]);
+        $produit = $this->getDoctrine()
+        ->getRepository(Produits::class)
+        ->findOneBy(['slug' => $slug]);
+
+        $produitCommande = $this->getDoctrine()
+        ->getRepository(ProduitsCommandes::class)
+        ->findOneBy(['produit' => ($produit->getId())]);
+
+        $produitId = $produit->getId();
+
+        $dateNow = new DateTime();
+        $dateArray = [$dateNow->format('d/m')];
+        for ($i = 0; $i < 7; $i++) {
+            array_push($dateArray, $dateNow->modify('+1 day')->format('d/m'));
+        }
+
+        // $produitCommande = $produit->a();
 
         // if ($this->handleRequest($request)) {
         //     echo "Ouais!";
         // }
 
         return $this->render('produit/show.html.twig', [
-            'produit' => $produit
+            'produit' => $produit,
+            'produitCommande' => $produitCommande,
+            'produitId' => $produitId,
+            'dates' => $dateArray
         ]);
     }
 
@@ -52,7 +73,11 @@ class ProduitController extends AbstractController
         };
 
         $panier = $session->get("panier");
-        array_push($panier, $slug);
+
+        $date_debut = $request->request->get('date_debut');
+        $date_fin = $request->request->get('date_fin');
+
+        array_push($panier, [$slug, $date_debut, $date_fin]);
         $session->set("panier", $panier);
 
         return $this->redirectToRoute("gestion_panier");
@@ -67,9 +92,19 @@ class ProduitController extends AbstractController
 
         if ($session->get("panier")) {
             $panier = $session->set("panier", []);
-
-            return $this->redirectToRoute("gestion_panier");
         };
+ 
+        return $this->redirectToRoute("gestion_panier");
+    }
+
+    /**
+     * @Route("/vidersession", name="vidersession")
+     */
+    public function viderSession(Request $request)
+    {
+        $request->getSession()->clear();
+ 
+        return $this->redirectToRoute("gestion_panier");
     }
 
     /**
