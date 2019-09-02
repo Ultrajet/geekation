@@ -1,11 +1,23 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-<h1> Gestion du Panier </h1>
-{% for produit in session %}
-<div class="col-3 my-2 border border-dark text-center">{{produit}}</div>
-{% endfor %}
-<form action="{{ path('viderpanier') }}" method="post">
-    <button class="btn btn-danger">Vider le panier</button>
-</form>
+
+<div class="col-6 mx-auto border border-dark">
+    <h1> Gestion du Panier </h1>
+    {{ dump(panier) }}
+    <!-- {% for produit in panier %}
+    <div class="col-3 my-2 border border-dark text-center">
+        {% for value in produit %}
+            {{ value }}
+        {% endfor %}
+    </div>
+    {% endfor %} -->
+    <form action="{{ path('viderpanier') }}">
+        <button class="btn btn-warning">Vider le panier</button>
+    </form>
+    <form action="{{ path('vidersession') }}">
+        <button class="btn btn-danger">Vider la session</button>
+    </form>
+</div>
+
 {% endblock %}

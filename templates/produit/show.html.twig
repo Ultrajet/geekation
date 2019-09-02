@@ -1,9 +1,75 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <p>Voici la page du produit : {{ produit.nom }}</p>
-    {{dump(produit)}}
-    <form action="{{ path('ajoutpanier', {slug: produit.slug}) }}" method="post">
+<div class="mx-auto p-2 border bg-light" style="width: 30vw">
+
+    <p class="align-text-right">Voici la page du produit : {{ produit.nom }}</p>
+
+    {{ dump(produit) }}
+    {{ dump(produitCommande) }}
+    {{ dump(produitId) }}
+
+    <form>
+        <label for="date_debut">Date de début de location :</label>
+        <select id="date_debut" name="date_debut" class="m-2">
+            <option value="null">---</option>
+            {% for date in dates %}
+            <option value="{{ date }}">{{ date }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="date_fin">Date de fin de location :</label>
+        <div id="date_fin" class="m-2"><small>Veuillez sélectionner une date de début.</small></div>
+
         <button type="submit" class="btn btn-primary">Ajouter au panier</button>
     </form>
+
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script>
+    $(document).ready(() => {
+
+        console.log('jQuery activé!');
+
+        $date_fin_select = "<select id='select_date_fin' name='date_fin'>{% for date in dates %}<option value='{{ date }}'>{{ date }}</option>{% endfor %}</select>";
+
+        $("#date_debut").on('change', () => {
+            if ($("#date_debut").val() != "null") {
+                console.log("date sélectionnée!");
+                $("#date_fin").html($date_fin_select);
+            }
+            else {
+                $("#date_fin").html('<small>Veuillez sélectionner une date de début.</small>');
+            }
+        });
+
+        $("form").on('submit', (e) => {
+            e.preventDefault();
+            $.ajax({
+                method: "POST",
+                url: "{{ path('ajoutpanier', {slug: produit.slug}) }}",
+                data: {
+                    'date_debut': $("#date_debut").val(),
+                    'date_fin': $("#select_date_fin").val()
+                }
+            }).done(() => { alert("Produit ajouté au panier!"); })
+        });
+
+    });
+
+        // form.addEventListener('submit', (e) => {
+        //     // path.replace("dateDebutPlaceholder", date_debut.value);
+        //     // path.replace("dateFinPlaceholder", date_fin.value);
+        //     select_date_fin = document.querySelector('#select_date_fin');
+
+        //     date_debut_envoi = date_debut.value;
+        //     date_fin_envoi = select_date_fin.value;
+
+        //     console.log(date_debut_envoi + " " + date_fin_envoi);
+        //     // e.preventDefault();
+        //     form.setAttribute('action', "{{ path('ajoutpanier', {slug: produit.slug, date_debut: " + date_debut_envoi + ", date_fin: " + date_fin_envoi + "}) }}");
+        // })
+</script>
 {% endblock %}

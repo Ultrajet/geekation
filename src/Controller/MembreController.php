@@ -76,10 +76,18 @@ class MembreController extends AbstractController
     */
     public function gestion_panier(Request $request)
     {
-        $session = $request->getSession()->all()["panier"];
+        $session = $request->getSession();
+
+        if (!$session->get("panier")) {
+            $panier = $session->set("panier", []);
+        };
+
+        $panier = $session->all()["panier"];
+
+        // $session = $request->getSession()->all()["panier"];
 
         return $this->render('membre/gestion_panier.html.twig', [
-          'session' => $session
+          'panier' => $panier
         ]);
     }
 
