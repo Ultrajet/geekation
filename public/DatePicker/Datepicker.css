@@ -29,7 +29,6 @@ body {
 .ui-datepicker table {
     width: 100%;
     border-spacing: 0px !important;
-    border-collapse:  !important;
 }
 
 /*Custom du Header du tableau*/
