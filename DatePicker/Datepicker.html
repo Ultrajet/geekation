@@ -1,38 +1,73 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jQuery UI Datepicker - Default functionality</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
     <link rel="stylesheet" href="Datepicker.css">
-    <link href="https://fonts.googleapis.com/css?family=Orbitron&display=swap" rel="stylesheet">
-    <title>Date Picker</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        //fonction a rajouter sur le Datepicker
+        $(function () {
+            $("#datepicker").datepicker({
+                inline: true,
+                showOtherMonths: true,
+                //abbreviation des jours en FR
+                dayNamesMin: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+                monthNames: ["Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre"],
+                dateFormat: "dd/mm/yy",
+            });
+        });
+        $(function () {
+
+
+            //Function 
+            $("#datepicker-debut").datepicker({
+
+                minDate: 0,
+                prevText: "click for previous months",
+                nextText: "click for next months",
+                showOtherMonths: true,
+                selectOtherMonths: false,
+                monthNames: ["Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre"],
+                dayNamesMin: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+                dateFormat: "dd/mm/yy",
+                onSelect: function (selectedDate) {
+                    $("#datepicker-fin").datepicker("option", "minDate", selectedDate);
+                }
+            });
+            $("#datepicker-fin").datepicker({
+                prevText: "Mois precedent",
+                nextText: "Prochain Mois",
+                showOtherMonths: true,
+                selectOtherMonths: true,
+                monthNames: ["Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre"],
+                dayNamesMin: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+                dateFormat: "dd/mm/yy",
+                onSelect: function (selectedDate) {
+                    $("#datepicker-debut").datepicker("option", "maxDate", selectedDate);
+                }
+            });
+        });
+    </script>
 </head>
+
 <body>
+
+    <!-- Balise avec le calendrier sans  le click pour vous aider a faire la css 
     
-    <h1>DatePicker</h1>
+        <div id="datepicker"></div>
+    
+    -->
 
-    <div class="date_picker">
-        <div class="selected_date">
-          
-        </div>
+    <div>Enter Start Date: <input type="text" id="datepicker-debut"></div>
+    <div>Enter End Date: <input type="text" id="datepicker-fin"></div>
 
-
-        <div class="dates">
-            <div class="months">
-                <div class="arrows prev_mth"> < </div>
-                <div class="mth"></div>
-                <div class="arrows next_mth"> > </div>
-            </div>
-
-
-            <div class="days">
-            </div>
-
-        </div>
-    </div>
-
-    <script src="Datepicker.js"></script>
 
 </body>
+
 </html>

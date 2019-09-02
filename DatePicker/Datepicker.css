@@ -1,115 +1,160 @@
-*{
-    margin:0;
-    padding: 0%;
+* {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
-body{
+body {
     background-color: rgb(137, 170, 185);
     font-family: 'Orbitron', sans-serif;
-
 }
 
-h1{
-    margin: 30px 0px;
-    font-size: 40px;
-    font-weight: 500;
+/*Contenue General du DatePicker*/
+
+.ui-datepicker {
+    width: 250px;
+    height: auto;
+    margin: 5px auto 0;
+    font: Arial, sans-serif;
+}
+
+/* text decoration des chiffres du calendrier*/
+
+.ui-datepicker a {
+    text-decoration: none;
+}
+
+/*Taille de la table des jours*/
+
+.ui-datepicker table {
+    width: 100%;
+    border-spacing: 0px !important;
+    border-collapse:  !important;
+}
+
+/*Custom du Header du tableau*/
+
+.ui-datepicker-header {
+    background-color: black;
+    color: #e0e0e0;
+    font-weight: bold;
+    line-height: 30px;
+    border-width: 1px 0 0 0;
+    border-style: solid;
+    border-color: #111;
+}
+
+/*Alignement du Mois*/
+
+.ui-datepicker-title {
     text-align: center;
 }
 
+/*Style des fleches < > */
 
-.date_picker{
-    position: relative;
-    width: 100%;
-    max-width: 320px;
-    height: 60px;
-    background-color: white;
-    margin: 30px auto;
-    box-shadow: 0px 3px 10px;
-
+.ui-datepicker-prev, .ui-datepicker-next {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    text-align: center;
     cursor: pointer;
-    user-select: none;
+    overflow: hidden;
 }
 
-.date_picker:hover{
-    background-color: rgb(212, 212, 212);
+/*Placement des fleches  < > */
+
+.ui-datepicker-prev {
+    float: left;
+    background-position: center -30px;
 }
 
+.ui-datepicker-next {
+    float: right;
+    background-position: center 0px;
+}
 
+/*On retire le Prev et Next cree grace a la fonction et on rajoute de < > (on peut mettre ce que l on veut)*/
 
-.date_picker .selected_date{
+.ui-datepicker-prev span, .ui-datepicker-next span {
+    display: none;
+}
+
+.ui-datepicker-prev::after {
+    content: '<';
+}
+
+.ui-datepicker-next::after {
+    content: '>';
+}
+
+/*Custom de la barre Jours du calendrier*/
+
+.ui-datepicker thead {
+    background-color: rgb(223, 223, 223);
+    color: #3d3d3d;
+    font-weight: bold;
+    border-width: 1px 0 0 0;
+    border-style: solid;
+    border-color: #111;
+}
+
+/*Custom des jours dans la barre jours*/
+
+.ui-datepicker th {
+    font-size: 10pt;
+    padding: 5px 0;
+    color: #666666;
+}
+
+/**/
+
+.ui-datepicker tbody td {
+    padding: 0;
+    border-right: 1px solid #bbb;
+}
+
+.ui-datepicker tbody td:last-child {
+    border-right: 0px;
+}
+
+.ui-datepicker tbody tr {
+    border-bottom: 1px solid #bbb;
+}
+
+.ui-datepicker tbody tr:last-child {
+    border-bottom: 0px;
+}
+
+/*Case du Calendrier*/
+
+.ui-datepicker td span, .ui-datepicker td a {
+    display: inline-block;
+    font-weight: bold;
+    text-align: center;
     width: 100%;
-    height: 100%;
+    height: 30px;
+    line-height: 30px;
+    color: #666666;
+  }
+  .ui-datepicker-calendar .ui-state-default {
+    background: #ededed;
+  }
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  /*Date Griser*/
+  .ui-datepicker-unselectable .ui-state-default {
+    background: #f4f4f4;
+    color: #b4b3b3;
+  }
 
-    font-size: 25px
-}
+   /*Hover de la date*/
+  .ui-datepicker-calendar .ui-state-hover {
+    background: #f7f7f7;
+  }
 
-.date_picker .dates{
-
-
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    
-    background-color: white
-
-}
-.date_picker .dates.active {
-
-    display: block;
-
-}
-
-.date_picker .dates .months
-{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 2px solid rgb(192, 192, 192)
-
-}
-
-.date_picker .dates .months .arrows
-{
-    width: 35px;
-    height: 35px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 20px
-}
-.date_picker .dates .months .arrows:hover
-{
-   background-color: rgb(202, 202, 202)
-}
-.date_picker .dates .months .arrows:active
-{
-   background-color: rgb(190, 60, 60)
-}
-
-
-.date_picker .dates .days
-{
-    height: 200px;
-    display: grid;
-    grid-template-columns: repeat(7, 1fr)
-}
-.date_picker .dates .days .day
-{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.date_picker .dates .days .day:hover
-{
-background-color: rgb(236, 236, 236)
-}
-.date_picker .dates .days .day.selected
-{
-background-color: greenyellow
-}
+  /*Selection de la date*/
+  .ui-datepicker-calendar .ui-state-active {
+    background: #6eafbf;
+    color: #e0e0e0;
+    border: 1px solid #55838f;
+    position: relative;
+  }
