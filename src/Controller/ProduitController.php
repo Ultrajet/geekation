@@ -62,6 +62,41 @@ class ProduitController extends AbstractController
     }
 
     /**
+     * @Route("/produit2/{slug}", name="produit")
+     */
+    public function produit2($slug, Request $request)
+    {
+        $produit = $this->getDoctrine()
+        ->getRepository(Produits::class)
+        ->findOneBy(['slug' => $slug]);
+
+        $produitCommande = $this->getDoctrine()
+        ->getRepository(ProduitsCommandes::class)
+        ->findOneBy(['produit' => ($produit->getId())]);
+
+        $produitId = $produit->getId();
+
+        $dateNow = new DateTime();
+        $dateArray = [$dateNow->format('d/m')];
+        for ($i = 0; $i < 7; $i++) {
+            array_push($dateArray, $dateNow->modify('+1 day')->format('d/m'));
+        }
+
+        // $produitCommande = $produit->a();
+
+        // if ($this->handleRequest($request)) {
+        //     echo "Ouais!";
+        // }
+
+        return $this->render('produit/show2.html.twig', [
+            'produit' => $produit,
+            'produitCommande' => $produitCommande,
+            'produitId' => $produitId,
+            'dates' => $dateArray
+        ]);
+    }
+
+    /**
      * @Route("/ajoutpanier/{slug}", name="ajoutpanier", methods={"POST"})
      */
     public function ajoutPanier($slug, Request $request)
@@ -74,10 +109,12 @@ class ProduitController extends AbstractController
 
         $panier = $session->get("panier");
 
+        $nom = $request->request->get('nom');
         $date_debut = $request->request->get('date_debut');
         $date_fin = $request->request->get('date_fin');
+        $prix = $request->request->get('prix');
 
-        array_push($panier, [$slug, $date_debut, $date_fin]);
+        array_push($panier, [$nom, $date_debut, $date_fin, $prix, $slug]);
         $session->set("panier", $panier);
 
         return $this->redirectToRoute("gestion_panier");
