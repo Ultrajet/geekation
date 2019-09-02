@@ -1,5 +1,51 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-<h1> Profil </h1>
+{% block content %}
+<h1> Profil de </h1>
+
+<h2>Vos Informations</h2>
+
+<div class="row pt-2 mx-auto identifiant">
+    <h3 class="col-6 offset-3 btn-dark">Identifiants de connexion</h3>
+
+    <ul class="col-12 offset-4 donnees">
+        <li>Identifiant</li>
+        <li>Mot de passe</li><a href="#" class="mdp">Modifier le mot de passe</a>
+    </ul>
+
+</div>
+
+<div class="row mx-auto information">
+    <h3 class="col-6 offset-3 btn-dark">Informations Personnelle</h3>
+
+    <ul class="col-12 offset-4 donnees">
+        <li>Nom . Prénom</li>
+        <li>Date de naissance</li>
+        <li>Adresse E-mail</li><a href="#" class="email">Changer l'E-mail</a>
+    </ul>
+
+</div>
+
+<div class="row mx-auto adresse">
+    <h3 class="col-6 offset-3 btn-dark">Votre adresse de facturation</h3>
+
+    <ul class="col-12 offset-4 donnees">
+        <li>Adresse</li>
+        <li>Code Postal</li>
+        <li>Ville</li>
+    </ul>
+
+</div>
+
+<div class="row cdes"></div>
+<h3 class="col-12 mt-5 btn-dark">Vos dernieres commandes</h3>
+<table class="table table-stripped">
+    <thead>
+        <td>N° de la commande</td>
+        <td>Descriptif</td>
+        <td>Date de disponibilité</tdtd>
+        <td>Date de rendu</td>
+        <td>Activité de la commande</td>
+    </thead>
+</table>
 {% endblock %}
