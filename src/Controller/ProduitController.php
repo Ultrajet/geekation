@@ -65,6 +65,7 @@ class ProduitController extends AbstractController
      * @Route("/produit2/{slug}", name="produit")
      */
     public function produit2($slug, Request $request)
+    
     {
         $produit = $this->getDoctrine()
         ->getRepository(Produits::class)
