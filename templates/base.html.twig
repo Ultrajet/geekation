@@ -79,10 +79,10 @@
                     {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
                         <div class="connect mr-auto">
                             <div class="nav-item">
-                                <a class="nav-link" href="{{ path('connexion') }}" onclick="window.open(this.href, 'connexion', 'height=auto, width=auto, top=100, left=100, toolbar=no, menubar=yes, location=no, resizable=yes, scrollbars=yes, status=no'); return false">Connexion</a>
+                                <a class="nav-link" href="{{ path('connexion') }}">Connexion</a>
                             </div>
                             <div class="nav-item">
-                                <a class="nav-link" href="{{ path('inscription') }}" onclick="window.open(this.href, 'inscription', 'height=auto, width=50%, top=100, left=100, toolbar=no, menubar=yes, location=no, resizable=yes, scrollbars=yes, status=no'); return false">Inscription</a>
+                                <a class="nav-link" href="{{ path('inscription') }}">Inscription</a>
                             </div>
                         </div>
                     {% else %}
