@@ -9,11 +9,16 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,800&display=swap" rel="stylesheet">
 
+        
+
         <title>
             {% block title %}
                 GEEK'ation
             {% endblock %}
         </title>
+
+        {% block stylesheets %}
+        {% endblock %}
     </head>
 
     <body>
@@ -78,20 +83,20 @@
 
                     {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
                         <div class="connect mr-auto">
-                            <div class="nav-item">
-                                <a class="nav-link" href="{{ path('connexion') }}">Connexion</a>
+                            <div class="nav-item connec ">
+                                <a class="nav-link-connec" href="{{ path('connexion') }}">Connexion</a>
                             </div>
-                            <div class="nav-item">
-                                <a class="nav-link" href="{{ path('inscription') }}">Inscription</a>
+                            <div class="nav-item connec">
+                                <a class="nav-link-connec" href="{{ path('inscription') }}">Inscription</a>
                             </div>
                         </div>
                     {% else %}
                         <div class="connect mr-auto">
-                            <div class="nav-item">
-                                <a class="nav-link" href="{{ path('profil') }}">{{ app.user.username }}</a>
+                            <div class="nav-item connec ">
+                                <a class="nav-link-connec" href="{{ path('profil') }}">{{ app.user.username }}</a>
                             </div>
-                            <div class="nav-item">
-                                <a class="nav-link" href="{{ path('deconnexion') }}">Deconnexion</a>
+                            <div class="nav-item connec">
+                                <a class="nav-link-connec" href="{{ path('deconnexion') }}">Deconnexion</a>
                             </div>
                         </div>
                     {% endif %}

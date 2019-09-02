@@ -1,0 +1,127 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="{{ asset('Datepicker/Datepicker.css') }}">
+
+{% endblock %}
+
+
+{% block content %}
+
+
+<div class="mx-auto p-2 border bg-light" style="width: 30vw">
+
+    <p class="align-text-right">Voici la page du produit : {{ produit.nom }}</p>
+
+    {{ dump(produit) }}
+    {{ dump(produitCommande) }}
+    {{ dump(produitId) }}
+
+    <form datanom="{{ produit.nom }}" dataprix="{{ produit.prix }}">
+
+        <div>Debut de Location: <input type="text" id="datepicker-debut"></div>
+        <br>
+        <div>Fin de Location: <input type="text" id="datepicker-fin"></div>
+        <br>
+
+        <button type="submit" class="btn btn-primary">Ajouter au panier</button>
+    </form>
+    
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script>
+    $(document).ready(() => {
+
+         //dans le formulaire  quand on appuis sur submit on lance: ...
+        $("form").on('submit', (e) => {
+
+            //on empeche l action du submit de ce lancer 
+            e.preventDefault();
+
+            //on recupere les donner  pour les mettre dans la Var data
+            var data = {
+                'nom': $("form").attr("datanom"),
+                'prix': $("form").attr("dataprix"),
+                'date_debut': $("#datepicker-debut").val(),
+                'date_fin': $("#datepicker-fin").val()
+            }
+            //on lance l'ajax
+            $.ajax({
+                //qui applique une methode POST
+                method: "POST",
+                //le chemin que lon veut parcourire
+                url: "{{ path('ajoutpanier', {slug: produit.slug}) }}",
+                //on donne a data la valeur data
+                data: data
+                //puis on envois   dans le console log pour verifier les valeur envoyer
+            }).done(() => { /*alert("Produit ajouté au panier!");*/ console.log(data) })
+        });
+
+    });
+
+        // form.addEventListener('submit', (e) => {
+        //     // path.replace("dateDebutPlaceholder", date_debut.value);
+        //     // path.replace("dateFinPlaceholder", date_fin.value);
+        //     select_date_fin = document.querySelector('#select_date_fin');
+
+        //     date_debut_envoi = date_debut.value;
+        //     date_fin_envoi = select_date_fin.value;
+
+        //     console.log(date_debut_envoi + " " + date_fin_envoi);
+        //     // e.preventDefault();
+        //     form.setAttribute('action', "{{ path('ajoutpanier', {slug: produit.slug, date_debut: " + date_debut_envoi + ", date_fin: " + date_fin_envoi + "}) }}");
+        // })
+</script>
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+
+    //fonction a rajouter sur le Datepicker
+    $(function () {
+        $("#datepicker").datepicker({
+            inline: true,
+            showOtherMonths: true,
+            //abbreviation des jours en FR
+            dayNamesMin: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+            monthNames: ["Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre"],
+            dateFormat: "dd/mm/yy",
+        });
+    });
+    $(function () {
+
+
+        //Function 
+        $("#datepicker-debut").datepicker({
+
+            minDate: 0,
+            prevText: "click for previous months",
+            nextText: "click for next months",
+            showOtherMonths: true,
+            selectOtherMonths: false,
+            monthNames: ["Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre"],
+            dayNamesMin: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+            dateFormat: "dd/mm/yy",
+            onSelect: function (selectedDate) {
+                $("#datepicker-fin").datepicker("option", "minDate", selectedDate);
+            }
+        });
+        $("#datepicker-fin").datepicker({
+            prevText: "Mois precedent",
+            nextText: "Prochain Mois",
+            showOtherMonths: true,
+            selectOtherMonths: true,
+            monthNames: ["Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre"],
+            dayNamesMin: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+            dateFormat: "dd/mm/yy",
+            onSelect: function (selectedDate) {
+                $("#datepicker-debut").datepicker("option", "maxDate", selectedDate);
+            }
+        });
+    });
+</script>
+
+{% endblock %}
