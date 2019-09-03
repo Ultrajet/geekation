@@ -1,53 +1,101 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-<h1 class="col-12 text-center text-white">Profil de <strong>{{ app.user.username }}</strong></h1>
+    <h1 class="col-12 text-center profil">Profil de
+        <strong>{{ app.user.username }}</strong>
+    </h1>
 
-<div class="row pt-2 mx-auto identifiant">
-    <h3 class="col-6 offset-3 btn-dark pb-2 pt-2">Identifiants de connexion</h3>
-    <ul class="col-12 offset-4 donnees">
-        <li>{{ app.user.username }}</li>
-        <li>Mot de passe</li><a href="#" class="mdp">Modifier le mot de passe</a>
-    </ul>
-</div>
 
-<div class="row mx-auto information">
-    <h3 class="col-6 offset-3 btn-dark pb-2 pt-2">Informations Personnelles</h3>
-    <ul class="col-12 offset-4 donnees">
-        <li>{{ app.user.nom }} . {{ app.user.prenom }}</li>
-        <li>{{ app.user.telephone }}</li>
-        <li>{{ app.user.email }}</li><a href="#" class="email">Changer l'E-mail</a>
-    </ul>
-</div>
+    <table class="col-md-6 col-sm-10 col-xs-6 mx-auto table">
+        <th colspan="2" class="identifiant">Identifiants de connexion</th>
+        <tr>
+            <td>Identifiant</td>
+            <td>
+                <strong>{{ app.user.username }}</strong>
+            </td>
+        </tr>
+        <tr>
+            <td>Mot de passe</td>
+            <td>
+                <a href="#" class="mdp">Modifier le mot de passe</a>
+            </td>
+        </tr>
 
-<div class="row mx-auto adresseclient">
-    <h3 class="col-6 offset-3 btn-dark pb-2 pt-2">Votre adresse de facturation</h3>
-    <ul class="col-12 offset-4 donnees">
-        <li>{{ app.user.adresse }}</li>
-        <li>{{ app.user.ville }}</li>
-    </ul>
-</div>
+        <th colspan="2" class="information">Informations Personnelles</th>
+        <tr>
+            <td>Nom et prénom</td>
+            <td>
+                <strong>{{ app.user.nom }}</strong>.<strong>{{ app.user.prenom }}</strong>
+            </td>
+        </tr>
+        <tr>
+            <td>Date de naissance</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Téléphone</td>
+            <td>
+                <strong>{{ app.user.telephone }}</strong>
+            </td>
+        </tr>
+        <tr>
+            <td>E-mail</td>
+            <td>
+                <strong>{{ app.user.email }}</strong>
+                <a href="#" class="email">Changer l'E-mail</a>
+            </td>
+        </tr>
 
-<div class="row mx-auto docs">
-    <h3 class="col-6 offset-3 btn-dark pb-2 pt-2">Vos documents télécharger</h3>
-    <ul class="col-12 offset-4 donnees">
-        <li>Pièce d'identité</li><img src="#"><br><a href="#" class="ci">Charger votre nouvelle pièce d'identité</a>
-        <li>RIB</li><img src="#"><br><a href="#" class="rib">Charger votre nouveau RIB</a>
-    </ul>
-</div>
-<br>
-<div class="row-12 mx-auto cdes">
-    <h3 class="col-12 mt-5 btn-dark pb-2 pt-2 vdc">Vos dernieres commandes</h3>
-    <table class="table table-stripped">
+
+        <th colspan="2" class="adresseclient">Votre adresse</th>
+        <tr>
+            <td>Adresse</td>
+            <td>
+                <strong>{{ app.user.adresse }}</strong>
+            </td>
+        </tr>
+        <tr>
+            <td>Code postal</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Ville</td>
+            <td>
+                <strong>{{ app.user.ville }}</strong>
+            </td>
+        </tr>
+
+
+        <th colspan="2" class="docs">Vos documents</th>
+        <tr>
+            <td>Pièce d'identité</td>
+            <td><img src="#"><br><a href="#" class="ci">Charger votre nouvelle pièce d'identité</a>
+            </td>
+        </tr>
+        <tr>
+            <td>RIB</td>
+            <td><img src="#"><br><a href="#" class="rib">Charger votre nouveau RIB</a>
+            </td>
+        </tr>
+    </table>
+
+    <br>
+
+    <table class="col-md-6 col-sm-10 col-xs-6 table table-cde">
         <thead>
+            <th colspan="5" class="vdc">Vos dernieres commandes</th>
             <tr>
-                <th>N° de la commande</th>
-                <th>Descriptif</th>
-                <th>Date de disponibilité</th>
-                <th>Date de rendu</th>
-                <th>Activité de la commande</th>
+                <td>N° de la commande</td>
+                <td>Descriptif</td>
+                <td>Date de disponibilité</td>
+                <td>Date de rendu</td>
+                <td>Activité de la commande</td>
             </tr>
         </thead>
+        <tbody>
+            <tr>
+                <td></td>
+            </tr>
+        </tbody>
     </table>
-</div>
 {% endblock %}

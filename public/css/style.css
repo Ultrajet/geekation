@@ -517,60 +517,55 @@ a{
   font-weight: bold;
 }
 
-/* h1{
-  text-align: center;
-} */
-
-/****************PROFIL*******************/
-.mdp{
-  color: #52ae49;
-}
-
-.mdp:hover{
-  color: #e05951;
-}
-
-.email{
-  color: #e05951;
-}
-
-.email:hover{
-  color: #52ae49;
+.mdp, .email, .ci, .rib{
+  font-size: 0.7em;
 }
 
 .identifiant,
 .information,
 .adresseclient,
 .docs,
-.cdes{
-  /* background: #e4e4e4; */
-  text-align: center;
+.vdc{
+  font-size: 1.2em;
+}
+
+/****************PROFIL*******************/
+
+.profil{
+  color: #52ae49 !important;
+}
+
+.mdp, .ci, .rib:hover, .email:hover{
+  color: #52ae49;
+}
+
+.email, .ci:hover, .rib, .mdp:hover{
+  color: #e05951;
 }
 
 .identifiant,
 .information,
 .adresseclient,
-.docs{
-  width: 110vh;
+.docs,
+.vdc{
+  text-align: center;
+  background: #e4e4e4;
 }
 
-.cdes{
-  width: auto;
+.table{
+  background: #093357;
+  color: #e4e4e4;
 }
 
-.donnees{
-  text-align: justify;
+td{
+  color: #e4e4e4;
 }
 
-.btn-dark{
-  box-shadow: inset 4px 4px 15px 0px grey;
+.table-cde{
+  width: 100%;
 }
 
-/****************COMMANDE*******************/
 
-.cdes .vdc{
-  margin-top: 0 !important;
-}
 
 
 /*--------------------------------------------------------------------------------------------------*/
