@@ -1,92 +1,83 @@
 /*--------------------------------------------------------------------------------------------------*/
-        /*******************************PAGE ACCUEIL*****************************************/
+
+/******************************* PAGE ACCUEIL (BASE) **********************************/
+
 /*-------------------------------------------------------------------------------------------------*/
+
+/********** GENERAL ****************/
+
 html, body {
   min-height: 100%;
   position: relative;
   overflow-x: hidden;
   font-family: 'Raleway', sans-serif !important;
-
 }
 
-/******************************************************************** 
-              SIDEBAR de NAVIGATION
-*********************************************************************/ 
+.logoGA {
+  width: 60%;
+}
+
+/************* SIDEBAR DE NAVIGATION **************/
 
 @media screen and (min-width: 992px) {
-
-  #sidebar{
+  #sidebar {
     width: 280px;
     position: fixed;
     height: 100%;
     background-color: rgb(36, 36, 36);
     margin: 0;
     padding: 0;
-
   }
-  
   .navbar, .navbar-expand-lg, .navbar-collapse {
     display: block !important;
     flex-direction: column;
     height: 100%;
   }
-  
   .navbar-nav {
     display: block !important;
   }
-
   a.nav-link {
     color: #52ae49;
   }
-
   a.nav-link:hover {
     color: #489de3;
     letter-spacing: 1px;
     transition-duration: 1s;
   }
-
-.dropdown-menu {
-  background-color: dimgrey!important;
-}
-
-a.dropdown-item {
-  color: #e2bc00;
-  font-weight: bolder;
-}
-
-a.nav-link-connec {
-  color: #E05951;
-padding: 1vh 2vw;
-text-transform: uppercase;
-}
-
-.connec {
-  border: 1px solid #E05951;
-  margin: 1vh;
-  text-align: center;
-  padding: 1vh;
-}
-
-a.nav-link-connec:hover {
-  color: #e2bc00;
-padding: 1vh 2vw;
-transition-duration: 1s;
-text-transform: uppercase;
-}
-
-.connec:hover {
-  border: 1px solid #e2bc00;
-  margin: 1vh;
-}
-
-  a.logo, a.logo:hover {
-text-decoration: none;
-color: black;
-margin: 0 auto; 
-text-align: center;
+  .dropdown-menu {
+    background-color: dimgrey!important;
   }
-
-   
+  a.dropdown-item {
+    color: #e2bc00;
+    font-weight: bolder;
+  }
+  a.nav-link-connec {
+    color: #E05951;
+    padding: 1vh 2vw;
+    text-transform: uppercase;
+  }
+  .connec {
+    border: 1px solid #E05951;
+    margin: 1vh;
+    text-align: center;
+    padding: 1vh;
+  }
+  a.nav-link-connec:hover {
+    color: #e2bc00;
+    padding: 1vh 2vw;
+    transition-duration: 1s;
+    text-transform: uppercase;
+  }
+  .connec:hover {
+    border: 1px solid #e2bc00;
+    margin: 1vh;
+  }
+  a.logo, a.logo:hover {
+    text-decoration: none;
+    color: black;
+    margin: 0 auto;
+    text-align: center;
+  }
   .cart {
     text-align: center;
     background-color: #E05951;
@@ -98,144 +89,108 @@ text-align: center;
     border-radius: 50%;
     position: fixed;
     font-size: 1.2em;
-    color: white; 
+    color: white;
     z-index: 1;
   }
-
   .connect {
     position: absolute;
     bottom: 0;
     z-index: 99;
   }
-
-  
-
-  #cont{ 
+  #cont {
     padding-left: 280px;
     height: auto;
     background-color: #e4e4e4!important;
   }
-
-  .slideprod{
+  .slideprod {
     background: #489de3;
     padding: 20px 0 20px 0 !important;
     width: 90%;
   }
-
-  .card-reduc{
+  .card-reduc {
     width: 20vh;
   }
-
   footer {
     background: linear-gradient(#fdfdfd, #cecece);
-       padding: 2vh 1vw 2vh 1vw;
+    padding: 2vh 1vw 2vh 1vw;
   }
-
-
 }
 
-
-
 @media screen and (max-width: 992px) {
-
-  #sidebar{
+  #sidebar {
     background-color: rgb(36, 36, 36);
   }
-
   .navbar {
     display: flex !important;
     flex-direction: column;
   }
-
   .navbar-collapse {
     width: 100%;
   }
-
   a.lien-panier {
     display: none;
-   
   }
-
   .fa-bars {
     color: white;
   }
-
-  button:focus{
-    outline:5px auto#7569b0 !important;}
-
-
+  button:focus {
+    outline: 5px auto#7569b0 !important;
+  }
   a.logo, a.logo:hover {
     text-decoration: none;
     color: black;
-    margin: 0 auto; 
+    margin: 0 auto;
     text-align: center;
-      }
-     
-      a.nav-link {
-        color: #52ae49;
-      }
-    
-      a.nav-link:hover {
-        color: #489de3;
-        letter-spacing: 1px;
-        transition-duration: 1s;
-      }
-
-.dropdown-menu {
-  background-color: dimgrey!important;
+  }
+  a.nav-link {
+    color: #52ae49;
+  }
+  a.nav-link:hover {
+    color: #489de3;
+    letter-spacing: 1px;
+    transition-duration: 1s;
+  }
+  .dropdown-menu {
+    background-color: dimgrey!important;
+  }
+  a.dropdown-item {
+    color: #e2bc00;
+    font-weight: bolder;
+  }
+  a.nav-link-connec {
+    color: #E05951;
+    padding: 1vh 2vw;
+    text-transform: uppercase;
+  }
+  .connec {
+    border: 1px solid #E05951;
+    margin: 1vh;
+    text-align: center;
+    padding: 1vh;
+  }
+  .cart {
+    text-align: center;
+    background-color: #E05951;
+    padding: 10px;
+    width: 50px;
+    height: 50px;
+    right: 1vw;
+    bottom: 1vh;
+    border-radius: 50%;
+    position: fixed;
+    font-size: 1.2em;
+    color: white;
+    z-index: 99;
+  }
+  footer {
+    background: linear-gradient(#fdfdfd, #cecece);
+    color: dimgrey;
+    padding: 2vh 1vw 2vh 1vw;
+    font-size: 0.9em;
+  }
 }
 
-a.dropdown-item {
-  color: #e2bc00;
-  font-weight: bolder;
-}
-
-a.nav-link-connec {
-  color: #E05951;
-padding: 1vh 2vw;
-text-transform: uppercase;
-}
-
-.connec {
-  border: 1px solid #E05951;
-  margin: 1vh;
-  text-align: center;
-  padding: 1vh;
-}
-
-   
-      .cart {
-        text-align: center;
-        background-color:#E05951;
-        padding: 10px;
-        width: 50px;
-        height: 50px;
-        right: 1vw;
-        bottom: 1vh;
-        border-radius: 50%;
-        position: fixed;
-        font-size: 1.2em;
-        color: white; 
-        z-index: 99;
-      }
-
-
-      footer {
-        background: linear-gradient(#fdfdfd, #cecece);
-        color: dimgrey; 
-        padding: 2vh 1vw 2vh 1vw;
-        font-size: 0.9em;
-      }
-}
-
-
-
-/******************************************************************** 
-           CONTENU
-*********************************************************************/ 
-
-
-/************************ FONCTION SEARCH **********************/
+/*********** FONCTION SEARCH ***********/
 
 .rowsearch {
   position: relative;
@@ -247,6 +202,7 @@ text-transform: uppercase;
   width: 250px;
   height: 100px;
 }
+
 .rowsearch .search {
   position: absolute;
   margin: auto;
@@ -256,15 +212,17 @@ text-transform: uppercase;
   left: 0;
   width: 30px;
   height: 30px;
-  background: #e2bc00 ;
+  background: #e2bc00;
   border-radius: 50%;
   transition: all 1s;
   z-index: 4;
   font-size: 1em;
 }
+
 .rowsearch .search:hover {
   cursor: pointer;
 }
+
 .rowsearch .search::before {
   content: "";
   position: absolute;
@@ -279,6 +237,7 @@ text-transform: uppercase;
   transform: rotate(45deg);
   transition: all .5s;
 }
+
 .rowsearch .search::after {
   content: "";
   position: absolute;
@@ -293,6 +252,7 @@ text-transform: uppercase;
   border: 2px solid white;
   transition: all .5s;
 }
+
 .rowsearch input {
   position: absolute;
   margin: auto;
@@ -314,26 +274,31 @@ text-transform: uppercase;
   font-weight: bolder;
   letter-spacing: 0.1em;
 }
+
 .rowsearch input:hover {
   cursor: pointer;
 }
+
 .rowsearch input:focus {
   width: 240px;
   opacity: 1;
   cursor: text;
   margin-left: 0;
 }
-.rowsearch input:focus ~ .search {
+
+.rowsearch input:focus~.search {
   right: -200px;
   background: #52ae49;
   z-index: 6;
 }
-.rowsearch input:focus ~ .search::before {
+
+.rowsearch input:focus~.search::before {
   top: 0;
   left: 0;
   width: 25px;
 }
-.rowsearch input:focus ~ .search::after {
+
+.rowsearch input:focus~.search::after {
   top: 0;
   left: 0;
   width: 25px;
@@ -343,67 +308,14 @@ text-transform: uppercase;
   border-radius: 0%;
   transform: rotate(-45deg);
 }
+
 .rowsearch input::placeholder {
   color: white;
   opacity: 0.5;
   font-weight: bolder;
 }
 
-
-/************************ CAROUSEL **********************/
-
-
-
-
-/******************************************************************** 
-                      FONCTION SLIDER VIGNETTE
-*********************************************************************/ 
-/* equal card height */
-.row-equal > div[class*='col-'] {
-  display: flex;
-  flex: 1 0 auto;
-}
-
-.row-equal .card {
- width: 100%;
-}
-
-/* ensure equal card height inside carousel */
-.carousel-inner>.row-equal.active,
-.carousel-inner>.row-equal.next,
-.carousel-inner>.row-equal.prev {
-  display: flex;
-}
-
-/* prevent flicker during transition */
-.carousel-inner>.row-equal.active.left,
-.carousel-inner>.row-equal.active.right {
-  opacity: 0.5;
-  display: flex;
-}
-
-/* control image height */
-.card-img-top-250 {
-  max-height: 250px;
-  overflow:hidden;
-}
-
-
-.card-header{
-  color:#489de3;
-}
-
-/* MES MODIFICATIONS SUR LE CODE DU SLIDER PRODUIT */
-.carousel-item-next,
-.carousel-item-previous{
-  display: flex !important;
-}
-
-.logoGA{
-  width: 60%;
-}
-
-/************************ FOOTER **********************/
+/*********** FOOTER **************/
 
 .footer-titre {
   text-transform: uppercase;
@@ -412,14 +324,14 @@ text-transform: uppercase;
   padding-bottom: 1vh;
 }
 
-a.footer-liens{
+a.footer-liens {
   display: block;
   text-decoration: none;
-  color:#7569b0;
+  color: #7569b0;
   padding: 1vh;
 }
 
-a.footer-liens:hover{
+a.footer-liens:hover {
   display: block;
   text-decoration: none;
   color: #093357;
@@ -427,61 +339,122 @@ a.footer-liens:hover{
 }
 
 a.footer-lien-mail, a.footer-lien-form {
-color: #E05951;
-text-decoration: none;
-font-weight: bolder; 
-display: block;
+  color: #E05951;
+  text-decoration: none;
+  font-weight: bolder;
+  display: block;
 }
 
 a.footer-lien-mail:hover, a.footer-lien-form:hover {
-  color:#52ae49;
+  color: #52ae49;
   text-decoration: none;
-  font-weight: bolder; 
-  }
+  font-weight: bolder;
+}
 
 .footer-phone {
-  font-weight: bolder; 
+  font-weight: bolder;
   font-weight: 2em;
 }
 
 a.footer-socials {
-  font-size: 2em!important ;
-  color:#e2bc00;
+  font-size: 2em!important;
+  color: #e2bc00;
   text-decoration: none;
 }
 
 a.footer-socials:hover {
   text-decoration: none;
-  color:#52ae49; 
+  color: #52ae49;
 }
 
 a.footer-socials-mess {
-  font-size: 1em!important ;
+  font-size: 1em!important;
   color: #489de3;
   text-decoration: none;
 }
 
 a.footer-socials-messs:hover {
   text-decoration: none;
-  color:#093357; 
+  color: #093357;
 }
 
 .copyright {
   padding-top: 2vh;
 }
 
+/*--------------------------------------------------------------------------------------------------*/
+
+/******************************* PAGE ACCUEIL (INDEX) **********************************/
+
+/*-------------------------------------------------------------------------------------------------*/
+
+/************* FONCTION SLIDER VIGNETTE **********/
+
+/* equal card height */
+
+.row-equal>div[class*='col-'] {
+  display: flex;
+  flex: 1 0 auto;
+}
+
+.row-equal .card {
+  width: 100%;
+}
+
+/* ensure equal card height inside carousel */
+
+.carousel-inner>.row-equal.active, .carousel-inner>.row-equal.next, .carousel-inner>.row-equal.prev {
+  display: flex;
+}
+
+/* prevent flicker during transition */
+
+.carousel-inner>.row-equal.active.left, .carousel-inner>.row-equal.active.right {
+  opacity: 0.5;
+  display: flex;
+}
+
+/* control image height */
+
+.card-img-top-250 {
+  max-height: 250px;
+  overflow: hidden;
+}
+
+.card-header {
+  color: #489de3;
+}
+
+/* MES MODIFICATIONS SUR LE CODE DU SLIDER PRODUIT */
+
+.carousel-item-next, .carousel-item-previous {
+  display: flex !important;
+}
+
+.boutton{
+  font-size: 0.9em !important;
+}
+
+
+
+
+
+/*--------------------------------------------------------------------------------------------------*/
+
+/******************************* CSS DE TOUS LES FORMULAIRE ******************************/
 
 /******************************************************************** 
-                      FORMULAIRE
-*********************************************************************/ 
+                FORMULAIRE // LOGIN // INSCRIPTION
+*********************************************************************/
 
 .formulaire {
-border-radius: 15px;
-background-color:  rgb(36, 36, 36);
+  border-radius: 15px;
+  background-color: rgb(36, 36, 36);
+  opacity: 0.95;
 }
 
 label, legend {
-  color: #e2bc00;
+  color: #e2bc00!important;
   text-transform: uppercase;
   font-weight: bolder;
 }
@@ -493,83 +466,128 @@ input, select {
   color: black;
   border-radius: 10px;
   display: flex;
-  margin: 1vw;
 }
 
-.loginbtn {
-  background-color: orangered!important;
-  color: white !important; 
+.loginbtn, #membre_submit {
+  background-color: #e05951!important;
+  color: white !important;
   text-transform: uppercase;
+  font-weight: bolder;
+  width: 100%;
 }
 
+.bglogin {
+  background-image: url('../image/fondconnect.png');
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  margin: 0;
+  overflow: auto;
+}
+
+.titrelogin {
+  color: #e2bc00;
+  text-transform: uppercase;
+  text-shadow: #093357 2px 2px 2px;
+  font-weight: bolder;
+}
+
+.inscristoi {
+  color: #e2bc00;
+  text-align: center;
+}
+
+a.inscristoiici {
+  color: #e2bc00;
+  font-weight: bolder;
+}
+
+a.inscristoiici:hover {
+  color: #52ae49;
+  font-weight: bolder;
+  letter-spacing: 2px;
+  transition-duration: 1s;
+}
 
 /*--------------------------------------------------------------------------------------------------*/
-        /*******************************PAGE PROFIL*****************************************/
+
+/******************************* PAGE PROFIL (MEMBRE) *****************************************/
+
 /*-------------------------------------------------------------------------------------------------*/
 
-/****************GENERAL*******************/
-ul, li, a{
+/**************** GENERAL *******************/
+
+ul, li, a {
   text-decoration: none !important;
   list-style-type: none;
 }
 
-a{
+a {
   font-weight: bold;
 }
 
-.mdp, .email, .ci, .rib{
+.mdp, .email, .ci, .rib {
   font-size: 0.7em;
 }
 
-.identifiant,
-.information,
-.adresseclient,
-.docs,
-.vdc{
+.identifiant, .information, .adresseclient, .docs, .vdc {
   font-size: 1.2em;
 }
 
-/****************PROFIL*******************/
+/**************** PROFIL *******************/
 
-.profil{
+.profil {
   color: #52ae49 !important;
 }
 
-.mdp, .ci, .rib:hover, .email:hover{
+.mdp, .ci, .rib:hover, .email:hover {
   color: #52ae49;
 }
 
-.email, .ci:hover, .rib, .mdp:hover{
+.email, .ci:hover, .rib, .mdp:hover {
   color: #e05951;
 }
 
-.identifiant,
-.information,
-.adresseclient,
-.docs,
-.vdc{
+.identifiant, .information, .adresseclient, .docs, .vdc, .vpr {
   text-align: center;
   background: #e4e4e4;
 }
 
-.table{
+.profilclient, .profilclientcommandesthead, .commandesthead {
   background: #093357;
   color: #e4e4e4;
 }
 
-td{
+.profilclient td {
   color: #e4e4e4;
 }
 
-.table-cde{
-  width: 100%;
+/*--------------------------------------------------------------------------------------------------*/
+
+/******************************* PAGE PANIER (MEMBRE) *****************************************/
+
+/*-------------------------------------------------------------------------------------------------*/
+
+.vider {
+  background: #e2bc00;
+  border-radius: 5px;
 }
 
+.reserver, .connexion {
+  background: #489de3;
+  border-radius: 5px;
+}
 
-
+.montantcommande {
+  background: #E05951;
+  color: #e4e4e4;
+}
 
 /*--------------------------------------------------------------------------------------------------*/
-        /*******************************PAGE UNIVERS*****************************************/
+
+/******************************* PAGE UNIVERS *****************************************/
+
 /*-------------------------------------------------------------------------------------------------*/
 
 .univers-1 {
@@ -596,25 +614,25 @@ td{
   margin: auto;
 }
 
-.univers-bottom-desc{
+.univers-bottom-desc {
   margin-top: 30vh;
   position: relative;
   bottom: 0;
-background-color: rgb(29, 29, 29);
-opacity: 0.9;
-color: white; 
+  background-color: rgb(29, 29, 29);
+  opacity: 0.9;
+  color: white;
 }
 
 .univers-titre {
-text-transform: uppercase;
-letter-spacing: 1px;
-font-weight: bolder;
-color: orangered;
-font-size: 1.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bolder;
+  color: orangered;
+  font-size: 1.7rem;
 }
 
 .univers-desc {
-text-align: justify;
+  text-align: justify;
 }
 
 .univers-savoir-1 {
@@ -629,17 +647,33 @@ text-align: justify;
   background-color: rgb(255, 51, 0)!important;
 }
 
-a.lien-savoir, a.lien-savoir:hover { 
+a.lien-savoir, a.lien-savoir:hover {
   text-decoration: none;
   color: white;
   text-transform: uppercase;
 }
 
- a.lien-savoir:hover { 
-font-weight: bolder;
+a.lien-savoir:hover {
+  font-weight: bolder;
 }
 
 /*--------------------------------------------------------------------------------------------------*/
-        /*******************************PAGE GESTION PANIER*****************************************/
+
+/****************************** *PAGE PRODUIT LIST (ADMIN) **********************************/
+
 /*-------------------------------------------------------------------------------------------------*/
 
+.ajout_produit {
+  background: #52ae49;
+  border-radius: 10px;
+  margin-left: 73vh;
+}
+
+.fa-plus, .fa-pencil-alt, .fa-eye, .fa-trash {
+  color: #7569b0;
+}
+
+.titrecolonne {
+  background: #7569b0;
+  color: #e4e4e4;
+}

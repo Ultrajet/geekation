@@ -11,41 +11,61 @@
 
         <title>
             {% block title %}
-                GEEK'ation - Connexion
+                GEEK'ation - Inscription
             {% endblock %}
         </title>
     </head>
-<body>
-<div class="alert col-lg-6 col-md-6 col-sm-11 col-xs-11 mx-auto p-3">
+    <body>
+        <div class="bglogin">
 
 
-<h1>Inscription</h1>
+            <h1 class="col-12 mx-auto mt-5 mb-4 text-center titrelogin">Inscription</h1>
 
-<div class="formulaire p-4 m-2">
+            <div class="formulaire col-8  mx-auto p-4 m-2">
 
-{{form_start(membreForm)}}
+                {{form_start(membreForm)}}
 
-{% for form in membreForm %}
-<div>
-   {{ form_row(form) }}
-</div>
-{% endfor %}
+                {% for form in membreForm %}
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-10 col-xs-10">
+                            {{ form_row(membreForm.username) }}
+                            {{ form_row(membreForm.password) }}
+                            {{ form_row(membreForm.prenom) }}
+                            {{ form_row(membreForm.nom) }}
+                            {{ form_row(membreForm.email) }}
+                            {{ form_row(membreForm.sexe) }}
+                             <div class="row">
+                                <div class="col-4">
+                                    {{ form_row(membreForm.date_de_naissance.day) }}
+                                </div>
+                                <div class="col-4">
+                                    {{ form_row(membreForm.date_de_naissance.month) }}
+                                </div>
+                                <div class="col-4">
+                                    {{ form_row(membreForm.date_de_naissance.year) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-10 col-xs-10">
+                            {{ form_row(membreForm.adresse) }}
+                            {{ form_row(membreForm.ville) }}
+                            {{ form_row(membreForm.code_postal) }}
+                            {{ form_row(membreForm.telephone) }}
+                            {{ form_row(membreForm.scan_CNI) }}
+                         {{ form_row(membreForm.RIB) }}
+ {{ form_row(membreForm.submit, {'label' : 'Inscription' })}} 
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
 
-{{form_end(membreForm)}}
+            {{form_end(membreForm)}}
 
-</div>
-
-</div>
-
-
-        {% block javascripts %}
-
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-        {% endblock %}
-
+        </div>
     </body>
+</html></div>{% block javascripts %}
 
-</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>{% endblock %}</body></html>

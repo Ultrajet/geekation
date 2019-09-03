@@ -2,54 +2,53 @@
 
 {% block content %}
 
-{# dump(panier) #}
+    {# dump(panier) #}
 
-<div class="col-10 mx-auto border border-dark">
+    <div class="col-10 mx-auto border">
 
-    <div class="row mx-auto cdes">
-        <h3 class="col-12 mt-5 btn-dark pb-2 pt-2 vdc">Votre Panier de réservation</h3>
-        <table class="table table-stripped">
-            <thead>
-                <tr> 
-                    <th>Article</th>
-                    <th>Date de début de location</th>
-                    <th>Date de fin de location</th>
-                    <th>Prix du produit</th>
-                    <th>Statut</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for produit in panier %}
-                <tr>
-                    <td>{{ produit.nom }}</td>
-                    <td>{{ produit.date_debut }}</td>
-                    <td>{{ produit.date_fin }}</td>
-                    <td>{{ produit.prix }}</td>
-                    <td>En cours</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-            <tr>
-                <th>Montant de votre commande</th>
-            </tr>
-        </table>
+        <div class="row mx-auto">
+            <h3 class="col-12 mt-4 vpr">Votre Panier de réservation</h3>
+            <table class="table table-stripped">
+                <thead class="commandesthead">
+                    <tr class="text-center">
+                        <th>Article</th>
+                        <th>Date de début de location</th>
+                        <th>Date de fin de location</th>
+                        <th>Prix du produit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for produit in panier %}
+                        <tr class="text-center">
+                            <td>{{ produit.nom }}</td>
+                            <td>{{ produit.date_debut }}</td>
+                            <td>{{ produit.date_fin }}</td>
+                            <td>{{ produit.prix }}</td>
+                        </tr>
+                    {% endfor %}
+                    <tr class="col-10 montantcommande" >
+                        <td colspan="3" align="right"><strong>Montant de votre commande</strong></td>
+                        <td colspan="1" align="center"> 20 € </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="row justify-content-end">
+            <form class="col-2 vider mr-2 mb-2 text-center" action="{{ path('viderpanier') }}">
+                <button class="btn">Vider</button>
+            </form>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <form class="col-2 reserver mb-2 text-center" action="#">
+                    <button class="btn">Réserver</button>
+                </form>
+            {% else %}
+                <form class="col-2 connexion text-center" action="#">
+                    <button class="btn" href="{{ path('connexion') }}">Connexion</button>
+                </form>
+            {% endif %}
+
+        </div>
     </div>
-
-    <div class="row justify-content-end">
-        <form class="clo-6" action="{{ path('viderpanier') }}">
-            <button class="btn btn-warning">Vider</button>
-        </form>
-        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-        <form class="clo-6" action="#">
-            <button class="btn btn-info">Réserver</button>
-        </form>
-        {% else %}
-        <form class="clo-6" action="#">
-            <a class="btn btn-info"  href="{{ path('connexion') }}" >Connexion</a>
-        </form>
-        {% endif %}
-        
-    </div>
-</div>
 
 {% endblock %}

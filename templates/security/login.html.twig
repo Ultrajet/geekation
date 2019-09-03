@@ -16,11 +16,11 @@
         </title>
     </head>
 <body>
-<div class="alert  col-lg-6 col-md-6 col-sm-10 col-xs-10 mx-auto p-3">
+<div class="bglogin">
 
-<h1 class="col-4 mx-auto my-4 ">Connexion</h1>
+<h1 class="col-12 mx-auto mt-5 text-center titrelogin">Connexion</h1>
 ​
-<form method="post" action="{{ path('connexion_check') }}" class="formulaire mx-auto my-5 p-4">
+<form method="post" action="{{ path('connexion_check') }}" class="formulaire col-md-6 col-sm-10 col-xs-10 mx-auto m-5 p-3">
     <div class="form-group col-10 mx-auto">
         <input type="text" class="form-control" name="_username" value="{{ lastUsername }}" placeholder="Pseudo" />
     </div>
@@ -30,6 +30,8 @@
     <div class="form-group col-10 mx-auto">
         <input type="submit" class="btn col-12 loginbtn" value="connexion" />
     </div>
+
+   <div class="inscristoi"> Pas encore inscrit ? <a href="{{path('inscription')}}" class="inscristoiici">Inscrivez-vous !</a></div>
 </form>
 </div>
 
@@ -41,7 +43,7 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         {% endblock %}
-
+</div>
     </body>
 
 </html>

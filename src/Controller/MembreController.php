@@ -93,12 +93,4 @@ class MembreController extends AbstractController
         ]);
     }
 
-    /**
-    * @Route("/historique_commandes", name="historique_commandes")
-    */
-    public function historique_commandes()
-    {
-        return $this->render('membre/historique_commandes.html.twig', [
-        ]);
-    }
 }
