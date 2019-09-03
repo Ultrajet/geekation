@@ -140,7 +140,7 @@ class ProduitController extends AbstractController
         $prix = $request->request->get('prix');
 
         // avec array_push, on rajoute un nouvel élément à la fin de $panier, qui sera lui-même un tableau array composé des données recueuillies
-        array_push($panier, [$nom, $date_debut, $date_fin, $prix, $slug]);
+        array_push($panier, ['nom' => $nom, 'date_debut' => $date_debut, 'date_fin' => $date_fin, 'prix' => $prix, 'slug' => $slug]);
         // prochaine étape : faire en sorte qu'on n'ait plus seulement le nom, le prix et le slug, mais l'objet même de l'exemplaire du produit qu'on souhaite louer
 
         // après avoir manipulé le panier, on le remet à sa place!

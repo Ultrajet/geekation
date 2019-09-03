@@ -28,7 +28,7 @@
 
         <button type="submit" class="btn btn-primary">Ajouter au panier</button>
     </form>
-    
+
 </div>
 {% endblock %}
 
@@ -36,7 +36,7 @@
 <script>
     $(document).ready(() => {
 
-         //dans le formulaire  quand on appuis sur submit on lance: ...
+        //dans le formulaire  quand on appuis sur submit on lance: ...
         $("form").on('submit', (e) => {
 
             //on empeche l action du submit de ce lancer 
@@ -62,22 +62,10 @@
         });
 
     });
-
-        // form.addEventListener('submit', (e) => {
-        //     // path.replace("dateDebutPlaceholder", date_debut.value);
-        //     // path.replace("dateFinPlaceholder", date_fin.value);
-        //     select_date_fin = document.querySelector('#select_date_fin');
-
-        //     date_debut_envoi = date_debut.value;
-        //     date_fin_envoi = select_date_fin.value;
-
-        //     console.log(date_debut_envoi + " " + date_fin_envoi);
-        //     // e.preventDefault();
-        //     form.setAttribute('action', "{{ path('ajoutpanier', {slug: produit.slug, date_debut: " + date_debut_envoi + ", date_fin: " + date_fin_envoi + "}) }}");
-        // })
 </script>
 
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <script>
 
     //fonction a rajouter sur le Datepicker
@@ -91,12 +79,9 @@
             dateFormat: "dd/mm/yy",
         });
     });
+
     $(function () {
-
-
-        //Function 
         $("#datepicker-debut").datepicker({
-
             minDate: 0,
             prevText: "click for previous months",
             nextText: "click for next months",
@@ -122,6 +107,11 @@
             }
         });
     });
+
+    // -------------------
+    // API GIANTBOMB
+    // -------------------
+    
 </script>
 
 {% endblock %}
