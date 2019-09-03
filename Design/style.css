@@ -62,6 +62,7 @@ html, body {
   }
 
   #cont {
+    width: calc(100% - 280px);
     margin-left: 280px;
     height: auto;
     background-color: #e4e4e4!important;
