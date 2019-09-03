@@ -61,9 +61,9 @@ class ProduitController extends AbstractController
         // on envoie tout ça dans le template
         return $this->render('produit/show.html.twig', [
             'produit' => $produit,
-            'produitCommande' => $produitCommande,
-            'produitId' => $produitId,
-            'dates' => $dateArray
+            'produitCommande' => $produitCommande
+            // 'produitId' => $produitId,
+            // 'dates' => $dateArray
         ]);
     }
 
