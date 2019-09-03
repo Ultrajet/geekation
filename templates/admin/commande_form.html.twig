@@ -1,1 +1,107 @@
-Ceci et le Formulaire des Commandes 
+{% extends 'base.html.twig' %}
+
+{% block content %}
+
+<h1>Ajout Commande</h1>
+
+
+<div class="mx-auto p-2 border bg-light" style="width: 30vw">
+
+
+    <br>
+    <div>
+        <label for="">Membre</label><br />
+        <select name="" id="">
+            {% for mem in membres %}
+
+            <option value="membre">{{ mem.username }}</option>
+
+            {% endfor %}
+        </select>
+    </div>
+    <br>
+    <br>
+    <div>
+        <label for="">Produits</label><br />
+        <select name="" id="">
+            {% for pro in produits %}
+
+            <option value="membre">{{ pro.type }}</option>
+
+            {% endfor %}
+        </select>
+
+        <br>
+        <label for="">Type</label><br />
+        <select name="Type">
+            <option value="1">Console</option>
+            <option value="2">Jeux</option>
+            <option value="2">Accessoire</option>
+        </select>
+        <br>
+        <br>
+        <div id="type_1" class="mes_divs" style="display:none">
+            <select name="Univers">
+                <option value="1">Playstation</option>
+                <option value="2">Xbox</option>
+                <option value="3">Switch</option>
+            </select>
+            <br>
+        </div>
+        <div id="uni_1" class="mes_divs_type" style="display:none">
+            <select name="Produit">
+                <option value="1">Console Playstation</option>
+                <option value="2">Console Xbox</option>
+                <option value="3">Console Switch</option>
+            </select>
+        </div>
+
+        <div id="type_2" class="mes_divs" style="display:none">
+            <select name="Univers">
+                <option value="1">Playstation</option>
+                <option value="2">Xbox</option>
+                <option value="3">Switch</option>
+            </select>
+        </div>
+
+        <div id="type_3" class="mes_divs" style="display:none">
+            <select name="Univers">
+                <option value="1">Playstation</option>
+                <option value="2">Xbox</option>
+                <option value="3">Switch</option>
+            </select>
+        </div>
+
+
+
+    </div>
+
+</div>
+
+
+{% endblock %}
+
+{% block javascript %}
+
+<script>
+    // Je sélectionne le select et quand la valeur change on fait une action
+    $('select[name="Type"]').change(function () {
+        // Je créer l'id du div qui va être affiché
+        var id = "type_" + $(this).val();
+        // Je cache toutes les divs grâce à une classe qui va sélectionner le tout
+        $('div.mes_divs').hide();
+        // Et j'affiche seulement le Div que je souhaite
+        $('#' + id).show();
+    });
+
+    $('select[name="Univers"]').change(function () {
+        // Je créer l'id du div qui va être affiché
+        var id = "uni_" + $(this).val();
+        // Je cache toutes les divs grâce à une classe qui va sélectionner le tout
+        $('div.mes_divs_type').hide();
+        // Et j'affiche seulement le Div que je souhaite
+        $('#' + id).show();
+    });
+</script>
+
+{% endblock %}

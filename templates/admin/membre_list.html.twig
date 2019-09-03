@@ -1,1 +1,72 @@
-Ceci et la Liste des Membres 
+{% extends 'base.html.twig' %}
+
+{% block content %}
+
+
+<div class="table table-striped  offset-1">
+    <h1>Gestion des Membres</h1>
+    <br>
+    <br>
+
+    <a type="submit" name="ajout_panier" class="btn btn-success mb-2 col-md-2" href="{{ path('admin_membres_add') }}">➕
+        Ajouter un Membre</a>
+
+    <br>
+    <br>
+    <br>
+
+
+    <table>
+        <thead>
+            <tr class="text-center">
+                <td>Username</td>
+                <td>Prenom</td>
+                <td>Nom</td>
+                <td>Email</td>
+                <td>adresse</td>
+                <td>Code Postal</td>
+                <td>Ville</td>
+                <td>Date de Naissance</td>
+                <td>Telephone</td>
+                <td>scan CNI</td>
+                <td>RIB</td>
+                <td>Sexe</td>
+                <td colspan='2'>Action</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for mbr in membres %}
+            <tr class='text-center'>
+                <td>{{ mbr.username }}</td>
+                <td>{{ mbr.prenom }}</td>
+                <td>{{ mbr.nom }}</td>
+                <td>{{ mbr.email }}</td>
+                <td>{{ mbr.adresse}}</td>
+                <td>{{ mbr.codePostal}}</td>
+                <td>{{ mbr.ville}}</td>
+                <td>{{ mbr.dateDeNaissance | date('d/m/Y') }}</td>
+                <td>{{ mbr.telephone}}</td>
+                <td>{{ mbr.scanCNI}}</td>
+                <td>{{ mbr.RIB}}</td>
+                <td>
+                    {% if mbr.sexe == 'h' %}
+                    Homme
+                    {% elseif mbr.sexe == 'f' %}
+                    Femme
+                    {% else %}
+                    Non Binaire
+                    {% endif %}
+                </td>
+                <td><a href="{{ path('admin_membres_update', {id : mbr.id} ) }}">✏️</a></td>
+                <td><a onclick="return confirm('Etes Vous sur de voiloir supprimer cette article ?')"
+                        href="{{ path('admin_membres_delete', {id : mbr.id} ) }}">❌</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+
+{% endblock %}
+

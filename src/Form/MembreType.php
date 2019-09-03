@@ -36,17 +36,6 @@ class MembreType extends AbstractType
                 )
             ))
 
-            ->add('password',PasswordType::class,array(
-                'constraints' => array(
-                    new Assert\NotBlank(array(
-                        'message' => 'Veuillez remplir le champ'
-                    )),
-                    new  Assert\Regex(array(
-                        'pattern'=> '/^\S*(?=\S{6,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$/',
-                        'message'=>"Veuillez saisir un Mot de Passe composer d'une minuscule, d'une majuscule et d un chiffre (6 caracteres mini)"
-                    ))
-                )
-            ))
 
             ->add('prenom',TextType::class,array(
                 'constraints' => array(
@@ -158,9 +147,39 @@ class MembreType extends AbstractType
                     'Non Binaire' => 'b'
                 )
                 ))
-            ->add('submit', SubmitType::class);
+            ;
+            
+            
+            if ($options['admin'] == true)
+            {
+            
+                $builder ->add('role', ChoiceType::class, array(
+                    'choices' => array(
+                        'Membre' => 'ROLE_USER',
+                        'Admin' => 'ROLE_ADMIN',
+                    ),
+                ));
+
+            }
+            elseif($options['inscription'] == true ){
+
+                $builder->add('password',PasswordType::class,array(
+                    'constraints' => array(
+                        new Assert\NotBlank(array(
+                            'message' => 'Veuillez remplir le champ'
+                        )),
+                        new  Assert\Regex(array(
+                            'pattern'=> '/^\S*(?=\S{6,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$/',
+                            'message'=>"Veuillez saisir un Mot de Passe composer d'une minuscule, d'une majuscule et d un chiffre (6 caracteres mini)"
+                        ))
+                    )
+                        ));
+            };
+
+            $builder->add('submit', SubmitType::class);
+
+
                 
-                ;
         
     }
 
@@ -170,7 +189,9 @@ class MembreType extends AbstractType
             'data_class' => Membres::class,
             'attr' => [
                 'novalidate' => 'novalidate'
-            ]
+            ],
+            'admin' => false,
+            'inscription' => false
         ]);
     }
 }
