@@ -2,6 +2,8 @@
 
 {% block content %}
 
+{# dump(panier) #}
+
 <div class="col-10 mx-auto border border-dark">
 
     <div class="row mx-auto cdes">
@@ -17,9 +19,15 @@
                 </tr>
             </thead>
             <tbody>
+                {% for produit in panier %}
                 <tr>
-                    <th></th>
+                    <td>{{ produit.nom }}</td>
+                    <td>{{ produit.date_debut }}</td>
+                    <td>{{ produit.date_fin }}</td>
+                    <td>{{ produit.prix }}</td>
+                    <td>En cours</td>
                 </tr>
+                {% endfor %}
             </tbody>
             <tr>
                 <th>Montant de votre commande</th>
@@ -27,14 +35,6 @@
         </table>
     </div>
 
-    {{ dump(panier) }}
-    <!-- {% for produit in panier %}
-    <div class="col-3 my-2 border border-dark text-center">
-        {% for value in produit %}
-            {{ value }}
-        {% endfor %}
-    </div>
-    {% endfor %} -->
     <div class="row justify-content-end">
         <form class="clo-6" action="{{ path('viderpanier') }}">
             <button class="btn btn-warning">Vider</button>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Test API GiantBomb</title>
+</head>
+
+<body>
+
+    <h1 id="titrejeu"></h1>
+    <img id="imagejeu" src="" alt="Image du jeu">
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script>
+        $("document").ready(() => {
+            console.log("jQuery activé!");
+
+            $guid = '3030-72147';
+
+            $.ajax({
+                method: 'GET',
+                url: 'https://www.giantbomb.com/api/game/' + $guid,
+                dataType: 'jsonp',
+                jsonp: 'json_callback',
+                data: {
+                    api_key: 'e009edce3a7d7316c39b6b6f8aa51b1cbe09ae80',
+                    format: 'jsonp'
+                }
+            }).done((data) => {
+                console.log(data.results);
+                $("#titrejeu").html(data.results.name);
+                $("#imagejeu").attr('src', data.results.image.original_url);
+            });
+        });
+    </script>
+</body>
+
+</html>
