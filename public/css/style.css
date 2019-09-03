@@ -1,6 +1,6 @@
 /*--------------------------------------------------------------------------------------------------*/
 
-/******************************* PAGE ACCUEIL (INDEX) **********************************/
+/******************************* PAGE ACCUEIL (BASE) **********************************/
 
 /*-------------------------------------------------------------------------------------------------*/
 
@@ -11,6 +11,10 @@ html, body {
   position: relative;
   overflow-x: hidden;
   font-family: 'Raleway', sans-serif !important;
+}
+
+.logoGA {
+  width: 60%;
 }
 
 /************* SIDEBAR DE NAVIGATION **************/
@@ -311,53 +315,6 @@ html, body {
   font-weight: bolder;
 }
 
-/************* FONCTION SLIDER VIGNETTE **********/
-
-/* equal card height */
-
-.row-equal>div[class*='col-'] {
-  display: flex;
-  flex: 1 0 auto;
-}
-
-.row-equal .card {
-  width: 100%;
-}
-
-/* ensure equal card height inside carousel */
-
-.carousel-inner>.row-equal.active, .carousel-inner>.row-equal.next, .carousel-inner>.row-equal.prev {
-  display: flex;
-}
-
-/* prevent flicker during transition */
-
-.carousel-inner>.row-equal.active.left, .carousel-inner>.row-equal.active.right {
-  opacity: 0.5;
-  display: flex;
-}
-
-/* control image height */
-
-.card-img-top-250 {
-  max-height: 250px;
-  overflow: hidden;
-}
-
-.card-header {
-  color: #489de3;
-}
-
-/* MES MODIFICATIONS SUR LE CODE DU SLIDER PRODUIT */
-
-.carousel-item-next, .carousel-item-previous {
-  display: flex !important;
-}
-
-.logoGA {
-  width: 60%;
-}
-
 /*********** FOOTER **************/
 
 .footer-titre {
@@ -427,16 +384,73 @@ a.footer-socials-messs:hover {
 
 /*--------------------------------------------------------------------------------------------------*/
 
+/******************************* PAGE ACCUEIL (INDEX) **********************************/
+
+/*-------------------------------------------------------------------------------------------------*/
+
+/************* FONCTION SLIDER VIGNETTE **********/
+
+/* equal card height */
+
+.row-equal>div[class*='col-'] {
+  display: flex;
+  flex: 1 0 auto;
+}
+
+.row-equal .card {
+  width: 100%;
+}
+
+/* ensure equal card height inside carousel */
+
+.carousel-inner>.row-equal.active, .carousel-inner>.row-equal.next, .carousel-inner>.row-equal.prev {
+  display: flex;
+}
+
+/* prevent flicker during transition */
+
+.carousel-inner>.row-equal.active.left, .carousel-inner>.row-equal.active.right {
+  opacity: 0.5;
+  display: flex;
+}
+
+/* control image height */
+
+.card-img-top-250 {
+  max-height: 250px;
+  overflow: hidden;
+}
+
+.card-header {
+  color: #489de3;
+}
+
+/* MES MODIFICATIONS SUR LE CODE DU SLIDER PRODUIT */
+
+.carousel-item-next, .carousel-item-previous {
+  display: flex !important;
+}
+
+.boutton{
+  font-size: 0.9em !important;
+}
+
+
+
+
+
+/*--------------------------------------------------------------------------------------------------*/
+
 /******************************* CSS DE TOUS LES FORMULAIRE ******************************/
 
 /******************************************************************** 
                 FORMULAIRE // LOGIN // INSCRIPTION
-*********************************************************************/ 
+*********************************************************************/
 
 .formulaire {
-border-radius: 15px;
-background-color:  rgb(36, 36, 36);
-opacity: 0.95;
+  border-radius: 15px;
+  background-color: rgb(36, 36, 36);
+  opacity: 0.95;
 }
 
 label, legend {
@@ -456,7 +470,7 @@ input, select {
 
 .loginbtn, #membre_submit {
   background-color: #e05951!important;
-  color: white !important; 
+  color: white !important;
   text-transform: uppercase;
   font-weight: bolder;
   width: 100%;
@@ -477,14 +491,13 @@ input, select {
   text-transform: uppercase;
   text-shadow: #093357 2px 2px 2px;
   font-weight: bolder;
-  
 }
 
 .inscristoi {
   color: #e2bc00;
   text-align: center;
 }
- 
+
 a.inscristoiici {
   color: #e2bc00;
   font-weight: bolder;
@@ -496,6 +509,7 @@ a.inscristoiici:hover {
   letter-spacing: 2px;
   transition-duration: 1s;
 }
+
 /*--------------------------------------------------------------------------------------------------*/
 
 /******************************* PAGE PROFIL (MEMBRE) *****************************************/
@@ -648,3 +662,18 @@ a.lien-savoir:hover {
 /****************************** *PAGE PRODUIT LIST (ADMIN) **********************************/
 
 /*-------------------------------------------------------------------------------------------------*/
+
+.ajout_produit {
+  background: #52ae49;
+  border-radius: 10px;
+  margin-left: 73vh;
+}
+
+.fa-plus, .fa-pencil-alt, .fa-eye, .fa-trash {
+  color: #7569b0;
+}
+
+.titrecolonne {
+  background: #7569b0;
+  color: #e4e4e4;
+}

@@ -3,52 +3,53 @@
 {% block content %}
 
 
-<div class="table table-striped offset-1">
-    <h1>Gestion des Produits</h1>
-    <br>
-    <br>
+    <div class="table table-striped">
+        <h1 class="text-center pb-2 pt-3">Gestion des Produits</h1>
 
-    <a type="submit" name="ajout_panier" class="btn btn-success mb-2 col-md-2" href="{{ path('admin_produits_add') }}">➕
-        Ajouter un Produit</a>
+        <div class="col-2 text-center mb-3 ajout_produit">
+            <button type="submit" name="ajout_produit" class="btn" href="{{ path('admin_produits_add') }}"><i class="fas fa-plus"></i> Ajouter un Produit</button>                              
+        </div>
 
-    <br>
-    <br>
-    <br>
+        <table class="col-md-8 offset-2">
+            <thead>
+                <tr class="text-center titrecolonne">
+                    <td>Id</td>
+                    <td>Nom</td>
+                    <td>Prix</td>
+                    <td>Type</td>
+                    <td>Univers</td>
+                    <td>Slug</td>
+                    <td>GUID</td>
+                    <td>Voir</td>
+                    <td>Modifier</td>
+                    <td>Supprimer</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pdt in produits %}
+                    <tr class='text-center'>
+                        <td>{{ pdt.id }}</td>
+                        <td>{{ pdt.nom }}</td>
+                        <td>{{ pdt.prix}}€</td>
+                        <td>{{ pdt.type}}</td>
+                        <td>{{ pdt.univers}}</td>
+                        <td>{{ pdt.slug}}</td>
+                        <td>{{ pdt.guid}}</td>
+                        <td>
+                            <a href="{{ path('produit_id', {id : pdt.id} ) }}"><i class="fas fa-eye"></i></a>
+                        </td>
+                        <td>
+                            <a href="{{ path('admin_produits_update', {id : pdt.id} ) }}"><i class="fas fa-pencil-alt"></i>️</a>
+                        </td>
+                        <td>
+                            <a onclick="return confirm('Etes Vous sur de voiloir supprimer cette article ?')" href="{{ path('admin_produits_delete', {id : pdt.id} ) }}"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
 
-
-    <table>
-        <thead>
-            <tr class="text-center">
-                <td>Id</td>
-                <td>Nom</td>
-                <td>Prix</td>
-                <td>Type</td>
-                <td>Univers</td>
-                <td>Slug</td>
-                <td>GUID</td>
-                <td colspan='3'>Action</td>
-            </tr>
-        </thead>
-        <tbody>
-            {% for pdt in produits %}
-            <tr class='text-center'>
-                <td>{{ pdt.id }}</td>
-                <td>{{ pdt.nom }}</td>
-                <td>{{ pdt.prix}}€</td>
-                <td>{{ pdt.type}}</td>
-                <td>{{ pdt.univers}}</td>
-                <td>{{ pdt.slug}}</td>
-                <td>{{ pdt.guid}}</td>
-                <td><a href="{{ path('produit_id', {id : pdt.id} ) }}">👁️</a></td>
-                <td><a href="{{ path('admin_produits_update', {id : pdt.id} ) }}">✏️</a></td>
-                <td><a onclick="return confirm('Etes Vous sur de voiloir supprimer cette article ?')"
-                        href="{{ path('admin_produits_delete', {id : pdt.id} ) }}">❌</a></td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
-</div>
+    </div>
 
 
 {% endblock %}
