@@ -41,7 +41,7 @@ class Produits
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Gedmo\Slug(fields={"nom"}, unique=false)
+     * @Gedmo\Slug(fields={"nom","univers"}, unique=false)
      */
     private $slug;
 
@@ -49,6 +49,8 @@ class Produits
      * @ORM\OneToMany(targetEntity="App\Entity\ProduitsCommandes", mappedBy="produit")
      */
     private $produitsCommandes;
+
+    
 
     public function __construct()
     {
@@ -123,7 +125,7 @@ class Produits
     /**
      * @return Collection|ProduitsCommandes[]
      */
-    public function getProduitsCommandes(): Collection
+    public function getProduitsCommandes(): ? Collection
     {
         return $this->produitsCommandes;
     }

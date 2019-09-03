@@ -68,34 +68,40 @@ class ProduitController extends AbstractController
     }
 
     /**
-     * @Route("/produit2/{slug}", name="produit")
+     * @Route("/produit_id/{id}", name="produit_id")
      */
-    public function produit2($slug, Request $request)
+    public function produitId($id, Request $request)
     
     {
+        // ----------------------
+        // FICHE PRODUIT
+        // ----------------------
+
+        // il faut /produit/{slug} dans l'URL : ce {id} sert à sélectionner le premier examplaire du produit qui apparait dans la table Produits, et afficher ses infos dans la vue
         $produit = $this->getDoctrine()
         ->getRepository(Produits::class)
-        ->findOneBy(['slug' => $slug]);
+        ->findOneBy(['id' => $id]);
 
+        // par le biais de ce produit sélectionné, on récupère la ou les ProduitsCommandes qui correspondent
+        // pour l'instant $produit (qui est un objet) ne contient QU'UN SEUL exemplaire du produit, avec son propre ID
         $produitCommande = $this->getDoctrine()
         ->getRepository(ProduitsCommandes::class)
         ->findOneBy(['produit' => ($produit->getId())]);
+        // prochaine étape : regrouper dans un array tous les exemplaires du produit pour ensuite avoir tous les ProduitsCommandes liés au produit global
 
+        // mmmmh...
         $produitId = $produit->getId();
 
+        // c'était pour générer les select des dates de location
+        // pourrait servir avec les datepicker... (les objets DateTime sont capricieux à gérer)
         $dateNow = new DateTime();
         $dateArray = [$dateNow->format('d/m')];
         for ($i = 0; $i < 7; $i++) {
             array_push($dateArray, $dateNow->modify('+1 day')->format('d/m'));
-        }
+        };
 
-        // $produitCommande = $produit->a();
-
-        // if ($this->handleRequest($request)) {
-        //     echo "Ouais!";
-        // }
-
-        return $this->render('produit/show2.html.twig', [
+        // on envoie tout ça dans le template
+        return $this->render('produit/show.html.twig', [
             'produit' => $produit,
             'produitCommande' => $produitCommande,
             'produitId' => $produitId,

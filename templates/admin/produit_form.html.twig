@@ -1,1 +1,22 @@
-Ceci et le Formulaire des Produits
+{% extends 'base.html.twig' %}
+
+ {% block content %}
+
+
+ <h1 class="col-6 mx-auto">Ajouter un produit</h1>
+
+ {{form_start(produitsform)}}
+ 
+ {% for form in produitsform %}
+<div class="col-6 mx-auto">
+    {{ form_row(form) }}
+</div>
+{% endfor %}
+
+
+
+ {{form_end(produitsform)}}
+
+
+
+{% endblock %}

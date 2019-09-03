@@ -20,23 +20,15 @@
     {{ dump(produitId) }}
 
     <form datanom="{{ produit.nom }}" dataprix="{{ produit.prix }}">
-        <label for="date_debut">Date de début de location :</label>
-        <select id="date_debut" name="date_debut" class="m-2">
-            <option value="null">---</option>
-            {% for date in dates %}
-            <option value="{{ date }}">{{ date }}</option>
-            {% endfor %}
-        </select>
 
-        <label for="date_fin">Date de fin de location :</label>
-        <div id="date_fin" class="m-2"><small>Veuillez sélectionner une date de début.</small></div>
+        <div>Debut de Location: <input type="text" id="datepicker-debut"></div>
+        <br>
+        <div>Fin de Location: <input type="text" id="datepicker-fin"></div>
+        <br>
 
         <button type="submit" class="btn btn-primary">Ajouter au panier</button>
     </form>
-
-    <div>Debut de Location: <input type="text" id="datepicker-debut"></div>
-    <div>Fin de Location: <input type="text" id="datepicker-fin"></div>
-
+    
 </div>
 {% endblock %}
 
@@ -44,31 +36,28 @@
 <script>
     $(document).ready(() => {
 
-        console.log('jQuery activé!');
-
-        $date_fin_select = "<select id='select_date_fin' name='date_fin'>{% for date in dates %}<option value='{{ date }}'>{{ date }}</option>{% endfor %}</select>";
-
-        $("#date_debut").on('change', () => {
-            if ($("#date_debut").val() != "null") {
-                console.log("date sélectionnée!");
-                $("#date_fin").html($date_fin_select);
-            }
-            else {
-                $("#date_fin").html('<small>Veuillez sélectionner une date de début.</small>');
-            }
-        });
-
+         //dans le formulaire  quand on appuis sur submit on lance: ...
         $("form").on('submit', (e) => {
+
+            //on empeche l action du submit de ce lancer 
             e.preventDefault();
+
+            //on recupere les donner  pour les mettre dans la Var data
+            var data = {
+                'nom': $("form").attr("datanom"),
+                'prix': $("form").attr("dataprix"),
+                'date_debut': $("#datepicker-debut").val(),
+                'date_fin': $("#datepicker-fin").val()
+            }
+            //on lance l'ajax
             $.ajax({
+                //qui applique une methode POST
                 method: "POST",
+                //le chemin que lon veut parcourire
                 url: "{{ path('ajoutpanier', {slug: produit.slug}) }}",
-                data: {
-                    'nom': $("form").attr("datanom"),
-                    'prix': $("form").attr("dataprix"),
-                    'date_debut': $("#date_debut").val(),
-                    'date_fin': $("#select_date_fin").val()
-                }
+                //on donne a data la valeur data
+                data: data
+                //puis on envois une alrte pour verifier les valeur envoyer
             }).done(() => { alert("Produit ajouté au panier!"); })
         });
 
@@ -90,6 +79,7 @@
 
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
+
     //fonction a rajouter sur le Datepicker
     $(function () {
         $("#datepicker").datepicker({

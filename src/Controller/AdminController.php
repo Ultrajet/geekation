@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Produits;
+use  App\Form\ProduitsType;
 
 use App\Entity\Membres ;
+use  App\Form\MembresType;
 
 use App\Entity\Commandes ;
 
@@ -28,7 +30,12 @@ class AdminController extends AbstractController
     public function adminProduits()
     {
 
-        return $this->render('admin/produit_list.html.twig', []);
+        $repository = $this-> getDoctrine() ->getRepository(Produits::class);
+        $produits= $repository->findAll();
+
+        return $this->render('admin/produit_list.html.twig', [
+            'produits' => $produits
+        ]);
     }
 
     /**
@@ -37,9 +44,33 @@ class AdminController extends AbstractController
      * 
      * 
      */
-    public function adminProduitsAdd()
+    public function adminProduitsAdd(Request $request)
     {
-        return $this->render('admin/produit_form.html.twig', []);
+        $produits = new Produits; //objet vide
+	   
+        // On récupère le formulaire
+        $form = $this -> createForm(ProduitsType::class, $produits); 
+        // On récupère les infos saisies dans le formulaire ($_POST)
+        $form -> handleRequest($request);
+        
+        if($form -> isSubmitted() && $form -> isValid()){
+ 
+             $manager = $this -> getDoctrine() -> getManager();
+             $manager -> persist($produits);
+             // Enregistrer le $produit dans le système 
+
+        
+             $manager -> flush();
+             // va enregistrer $produit en BDD
+        
+             $this -> addFlash('success', 'Le produit n°' . $produits -> getId() . ' a bien été enregistré en BDD');
+        
+             return $this -> redirectToRoute('admin_produits');
+        }
+
+        return $this->render('admin/produit_form.html.twig', [
+            'produitsform' => $form ->createView()
+        ]);
     }
 
     /**
@@ -48,9 +79,28 @@ class AdminController extends AbstractController
      * 
      * 
      */
-    public function adminProduitsUpdate($id)
+    public function adminProduitsUpdate($id,Request $request)
     {
-        return $this->render('admin/produit_form.html.twig', []);
+        $manager = $this -> getDoctrine() -> getManager();   
+        $produit = $manager -> find(Produits::class, $id); //objet rempli
+        
+        $form = $this -> createForm(ProduitsType::class, $produit);
+        $form -> handleRequest($request);
+        
+        if($form -> isSubmitted() && $form -> isValid()){
+        
+            $manager -> persist($produit);
+
+
+            $manager -> flush(); 
+            
+            $this -> addFlash('success', 'Le produit n°' . $id . ' a bien été modifié !');
+            return $this -> redirectToRoute('admin_produits');
+        }
+        
+        return $this -> render('admin/produit_form.html.twig', [
+         'produitsform' => $form -> createView()
+        ]);
     }
     
     /**
@@ -61,7 +111,30 @@ class AdminController extends AbstractController
      */
     public function adminProduitsDelete($id)
     {
-        return $this->redirect('admin_produits');
+        $manager = $this->getDoctrine()->getManager();
+        $produits = $manager->find(Produits::class, $id);
+
+
+        if($produits -> getProduitsCommandes() -> isEmpty()){
+
+            $manager->remove($produits);
+            $manager->flush();
+
+            $this->addFlash('success', 'le produit n°' . $id . ' à bien ete supprimer');
+        }
+        else{
+
+            $commandes = array();    
+            foreach($produits -> getProduitsCommandes() as $pc){
+                $commandes[] = $pc -> getCommande() -> getId();
+            }
+
+
+            $this->addFlash('error', 'Attention le produit n°' . $id . ' est dans une ou plusieurs commandes : ' . implode('-', $commandes)  . '.<br/> Veuillez d\'abord supprimer les commandes');
+        }
+
+        return $this->redirectToRoute('admin_produits');
+
     }
 
 

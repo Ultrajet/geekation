@@ -40,9 +40,16 @@
         <form class="clo-6" action="{{ path('viderpanier') }}">
             <button class="btn btn-warning">Vider</button>
         </form>
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
         <form class="clo-6" action="#">
             <button class="btn btn-info">Réserver</button>
         </form>
+        {% else %}
+        <form class="clo-6" action="#">
+            <a class="btn btn-info"  href="{{ path('connexion') }}" >Connexion</a>
+        </form>
+        {% endif %}
+        
     </div>
 </div>
 
