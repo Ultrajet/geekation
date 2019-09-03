@@ -429,15 +429,18 @@ a.footer-socials-messs:hover {
 
 /******************************* CSS DE TOUS LES FORMULAIRE ******************************/
 
-/*-------------------------------------------------------------------------------------------------*/
+/******************************************************************** 
+                FORMULAIRE // LOGIN // INSCRIPTION
+*********************************************************************/ 
 
 .formulaire {
-  border-radius: 15px;
-  background-color: rgb(36, 36, 36);
+border-radius: 15px;
+background-color:  rgb(36, 36, 36);
+opacity: 0.95;
 }
 
 label, legend {
-  color: #e2bc00;
+  color: #e2bc00!important;
   text-transform: uppercase;
   font-weight: bolder;
 }
@@ -449,15 +452,50 @@ input, select {
   color: black;
   border-radius: 10px;
   display: flex;
-  margin: 1vw;
 }
 
-.loginbtn {
-  background-color: orangered!important;
-  color: white !important;
+.loginbtn, #membre_submit {
+  background-color: #e05951!important;
+  color: white !important; 
   text-transform: uppercase;
+  font-weight: bolder;
+  width: 100%;
 }
 
+.bglogin {
+  background-image: url('../image/fondconnect.png');
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  margin: 0;
+  overflow: auto;
+}
+
+.titrelogin {
+  color: #e2bc00;
+  text-transform: uppercase;
+  text-shadow: #093357 2px 2px 2px;
+  font-weight: bolder;
+  
+}
+
+.inscristoi {
+  color: #e2bc00;
+  text-align: center;
+}
+ 
+a.inscristoiici {
+  color: #e2bc00;
+  font-weight: bolder;
+}
+
+a.inscristoiici:hover {
+  color: #52ae49;
+  font-weight: bolder;
+  letter-spacing: 2px;
+  transition-duration: 1s;
+}
 /*--------------------------------------------------------------------------------------------------*/
 
 /******************************* PAGE PROFIL (MEMBRE) *****************************************/
