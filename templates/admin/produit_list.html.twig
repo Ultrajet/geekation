@@ -25,6 +25,7 @@
                 <td>Type</td>
                 <td>Univers</td>
                 <td>Slug</td>
+                <td>GUID</td>
                 <td colspan='3'>Action</td>
             </tr>
         </thead>
@@ -37,6 +38,7 @@
                 <td>{{ pdt.type}}</td>
                 <td>{{ pdt.univers}}</td>
                 <td>{{ pdt.slug}}</td>
+                <td>{{ pdt.guid}}</td>
                 <td><a href="{{ path('produit_id', {id : pdt.id} ) }}">👁️</a></td>
                 <td><a href="{{ path('admin_produits_update', {id : pdt.id} ) }}">✏️</a></td>
                 <td><a onclick="return confirm('Etes Vous sur de voiloir supprimer cette article ?')"
