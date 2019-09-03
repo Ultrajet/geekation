@@ -50,6 +50,11 @@ class Produits
      */
     private $produitsCommandes;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $guid;
+
     
 
     public function __construct()
@@ -149,6 +154,18 @@ class Produits
                 $produitsCommande->setProduit(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getGuid(): ?string
+    {
+        return $this->guid;
+    }
+
+    public function setGuid(string $guid): self
+    {
+        $this->guid = $guid;
 
         return $this;
     }
