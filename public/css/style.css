@@ -317,6 +317,7 @@ html, body {
 
 /*********** FOOTER **************/
 
+
 .footer-titre {
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -444,11 +445,6 @@ a.footer-socials-messs:hover {
 }
 
 
-
-
-
-/*--------------------------------------------------------------------------------------------------*/
-
 /******************************* CSS DE TOUS LES FORMULAIRE ******************************/
 
 /******************************************************************** 
@@ -558,18 +554,15 @@ a {
 }
 
 .identifiant, .information, .adresseclient, .docs, .vdc, .vpr {
-  text-align: center;
-  background: #e4e4e4;
-}
-
-.profilclient, .profilclientcommandesthead, .commandesthead {
   background: #093357;
   color: #e4e4e4;
+  text-align: center;
+}
+.vert{
+  color: #52ae49;
+  font-size: 0.8em;
 }
 
-.profilclient td {
-  color: #e4e4e4;
-}
 
 /*--------------------------------------------------------------------------------------------------*/
 
@@ -589,6 +582,11 @@ a {
 
 .montantcommande {
   background: #E05951;
+  color: #e4e4e4;
+}
+
+.commandesthead {
+  background: #093357;
   color: #e4e4e4;
 }
 
@@ -668,13 +666,17 @@ a.lien-savoir:hover {
 /*--------------------------------------------------------------------------------------------------*/
 
 /****************************** *PAGE PRODUIT LIST (ADMIN) **********************************/
+/****************************** *PAGE MEMBRE LIST (ADMIN) **********************************/
 
 /*-------------------------------------------------------------------------------------------------*/
 
-.ajout_produit {
-  background: #52ae49;
+.ajout_produit, .ajout_membre {
   border-radius: 10px;
   margin-left: 73vh;
+}
+
+.ajout_produit a, .ajout_membre a{
+  background: #52ae49;  
 }
 
 .fa-plus, .fa-pencil-alt, .fa-eye, .fa-trash {
