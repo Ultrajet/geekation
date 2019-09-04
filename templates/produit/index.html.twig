@@ -82,14 +82,14 @@
                                 <img class="img-fluid" src="image/logsims.jpg" alt="Carousel 1">
                                 <img class="img-fluid" src="image/logsims.jpg" alt="Carousel 1">
                             </div>
-                            <div class="card-block p-t-2 ">
-                                <div class="card-text">
-                                    <div class="card-titre">{{ produit.nom }}</div>
-                                    <div class="card-spec">à partir de</div>
-                                    <div class="card-prix">{{ produit.prix }}€</div>
+                            <div class="card-block pt-2 ">
+                                <div class="card-text ">
+                                    <div class="ml-4 mt-3 card-titre">{{ produit.nom }}</div>
+                                    <div class="ml-4 card-spec">à partir de</div>
+                                    <div class="ml-4 mb-3 card-prix">{{ produit.prix }}€</div>
                                     <div class="btn card-resa d-flex">
-                                        <a href="#" class="btn btn-info mr-2 boutton">réserver</a>
-                                        <a class="btn btn-info boutton" href="{{ path('produit', {slug: produit.slug}) }}">Fiche produit</a>
+                                        <a href="#" class="btn mr-2 bouttonreserver"><strong>réserver</strong></a>
+                                        <a class="btn bouttonficheproduit" href="{{ path('produit', {slug: produit.slug}) }}"><strong>Fiche produit</strong></a>
                                     </div><br>
                                 </div>
                             </div>
@@ -110,12 +110,12 @@
                             </div>
                             <div class="card-block p-t-2 ">
                                 <div class="card-text">
-                                    <div class="card-titre">{{ produit.nom }}</div>
-                                    <div class="card-spec">à partir de</div>
-                                    <div class="card-prix">{{ produit.prix }}€</div>
+                                    <div class="ml-4 mt-3 card-titre">{{ produit.nom }}</div>
+                                    <div class="ml-4 card-spec">à partir de</div>
+                                    <div class="ml-4 mb-3 card-prix">{{ produit.prix }}€</div>
                                     <div class="btn card-resa d-flex">
-                                        <a href="#" class="btn btn-info mr-2 boutton">réserver</a>
-                                        <a class="btn btn-info boutton" href="{{ path('produit', {slug: produit.slug}) }}">Fiche produit</a>
+                                        <a href="#" class="btn mr-2 bouttonreserver"><strong>réserver</strong></a>
+                                        <a class="btn bouttonficheproduit" href="{{ path('produit', {slug: produit.slug}) }}"><strong>Fiche produit</strong></a>
                                     </div><br>
                                 </div>
                             </div>
@@ -129,7 +129,7 @@
     <br>
     {# ------------------------------ FIN PRODUITS TOP --------------------------------- #}
 
-    <div class="container">
+    {# <div class="container">
         {% for produit in produits %}
             <div class="col-3 mx-auto mb-2 p-2 border border-dark text-center">
                 <p>{{ produit.nom }}</p>
@@ -137,6 +137,6 @@
                 <a class="btn btn-info" href="{{path('produit', {slug: produit.slug})}}">Fiche produit</a>
             </div>
         {% endfor %}
-    </div>
+    </div> #}
 
 {% endblock %}
