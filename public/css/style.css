@@ -27,6 +27,7 @@ html, body {
     background-color: rgb(36, 36, 36);
     margin: 0;
     padding: 0;
+    z-index: 9;
   }
   .navbar, .navbar-expand-lg, .navbar-collapse {
     display: block !important;
@@ -45,7 +46,10 @@ html, body {
     transition-duration: 1s;
   }
   .dropdown-menu {
-    background-color: dimgrey!important;
+    background-color: rgb(20, 20, 20)!important;
+    margin: 0;
+    align: center;
+    position: unset!important;
   }
   a.dropdown-item {
     color: #e2bc00;
@@ -101,6 +105,7 @@ html, body {
     padding-left: 280px;
     height: auto;
     background-color: #e4e4e4!important;
+
   }
   .slideprod {
     background: #489de3;
@@ -113,6 +118,14 @@ html, body {
   footer {
     background: linear-gradient(#fdfdfd, #cecece);
     padding: 2vh 1vw 2vh 1vw;
+  }
+
+  a.lien-admin {
+    color: #093357;
+    background-color: #e05951;
+    margin-top: 5vh;
+    text-align: center;
+    padding: 1vh 2vw;
   }
 }
 
@@ -151,7 +164,9 @@ html, body {
     transition-duration: 1s;
   }
   .dropdown-menu {
-    background-color: dimgrey!important;
+    background-color: rgb(20, 20, 20)!important;
+    margin: 0;
+    align: center;
   }
   a.dropdown-item {
     color: #e2bc00;
@@ -188,7 +203,17 @@ html, body {
     padding: 2vh 1vw 2vh 1vw;
     font-size: 0.9em;
   }
+
+  a.lien-admin {
+    color: #093357;
+    background-color: #e05951;
+    margin: 1vh;
+    text-align: center;
+    padding: 1vh 2vw;
+  }
 }
+
+
 
 /*********** FONCTION SEARCH ***********/
 
@@ -682,4 +707,8 @@ a.lien-savoir:hover {
 .titrecolonne {
   background: #7569b0;
   color: #e4e4e4;
+}
+
+.overflow_table {
+  overflow-x: auto; 
 }

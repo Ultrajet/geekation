@@ -8,7 +8,8 @@
     <br>
     <br>
 
-    <a type="submit" name="ajout_panier" class="btn btn-success mb-2 col-md-2" href="{{ path('admin_commandes_add') }}">➕
+    <a type="submit" name="ajout_panier" class="btn btn-success mb-2 col-md-2"
+        href="{{ path('admin_commandes_add') }}">➕
         Ajouter un Commande</a>
 
     <br>
@@ -17,25 +18,18 @@
 
 
     <table>
-        <thead>
-            <tr class="text-center">
-                <td>Id</td>
-                <td>Nom</td>
+        <tbody>
+            {% for comm in commandes %}
+            <tr class='text-center'>
+                <th colspan="12">COMMANDE NUMERO {{ comm.id }}</th>
+            </tr>
+            <tr class='text-center'>
                 <td>Prenom</td>
+                <td>Nom</td>
                 <td>Email</td>
                 <td>Telephone</td>
                 <td>Date Enregistrement</td>
-                <td>Date Debut Location</td>
-                <td>Date Fin Location</td>
-                <td>Produits</td>
                 <td>Montant</td>
-                <td colspan='2'>Action</td>
-            </tr>
-        </thead>
-        <tbody>
-            {% for comm in commandes %}
-            <tr>
-                <th colspan="12">COMMANDE NUMERO {{ comm.id }}</th>
             </tr>
             <tr>
                 <td>{{ comm.membre.prenom }}</td>
@@ -45,17 +39,25 @@
                 <td>{{ comm.dateEnregistrement | date('d/m/Y')}}</td>
                 <td>{{ comm.montant }}</td>
             </tr>
-                {% for com in comm.produitsCommandes %}
-                <tr class='text-center'> 
-                    <td colspan="2">{{ com.produit.nom }}</td>>
-                    <td>{{ com.dateDebutLocation | date('d/m/Y')}}</td>
-                    <td>{{ com.dateFinLocation | date('d/m/Y')}}</td>
-                    <td><a href="{# {{ path('admin_commandes_update', {id : com.id} ) }} #}">✏️</a></td>
-                    <td><a onclick="return confirm('Etes Vous sur de voiloir supprimer cette commande ?')"
-                            href="{# {{ path('admin_commandes_delete', {id : com.id} ) }} #}">❌</a></td>
-                </tr>
-                {% endfor %}
+            <tr class='text-center'>
+                <td>Produits</td>
+                <td>Date Debut Location</td>
+                <td>Date Fin Location</td>
+                <td colspan='2'>Action</td>
+            </tr>
+            {% for com in comm.produitsCommandes %}
+            <tr class='text-center'>
+                <td>{{ com.produit.nom }}</td>
+                <td>{{ com.dateDebutLocation | date('d/m/Y')}}</td>
+                <td>{{ com.dateFinLocation | date('d/m/Y')}}</td>
+                <td><a href="{# {{ path('admin_commandes_update', {id : com.id} ) }} #}">✏️</a></td>
+                <td><a onclick="return confirm('Etes Vous sur de voiloir supprimer cette commande ?')"
+                        href="{# {{ path('admin_commandes_delete', {id : com.id} ) }} #}">❌</a></td>
+            </tr>
+            
             {% endfor %}
+            {% endfor %}
+            
         </tbody>
     </table>
 
