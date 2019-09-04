@@ -336,12 +336,6 @@ class AdminController extends AbstractController
     }
 
 
-
-
-
-
-
-
     /**
      * 
      * @Route("/admin/commandes/update/{id}", name="admin_commandes_update")
