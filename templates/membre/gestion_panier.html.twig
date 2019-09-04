@@ -18,6 +18,11 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {% if panier is empty %}
+                    <tr>
+                        <td colspan="4" class="text-center">Votre panier est vide.</td>
+                    </tr>
+                    {% else %}
                     {% for produit in panier %}
                         <tr class="text-center">
                             <td>{{ produit.nom }}</td>
@@ -26,6 +31,7 @@
                             <td>{{ produit.prix }}€</td>
                         </tr>
                     {% endfor %}
+                    {% endif %}
                     <tr class="col-10 montantcommande" >
                         <td colspan="3" align="right"><strong>Montant de votre commande</strong></td>
                         <td colspan="1" align="center">{{ prix }}€</td>
