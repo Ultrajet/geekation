@@ -40,39 +40,73 @@ public function Formulaire(Request $request, \Swift_Mailer $mailer){
             }
         }
 
+        return $this->render('base/contact.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+     /**
+     * @Route("/cgv", name="cgv")
+     */
+    public function cgv(){
+        return $this->render('footer/cgv.html.twig', []);
+    }
+
+    /**
+     * @Route("/cgu", name="cgu")
+     */
+    public function cgu(){
+        return $this->render('footer/cgu.html.twig', []);
+    }
+
+    /**
+     * @Route("/cookies", name="cookies")
+     */
+    public function cookies(){
+        return $this->render('footer/cookies.html.twig', []);
+    }
+
+    /**
+     * @Route("/mentions_legales", name="mentions_legales")
+     */
+    public function mentionsLegales(){
+        return $this->render('footer/mentions_legales.html.twig', []);
+    }
+
+    /**
+     * @Route("/protection_des_donnes", name="protection_des_donnes")
+     */
+    public function protectionDesDonnees(){
+        return $this->render('footer/protection_des_donnes.html.twig', []);
+    }
         // Affichage de la vue
 
-    return $this -> render('base/contact.html.twig', [
-      "form" => $form->createView()
-    ]);
 
-    //formulaire de contact une fois envoyé, un message de confirmation apparaît dans la vue
-}
 
-/**
-* Permet d'envoyer des emails
-*
-*/
-public function sendEmail($data, \Swift_Mailer $mailer){
-  $mail = new \Swift_Message();
-  // On instancie un objet swiftmailer en précisant l'objet (sujet) du mail.
+    /**
+    * Permet d'envoyer des emails
+    *
+    */
+    public function sendEmail($data, \Swift_Mailer $mailer){
+    $mail = new \Swift_Message();
+    // On instancie un objet swiftmailer en précisant l'objet (sujet) du mail.
 
-  $mail
-    -> setSubject($data['objet'])
-    -> setFrom($data['email'])
-    -> setTo('contact@geekation.com')
-    -> setBody(
-      $this -> renderView('emails/contact.html.twig', [
-        'data' => $data
-      ]), 'text/html'
-    )
-  ;
+    $mail
+        -> setSubject($data['objet'])
+        -> setFrom($data['email'])
+        -> setTo('contact@geekation.com')
+        -> setBody(
+        $this -> renderView('emails/contact.html.twig', [
+            'data' => $data
+        ]), 'text/html'
+        )
+    ;
 
-  if($mailer -> send($mail)){
-    return true;
-  }
-  else{
-    return false;
-  }
-}
+    if($mailer -> send($mail)){
+        return true;
+    }
+    else{
+        return false;
+    }
+    }
 }
