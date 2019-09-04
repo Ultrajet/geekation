@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use DateTime;
+use DateInterval;
 use App\Entity\Produits;
 use App\Entity\ProduitsCommandes;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,6 +21,7 @@ class ProduitController extends AbstractController
     public function index(ObjectManager $manager)
     {
         $produits = $this->getDoctrine()->getRepository(Produits::class)->findAllDisctinctProduits();
+        $this->addFlash('error', 'OMG UN MESSAGE§§§');
 
         return $this->render('produit/index.html.twig', [
             'produits' => $produits
@@ -62,8 +64,6 @@ class ProduitController extends AbstractController
         return $this->render('produit/show.html.twig', [
             'produit' => $produit,
             'produitCommande' => $produitCommande
-            // 'produitId' => $produitId,
-            // 'dates' => $dateArray
         ]);
     }
 
@@ -71,7 +71,6 @@ class ProduitController extends AbstractController
      * @Route("/produit_id/{id}", name="produit_id")
      */
     public function produitId($id, Request $request)
-    
     {
         // ----------------------
         // FICHE PRODUIT
@@ -110,9 +109,9 @@ class ProduitController extends AbstractController
     }
 
     /**
-     * @Route("/ajoutpanier/{slug}", name="ajoutpanier", methods={"POST"})
+     * @Route("/ajoutpanier", name="ajoutpanier", methods={"POST"})
      */
-    public function ajoutPanier($slug, Request $request)
+    public function ajoutPanier(Request $request)
     {
         // ----------------------
         // AJOUT PANIER
@@ -137,16 +136,24 @@ class ProduitController extends AbstractController
         $nom = $request->request->get('nom');
         $date_debut = $request->request->get('date_debut');
         $date_fin = $request->request->get('date_fin');
-        $prix = $request->request->get('prix');
+
+        // pour le prix, on multiplie le prix unitaire du produit par le nombre de jours de location
+        // donc d'abord, on crée des objets DateTime à partir des dates sélectionnées par l'utilisateur
+        $date_debut_obj = DateTime::createFromFormat('d/m/Y', $date_debut);
+        $date_fin_obj = DateTime::createFromFormat('d/m/Y', $date_fin);
+        // grâce à ces objets on peut utiliser un méthode qui renvoie une valeur qui correspond à la durée de la location
+        $dureeLocation = $date_debut_obj->diff($date_fin_obj)->format('%a');
+        // plus qu'à multiplier avec le prix
+        $prix = $request->request->get('prix') * $dureeLocation;
 
         // avec array_push, on rajoute un nouvel élément à la fin de $panier, qui sera lui-même un tableau array composé des données recueuillies
-        array_push($panier, ['nom' => $nom, 'date_debut' => $date_debut, 'date_fin' => $date_fin, 'prix' => $prix, 'slug' => $slug]);
+        array_push($panier, ['nom' => $nom, 'date_debut' => $date_debut, 'date_fin' => $date_fin, 'prix' => $prix]);
         // prochaine étape : faire en sorte qu'on n'ait plus seulement le nom, le prix et le slug, mais l'objet même de l'exemplaire du produit qu'on souhaite louer
 
         // après avoir manipulé le panier, on le remet à sa place!
         $session->set("panier", $panier);
 
-        return $this->redirectToRoute("gestion_panier"); // est-ce nécessaire?...
+        return $this->redirectToRoute("gestion_panier");
     }
 
     /**

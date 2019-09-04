@@ -2,11 +2,12 @@
 
 namespace App\Controller;
 
+use DateTime;
 use App\Entity\Membres;
-use App\Form\MembreType;
 
-use Doctrine\Common\Persistence\ObjectManager;
+use App\Form\MembreType;
 use Symfony\Component\HttpFoundation\Request;
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -16,11 +17,11 @@ class MembreController extends AbstractController
     /**
      * @Route("/inscription", name="inscription")
      */
-    public function inscription(Request $request, ObjectManager $manager,  userPasswordEncoderInterface $encoder)
+    public function inscription(Request $request, ObjectManager $manager, userPasswordEncoderInterface $encoder)
     {
         $membre = new Membres;
         
-        $form = $this->createForm(MembreType::class, $membre,array(
+        $form = $this->createForm(MembreType::class, $membre, array(
             'inscription' => true
         ));
         $form -> handleRequest($request);
@@ -33,12 +34,12 @@ class MembreController extends AbstractController
             }
 
             $membre -> setRole('ROLE_USER');
-			
-			$password = $membre -> getPassword(); 
-			
+            
+            $password = $membre -> getPassword();
+            
             $password_crypte = $encoder -> encodePassword($membre, $password);
             
-			$membre -> setPassword($password_crypte);
+            $membre -> setPassword($password_crypte);
 
 
             $manager -> flush();
@@ -80,17 +81,33 @@ class MembreController extends AbstractController
     {
         $session = $request->getSession();
 
+        // comme dans /ajout_panier, si le panier n'existe pas au moment où on arrive sur la page, alors on le crée
         if (!$session->get("panier")) {
-            $panier = $session->set("panier", []);
-        };
+            $session->set("panier", []);
+            $panier = $session->get("panier");
+        } else {
+            $panier = $session->get("panier");
 
-        $panier = $session->all()["panier"];
-
-        // $session = $request->getSession()->all()["panier"];
+            $prix = 0;
+            // boucle qui va calculer le montant total de la commande selon le prix de location de chacun des produits
+            for ($i = 0; $i < count($panier); $i++) {
+                $prix += $panier[$i]['prix'];
+            }
+        }
 
         return $this->render('membre/gestion_panier.html.twig', [
-          'panier' => $panier
+            'panier' => $panier,
+            'prix' => $prix
         ]);
     }
 
+    /**
+     * @Route("/commande", name="commande")
+     */
+    public function commande()
+    {
+        $this->addFlash('success', 'Merci pour votre commande!');
+
+        return $this->redirectToRoute('accueil');
+    }
 }

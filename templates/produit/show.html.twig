@@ -18,15 +18,20 @@
 
     <strong>Nom du produit : </strong> {{ produit.nom }}<br>
     <strong>ID de l'exemplaire en cours : </strong> {{ produit.id }}<br>
-    <strong>Prix : </strong> {{ produit.prix }}<br>
+    <strong>Prix : </strong> {{ produit.prix }}€<br>
     <strong>Type : </strong> {{ produit.type }}<br>
     <strong>Univers : </strong> {{ produit.univers }}<br>
     <strong>Slug : </strong> {{ produit.slug }}<br>
     <strong>GUID : </strong> {{ produit.guid }}<br>
     <img src="" alt="Image du produit" id="imageproduit" width="100%">
+    {% if produit.type == 'jeu' %}
     <strong>Description du jeu :</strong> <span id="description"></span><br>
     <strong>Développeurs :</strong> <span id="developpeurs"></span><br>
     <strong>Genre :</strong> <span id="genre"></span><br>
+    {% elseif produit.type == 'console' %}
+    <strong>Description de la console :</strong> <span id="description"></span><br>
+    <strong>Compagnie :</strong> <span id="compagnie"></span><br>
+    {% endif %}
 
     <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
@@ -58,23 +63,29 @@
             //on empeche l action du submit de ce lancer 
             e.preventDefault();
 
-            //on recupere les donner  pour les mettre dans la Var data
-            var data = {
-                'nom': '{{ produit.nom }}',
-                'prix': '{{ produit.prix }}',
-                'date_debut': $("#datepicker-debut").val(),
-                'date_fin': $("#datepicker-fin").val()
+            if ($("#datepicker-debut").val() == "" || $("#datepicker-fin").val() == "") {
+                alert("Les dates n'ont pas été correctement renseignées.");
             }
-            //on lance l'ajax
-            $.ajax({
-                //qui applique une methode POST
-                method: "POST",
-                //le chemin que lon veut parcourire
-                url: "{{ path('ajoutpanier', {slug: produit.slug}) }}",
-                //on donne a data la valeur data
-                data: data
-                //puis on envois une alrte pour verifier les valeur envoyer
-            }).done(() => { alert("Produit ajouté au panier!"); })
+            else {
+                //on recupere les donner  pour les mettre dans la Var data
+                var data = {
+                    'nom': '{{ produit.nom }}',
+                    'prix': '{{ produit.prix }}',
+                    'date_debut': $("#datepicker-debut").val(),
+                    'date_fin': $("#datepicker-fin").val()
+                }
+                //on lance l'ajax
+                $.ajax({
+                    //qui applique une methode POST
+                    method: "POST",
+                    //le chemin que lon veut parcourire
+                    url: "{{ path('ajoutpanier') }}",
+                    //on donne a data la valeur data
+                    data: data
+                    //puis on envois une alrte pour verifier les valeur envoyer
+                }).done(() => { alert("Produit ajouté au panier!"); })
+            }
+
         });
 
     });
@@ -135,10 +146,20 @@
     $("document").ready(() => {
         console.log("jQuery activé!");
 
+        if ('{{ produit.type }}' == 'jeu') {
+            $url = 'game';
+        }
+        else if ('{{ produit.type }}' == 'console') {
+            $url = 'platform';
+        }
+        else if ('{{ produit.type }}' == 'accessoire') {
+            $url = 'accessory';
+        }
+
         // dans cette requête GET, on demande le produit par le guid, puis on reçoit une réponse en json/jsonp/je-sais-pas-trop-mais-cette-combinaison-de-paramètres-fonctionne
         $.ajax({
             method: 'GET',
-            url: 'https://www.giantbomb.com/api/game/' + '{{ produit.guid }}',
+            url: 'https://www.giantbomb.com/api/' + $url + '/{{ produit.guid }}',
             dataType: 'jsonp',
             jsonp: 'json_callback',
             data: {
@@ -148,13 +169,22 @@
         }).done((data) => {
             // ici on manipule la réponse envoyée par GiantBomb à travers la variable data
             // d'abord un petit console.log pour avoir en console la totalité de la réponse à portée de main
-            console.log(data.results);
+            console.log(data.results)
 
             // puis on assigne à des éléments du DOM les morceaux de data qui nous intéressent : ici une image du produit, sa description, l'équipe de développement et le genre
-            $("#imageproduit").attr("src", data.results.image.medium_url);
-            $("#description").html(data.results.deck);
-            $("#developpeurs").html(data.results.developers[0].name);
-            $("#genre").html(data.results.genres[0].name);
+            if ('{{ produit.type }}' == 'jeu') {
+                console.log('jeu ok!');
+                $("#imageproduit").attr("src", data.results.image.medium_url);
+                $("#description").html(data.results.deck);
+                $("#developpeurs").html(data.results.developers[0].name);
+                $("#genre").html(data.results.genres[0].name);
+            }
+            else if ('{{ produit.type }}' == 'console') {
+                console.log('console ok!');
+                $("#imageproduit").attr("src", data.results.image.medium_url);
+                $("#description").html(data.results.deck);
+                $("#compagnie").html(data.results.company.name);
+            }
         });
     });
 </script>

@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    {# dump(panier) #}
+    {{ dump(panier) }}
 
     <div class="col-10 mx-auto border">
 
@@ -14,7 +14,7 @@
                         <th>Article</th>
                         <th>Date de début de location</th>
                         <th>Date de fin de location</th>
-                        <th>Prix du produit</th>
+                        <th>Montant de la location</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -23,12 +23,12 @@
                             <td>{{ produit.nom }}</td>
                             <td>{{ produit.date_debut }}</td>
                             <td>{{ produit.date_fin }}</td>
-                            <td>{{ produit.prix }}</td>
+                            <td>{{ produit.prix }}€</td>
                         </tr>
                     {% endfor %}
                     <tr class="col-10 montantcommande" >
                         <td colspan="3" align="right"><strong>Montant de votre commande</strong></td>
-                        <td colspan="1" align="center"> 20 € </td>
+                        <td colspan="1" align="center">{{ prix }}€</td>
                     </tr>
                 </tbody>
             </table>
@@ -39,12 +39,12 @@
                 <button class="btn">Vider</button>
             </form>
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                <form class="col-2 reserver mb-2 text-center" action="#">
+                <form class="col-2 reserver mb-2 text-center" action="{{ path('commande') }}">
                     <button class="btn">Réserver</button>
                 </form>
             {% else %}
-                <form class="col-2 connexion mb-2 text-center" action="#">
-                    <button class="btn" href="{{ path('connexion') }}">Connexion</button>
+                <form class="col-2 connexion mb-2 text-center" action="{{ path('connexion') }}">
+                    <button class="btn">Connexion</button>
                 </form>
             {% endif %}
 

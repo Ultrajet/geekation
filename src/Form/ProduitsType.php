@@ -19,8 +19,8 @@ class ProduitsType extends AbstractType
             ->add('type', ChoiceType::class, array(
                 'choices' => array(
                     'Console' => 'console',
-                    'Jeux' => 'jeux',
-                    'Accesoire' => 'accesoire'
+                    'Jeu' => 'jeu',
+                    'Accessoire' => 'accessoire'
                 )
                 ))
             ->add('univers', ChoiceType ::class, array(
