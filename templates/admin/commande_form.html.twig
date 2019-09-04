@@ -19,60 +19,49 @@
             {% endfor %}
         </select>
     </div>
+
+    <label for="">Test</label><br />
+    <select name="" id="Type" class="linked_select" data-target="#Univers" data-source="">
+        {% for ty in type %}
+
+        <option value="type">{{ ty.type }}</option>
+
+        {% endfor %}
+    </select>
     <br>
     <br>
+
+    
     <div>
-        <label for="">Produits</label><br />
-        <select name="" id="">
-            {% for pro in produits %}
 
-            <option value="membre">{{ pro.type }}</option>
-
+        <br>
+        <label for="">Selection Produit</label>
+        <select name="Type">
+            {% for ty in type %}
+    
+            <option value="{{ ty.type }}">{{ ty.type | capitalize }}</option>
+    
             {% endfor %}
         </select>
 
-        <br>
-        <label for="">Type</label><br />
-        <select name="Type">
-            <option value="1">Console</option>
-            <option value="2">Jeux</option>
-            <option value="2">Accessoire</option>
-        </select>
-        <br>
-        <br>
-        <div id="type_1" class="mes_divs" style="display:none">
-            <select name="Univers">
-                <option value="1">Playstation</option>
-                <option value="2">Xbox</option>
-                <option value="3">Switch</option>
-            </select>
+
+
+        <div id="univers" class="mes_divs" style="display:none">
             <br>
-        </div>
-        <div id="uni_1" class="mes_divs_type" style="display:none">
-            <select name="Produit">
-                <option value="1">Console Playstation</option>
-                <option value="2">Console Xbox</option>
-                <option value="3">Console Switch</option>
-            </select>
-        </div>
-
-        <div id="type_2" class="mes_divs" style="display:none">
             <select name="Univers">
-                <option value="1">Playstation</option>
-                <option value="2">Xbox</option>
-                <option value="3">Switch</option>
+                
             </select>
+                       
+
         </div>
 
-        <div id="type_3" class="mes_divs" style="display:none">
-            <select name="Univers">
-                <option value="1">Playstation</option>
-                <option value="2">Xbox</option>
-                <option value="3">Switch</option>
+        <div id="produits" class="mes_divs" style="display:none">
+            <br>
+            <select name="Produits">
+                <option value="1">Test</option>
             </select>
+                      
         </div>
-
-
 
     </div>
 
@@ -84,24 +73,77 @@
 {% block javascript %}
 
 <script>
+    
+    
     // Je sélectionne le select et quand la valeur change on fait une action
     $('select[name="Type"]').change(function () {
-        // Je créer l'id du div qui va être affiché
-        var id = "type_" + $(this).val();
-        // Je cache toutes les divs grâce à une classe qui va sélectionner le tout
-        $('div.mes_divs').hide();
-        // Et j'affiche seulement le Div que je souhaite
-        $('#' + id).show();
+        
+       
+        var data = {
+            'type' : $('select[name="Type"]').val(),
+        }
+        console.log(data);
+
+        // AJAX POUR Récupérer les univers qui vont avec ce type
+        var url = "{{ path('admin_ajax_univers_list') }}";
+        console.log(url);
+        var content = '';
+       $.ajax({
+            url : url,
+            async: false,
+            method: 'post',
+            dataType : 'json',
+            data : data,
+            success : function(response){
+                console.log(response);
+                for(var i = 0; i < response.length; i ++){
+                    console.log('tour' + i);
+                    content += '<option value="' + response[i]['univers'] + '">' + response[i]['univers'] + '</option>';
+                }
+                $('select[name="Univers"]').html(content);
+            }
+        });
+
+        
+        $('#univers').show();
+
     });
 
+    // Je sélectionne le select et quand la valeur change on fait une action
     $('select[name="Univers"]').change(function () {
-        // Je créer l'id du div qui va être affiché
-        var id = "uni_" + $(this).val();
-        // Je cache toutes les divs grâce à une classe qui va sélectionner le tout
-        $('div.mes_divs_type').hide();
-        // Et j'affiche seulement le Div que je souhaite
-        $('#' + id).show();
+        
+       
+        var data = {
+            'type' : $('select[name="Type"]').val(),
+            'univers' : $('select[name="Univers"]').val(),
+        }
+        console.log(data);
+
+        // AJAX POUR Récupérer les univers qui vont avec ce type
+        var url = "{{ path('admin_ajax_produit_list') }}";
+        console.log(url);
+        var content = '';
+       $.ajax({
+            url : url,
+            async: false,
+            method: 'post',
+            dataType : 'json',
+            data : data,
+            success : function(response){
+                console.log(response);
+                for(var i = 0; i < response.length; i ++){
+                    console.log('tour' + i);
+                    content += '<option value="' + response[i]['nom'] + '">' + response[i]['nom'] + '</option>';
+                }
+                $('select[name="Produits"]').html(content);
+            }
+        });
+
+        
+        $('#produits').show();
+
     });
+
 </script>
 
 {% endblock %}
