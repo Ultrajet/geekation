@@ -79,7 +79,9 @@ class MembreController extends AbstractController
     */
     public function gestion_panier(Request $request)
     {
+        // $session->clear();
         $session = $request->getSession();
+        $prix = 0;
 
         // comme dans /ajout_panier, si le panier n'existe pas au moment où on arrive sur la page, alors on le crée
         if (!$session->get("panier")) {
@@ -88,7 +90,6 @@ class MembreController extends AbstractController
         } else {
             $panier = $session->get("panier");
 
-            $prix = 0;
             // boucle qui va calculer le montant total de la commande selon le prix de location de chacun des produits
             for ($i = 0; $i < count($panier); $i++) {
                 $prix += $panier[$i]['prix'];
