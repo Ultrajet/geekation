@@ -27,6 +27,7 @@ html, body {
     background-color: rgb(36, 36, 36);
     margin: 0;
     padding: 0;
+    z-index: 9;
   }
   .navbar, .navbar-expand-lg, .navbar-collapse {
     display: block !important;
@@ -104,6 +105,7 @@ html, body {
     padding-left: 280px;
     height: auto;
     background-color: #e4e4e4!important;
+
   }
   .slideprod {
     background: #489de3;
@@ -121,7 +123,7 @@ html, body {
   a.lien-admin {
     color: #093357;
     background-color: #e05951;
-    margin-top: 10vh;
+    margin-top: 5vh;
     text-align: center;
     padding: 1vh 2vw;
   }
@@ -705,4 +707,8 @@ a.lien-savoir:hover {
 .titrecolonne {
   background: #7569b0;
   color: #e4e4e4;
+}
+
+.overflow_table {
+  overflow-x: auto; 
 }
