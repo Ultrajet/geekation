@@ -22,8 +22,9 @@ class ProduitsRepository extends ServiceEntityRepository
     /**
      * @return Produits[] Returns an array of Produits objects
      */
-    
-    public function findAllDisctinctProduits() {
+
+    public function findAllDisctinctProduits()
+    {
         $builder = $this->createQueryBuilder('p');
         $builder
             ->select('p.nom', 'p.prix', 'p.type', 'p.univers', 'p.slug')
@@ -32,4 +33,42 @@ class ProduitsRepository extends ServiceEntityRepository
         return $builder->getQuery()->getResult();
     }
 
+
+    public function findAllDisctinctProduitsType()
+    {
+        $builder = $this->createQueryBuilder('p');
+        $builder
+            ->select('p.type')
+            ->distinct(true)
+            ->orderBy('p.type', 'ASC');
+        return $builder->getQuery()->getResult();
+    }
+
+    public function findUniversByType($type)
+    {
+
+        $builder = $this->createQueryBuilder('p');
+        return $builder
+            ->select('p.univers')
+            ->distinct(true)
+            ->orderBy('p.univers', 'ASC')
+            ->where('p.type = :type')
+            ->setParameter(':type', $type)
+            ->getQuery()
+            ->getResult();
+    }
+    public function findProduitByTypeAndUnivers($type, $univers)
+    {
+
+        $builder = $this->createQueryBuilder('p');
+        return $builder
+            ->select('p.nom')
+            ->distinct(true)
+            ->orderBy('p.nom', 'ASC')
+            ->where('p.type = :type')
+            ->andWhere('p.univers = :univers')
+            ->setParameters([':type' => $type, ':univers' => $univers])
+            ->getQuery()
+            ->getResult();
+    }
 }

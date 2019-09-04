@@ -279,6 +279,7 @@ class AdminController extends AbstractController
 
         $repository = $this->getDoctrine()->getRepository(Produits::class);
         $produits = $repository->findAll();
+        $type = $repository->findAllDisctinctProduitsType();
 
         $repository = $this->getDoctrine()->getRepository(Membres::class);
         $membres = $repository->findAll();
@@ -287,8 +288,59 @@ class AdminController extends AbstractController
             'produitscommandes' => $produitscommandes,
             'produits' => $produits,
             'membres' => $membres,
+            'type' => $type,
         ]);
     }
+
+
+
+
+
+
+
+
+
+    /**
+     * 
+     * @Route("/admin/ajax/univers_list", name="admin_ajax_univers_list")
+     * Route qui permet de récupérer la liste des univers en fonction du type de produi dans le process de creation d'une commande 
+     * 
+     */
+    public function adminAjaxUniversList(Request $request){
+        $type = $request -> request -> get('type');
+
+        $repo = $this->getDoctrine()->getRepository(Produits::class);
+        $univers = $repo -> findUniversByType($type);
+
+        return $this -> json($univers);
+
+    }
+
+    /**
+     * 
+     * @Route("/admin/ajax/produit_list", name="admin_ajax_produit_list")
+     * Route qui permet de récupérer la liste des produit en fonction du type de produit, et de l'univers dans le process de creation d'une commande 
+     * 
+     */
+    public function adminAjaxProduitList(Request $request){
+
+        $type = $request -> request -> get('type');
+        $univers = $request -> request -> get('univers');
+
+        $repo = $this->getDoctrine()->getRepository(Produits::class);
+        $produits = $repo -> findProduitByTypeAndUnivers($type, $univers);
+
+        return $this -> json($produits);
+
+
+    }
+
+
+
+
+
+
+
 
     /**
      * 
