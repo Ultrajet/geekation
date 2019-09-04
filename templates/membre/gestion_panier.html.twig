@@ -39,8 +39,8 @@
                 <button class="btn">Vider</button>
             </form>
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                <form class="col-2 reserver mb-2 text-center" action="{{ path('commande') }}">
-                    <button class="btn">Réserver</button>
+                <form class="col-2 reserver mb-2 text-center" action="{{ path('commande', {panier: panier}) }}" method="POST">
+                    <button class="btn" {% if panier is empty %}disabled{% endif %}>Réserver</button>
                 </form>
             {% else %}
                 <form class="col-2 connexion mb-2 text-center" action="{{ path('connexion') }}">
