@@ -1,70 +1,69 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="{{ asset('Datepicker/Datepicker.css') }}">
+
+{% endblock %}
+
+
 {% block content %}
 
 <h1>Ajout Commande</h1>
 
-
-<div class="mx-auto p-2 border bg-light" style="width: 30vw">
-
-
-    <br>
+<div id="body" class="mx-auto p-2 border bg-light" style="width: 30vw">
     <div>
-        <label for="">Membre</label><br />
-        <select name="" id="">
-            {% for mem in membres %}
-
-            <option value="membre">{{ mem.username }}</option>
-
-            {% endfor %}
-        </select>
-    </div>
-
-    <label for="">Test</label><br />
-    <select name="" id="Type" class="linked_select" data-target="#Univers" data-source="">
-        {% for ty in type %}
-
-        <option value="type">{{ ty.type }}</option>
-
-        {% endfor %}
-    </select>
-    <br>
-    <br>
-
-    
-    <div>
-
+        <div id="produit_ajout">
+            <br>
+            <div>
+                <label for="">Membre</label><br />
+                <select name="" id="">
+                    <option value="" selected disabled hidden>Selection</option>
+                    {% for mem in membres %}
+                    <option value="membre">{{ mem.username }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <br>
+            <div>
+                <label for="">Selection Produit</label>
+                <select name="Type">
+                    <option value="" selected disabled hidden>Selection</option>
+                    {% for ty in type %}
+                    <option value="{{ ty.type }}">{{ ty.type | capitalize }}</option>
+                    {% endfor %}
+                </select>
+                <div id="univers" class="mes_divs" style="display:none">
+                    <br>
+                    <select name="Univers">
+                    </select>
+                </div>
+                <div id="produits" class="mes_divs" style="display:none">
+                    <br>
+                    <select name="Produits">
+                    </select>
+                </div>
+            </div>
+            <br>
+            <div>
+                <label for="datepicker-debut">Debut de Location:</label>
+                <input type="text" id="datepicker-debut" name="datepicker-debut">
+                <br>
+                <label for="datepicker-fin">Fin de Location:</label>
+                <input type="text" id="datepicker-fin" name="datepicker-fin">
+            </div>
+            <br>
+            <div>
+                <a type="submit" id="repeat" name="ajout_produit" href="#">➕Ajouter un Produit</a>
+            </div>
+        </div>
         <br>
-        <label for="">Selection Produit</label>
-        <select name="Type">
-            {% for ty in type %}
-    
-            <option value="{{ ty.type }}">{{ ty.type | capitalize }}</option>
-    
-            {% endfor %}
-        </select>
-
-
-
-        <div id="univers" class="mes_divs" style="display:none">
-            <br>
-            <select name="Univers">
-                
-            </select>
-                       
-
+        <br>
+        <div>
+            <a type="submit" name="Valide_Command" href="#">Enregistrer la Command</a>
         </div>
-
-        <div id="produits" class="mes_divs" style="display:none">
-            <br>
-            <select name="Produits">
-                <option value="1">Test</option>
-            </select>
-                      
-        </div>
-
     </div>
-
 </div>
 
 
@@ -72,31 +71,43 @@
 
 {% block javascript %}
 
+{#Pour le Repeat#}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 <script>
-    
-    
+
+    //permet de repet la div  produit  quand on clique sur le bouton
+    $(document).ready(function () {
+        $("#repeat").click(function () {
+            $("#produit_ajout").clone().appendTo("#body");
+        });
+    });
+
+
+
     // Je sélectionne le select et quand la valeur change on fait une action
     $('select[name="Type"]').change(function () {
-        
-       
+
+
         var data = {
-            'type' : $('select[name="Type"]').val(),
+            'type': $('select[name="Type"]').val(),
         }
         console.log(data);
 
         // AJAX POUR Récupérer les univers qui vont avec ce type
         var url = "{{ path('admin_ajax_univers_list') }}";
         console.log(url);
-        var content = '';
-       $.ajax({
-            url : url,
+        //on place une option de base qui disparais quand u ne des autre option et selectionner 
+        var content = '<option value="" selected disabled hidden>Selection</option>';
+        $.ajax({
+            url: url,
             async: false,
             method: 'post',
-            dataType : 'json',
-            data : data,
-            success : function(response){
+            dataType: 'json',
+            data: data,
+            success: function (response) {
                 console.log(response);
-                for(var i = 0; i < response.length; i ++){
+                for (var i = 0; i < response.length; i++) {
                     console.log('tour' + i);
                     content += '<option value="' + response[i]['univers'] + '">' + response[i]['univers'] + '</option>';
                 }
@@ -104,34 +115,35 @@
             }
         });
 
-        
+
         $('#univers').show();
 
     });
 
     // Je sélectionne le select et quand la valeur change on fait une action
     $('select[name="Univers"]').change(function () {
-        
-       
+
+
         var data = {
-            'type' : $('select[name="Type"]').val(),
-            'univers' : $('select[name="Univers"]').val(),
+            'type': $('select[name="Type"]').val(),
+            'univers': $('select[name="Univers"]').val(),
         }
         console.log(data);
 
         // AJAX POUR Récupérer les univers qui vont avec ce type
         var url = "{{ path('admin_ajax_produit_list') }}";
         console.log(url);
-        var content = '';
-       $.ajax({
-            url : url,
+        //on place une option de base qui disparais quand u ne des autre option et selectionner 
+        var content = '<option value="" selected disabled hidden>Selection</option>';
+        $.ajax({
+            url: url,
             async: false,
             method: 'post',
-            dataType : 'json',
-            data : data,
-            success : function(response){
+            dataType: 'json',
+            data: data,
+            success: function (response) {
                 console.log(response);
-                for(var i = 0; i < response.length; i ++){
+                for (var i = 0; i < response.length; i++) {
                     console.log('tour' + i);
                     content += '<option value="' + response[i]['nom'] + '">' + response[i]['nom'] + '</option>';
                 }
@@ -139,9 +151,58 @@
             }
         });
 
-        
+
         $('#produits').show();
 
+    });
+
+</script>
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script>
+    // ------------------
+    // DATEPICKER
+    // ------------------
+
+    //fonction a rajouter sur le Datepicker
+    $(function () {
+        $("#datepicker").datepicker({
+            inline: true,
+            showOtherMonths: true,
+            //abbreviation des jours en FR
+            dayNamesMin: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+            monthNames: ["Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre"],
+            dateFormat: "dd/mm/yy",
+        });
+    });
+
+    $(function () {
+        $("#datepicker-debut").datepicker({
+            minDate: 0,
+            prevText: "click for previous months",
+            nextText: "click for next months",
+            showOtherMonths: true,
+            selectOtherMonths: false,
+            monthNames: ["Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre"],
+            dayNamesMin: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+            dateFormat: "dd/mm/yy",
+            onSelect: function (selectedDate) {
+                $("#datepicker-fin").datepicker("option", "minDate", selectedDate);
+            }
+        });
+        $("#datepicker-fin").datepicker({
+            prevText: "Mois precedent",
+            nextText: "Prochain Mois",
+            showOtherMonths: true,
+            selectOtherMonths: true,
+            monthNames: ["Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre"],
+            dayNamesMin: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+            dateFormat: "dd/mm/yy",
+            onSelect: function (selectedDate) {
+                $("#datepicker-debut").datepicker("option", "maxDate", selectedDate);
+            }
+        });
     });
 
 </script>

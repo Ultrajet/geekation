@@ -5,10 +5,14 @@ namespace App\Controller;
 use DateTime;
 use App\Entity\Membres;
 
+use App\Entity\Produits;
 use App\Form\MembreType;
+use App\Entity\Commandes;
+use App\Entity\ProduitsCommandes;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
@@ -103,10 +107,38 @@ class MembreController extends AbstractController
     }
 
     /**
-     * @Route("/commande", name="commande")
+     * @Route("/commande", name="commande", methods={"POST"})
      */
-    public function commande()
+    public function commande(SessionInterface $session, ObjectManager $manager)
     {
+        $panier = $session->get("panier");
+        $prix = 0;
+
+        for ($i = 0; $i < count($panier); $i++) {
+            $prix += $panier[$i]['prix'];
+        }
+
+        // insertion dans Commandes
+        $commande = new Commandes();
+        $commande->setMontant($prix)
+                 ->setDateEnregistrement(new DateTime())
+                 ->setMembre($this->getUser());
+        $manager->persist($commande);
+
+        // insertion(s) dans ProduitsCommandes
+        foreach ($panier as $produit) {
+            $produitObj = $this->getDoctrine()->getRepository(Produits::class)->findOneBy(['nom' => $produit['nom']]);
+            $produitCommande = new ProduitsCommandes();
+            $produitCommande->setDateDebutLocation(DateTime::createFromFormat('d/m/Y', $produit['date_debut']))
+                            ->setDateFinLocation(DateTime::createFromFormat('d/m/Y', $produit['date_fin']))
+                            ->setProduit($produitObj)
+                            ->setCommande($commande);
+            $manager->persist($produitCommande);
+        }
+
+        $manager->flush();
+        $session->set('panier', []);
+
         $this->addFlash('success', 'Merci pour votre commande!');
 
         return $this->redirectToRoute('accueil');
