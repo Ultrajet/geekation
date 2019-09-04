@@ -435,18 +435,11 @@ a.footer-socials-messs:hover {
   display: flex !important;
 }
 
-.bouttonreserver{
-  font-size: 0.9em !important;
+.bouttonficheproduit{
+  font-size: 0.8em !important;
   background: #E05951 !important;
   color: #e2bc00 !important;
 }
-
-.bouttonficheproduit{
-  font-size: 0.8em !important;
-  background: #52ae49 !important;
-  color: #7569b0 !important;
-}
-
 
 /******************************* CSS DE TOUS LES FORMULAIRE ******************************/
 
