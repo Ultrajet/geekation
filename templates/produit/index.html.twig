@@ -100,7 +100,7 @@
 
             <!--PARTIE 2 DU SLIDER VIGNETTE-->
 
-            <div class="row row-equal carousel-item  m-t-0 padpad">
+            <div class="row row-equal carousel-item padpad">
                 {% for produit in produits | slice (0,6) %}
                     <div class="col-md-2">
                         <div class="card">
@@ -108,7 +108,7 @@
                                 <img class="img-fluid" src="image/logsims.jpg" alt="Carousel 1">
                                 <img class="img-fluid" src="image/logsims.jpg" alt="Carousel 1">
                             </div>
-                            <div class="card-block p-t-2 ">
+                            <div class="card-block pt-2 ">
                                 <div class="card-text">
                                     <div class="ml-4 mt-3 card-titre">{{ produit.nom }}</div>
                                     <div class="ml-4 card-spec">à partir de</div>
