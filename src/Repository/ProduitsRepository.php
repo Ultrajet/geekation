@@ -71,4 +71,36 @@ class ProduitsRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    
+    public function findAllByFilter($info)
+    {
+
+
+        $builder = $this->createQueryBuilder('p');
+        $builder
+            ->select('p');
+
+
+        if ($info->get('nom') != NULL) {
+            $builder
+                ->andWhere('p.nom = :nom')
+                ->setParameter(':nom', $info->get('nom'));
+        }
+
+        if ($info->get('type') != NULL) {
+            $builder
+                ->andWhere('p.type = :type')
+                ->setParameter(':type', $info->get('type'));
+        }
+        if ($info->get('univers') != NULL) {
+            $builder
+                ->andWhere('p.univers = :univers')
+                ->setParameter(':univers', $info->get('univers'));
+        }
+
+        return $builder
+            ->getQuery()
+            ->getResult();
+    }
 }
