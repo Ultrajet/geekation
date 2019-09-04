@@ -1,1 +1,24 @@
-Ceci et le Formulaire des Membres 
+
+{% extends 'base.html.twig' %}
+
+{% block title %} BestBeer - Register {% endblock %}
+
+
+{% block content %}
+
+
+<h1 class="col-6 mx-auto">Inscription</h1>
+
+{{form_start(membreForm)}}
+
+{% for form in membreForm %}
+<div class="col-6 mx-auto">
+   {{ form_row(form) }}
+</div>
+{% endfor %}
+
+
+{{form_end(membreForm)}}
+
+
+{% endblock %}

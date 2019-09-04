@@ -20,7 +20,9 @@ class MembreController extends AbstractController
     {
         $membre = new Membres;
         
-        $form = $this->createForm(MembreType::class, $membre);
+        $form = $this->createForm(MembreType::class, $membre,array(
+            'inscription' => true
+        ));
         $form -> handleRequest($request);
         if ($form ->isSubmitted() && $form ->isValid()) {
             $manager -> persist($membre);

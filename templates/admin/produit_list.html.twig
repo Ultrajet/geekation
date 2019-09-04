@@ -7,10 +7,10 @@
         <h1 class="text-center pb-2 pt-3">Gestion des Produits</h1>
 
         <div class="col-2 text-center mb-3 ajout_produit">
-            <button type="submit" name="ajout_produit" class="btn" href="{{ path('admin_produits_add') }}"><i class="fas fa-plus"></i> Ajouter un Produit</button>                              
+            <a type="submit" name="ajout_produit" class="btn" href="{{ path('admin_produits_add') }}"><i class="fas fa-plus"></i> Ajouter un Produit</a>
         </div>
 
-        <table class="col-md-8 offset-2">
+        <table class="col-md-8 mx-auto">
             <thead>
                 <tr class="text-center titrecolonne">
                     <td>Id</td>
@@ -42,7 +42,7 @@
                             <a href="{{ path('admin_produits_update', {id : pdt.id} ) }}"><i class="fas fa-pencil-alt"></i>️</a>
                         </td>
                         <td>
-                            <a onclick="return confirm('Etes Vous sur de voiloir supprimer cette article ?')" href="{{ path('admin_produits_delete', {id : pdt.id} ) }}"><i class="fas fa-trash"></i></a>
+                            <a onclick="return confirm('Etes Vous sur de vouloir supprimer cette article ?')" href="{{ path('admin_produits_delete', {id : pdt.id} ) }}"><i class="fas fa-trash"></i></a>
                         </td>
                     </tr>
                 {% endfor %}
