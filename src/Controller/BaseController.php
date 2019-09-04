@@ -23,7 +23,7 @@ class BaseController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){
             $notification -> notify($contact);
             $this->addFlash('success', 'Votre mail a bien été envoyé !');
-           /* $this->redirectToRoute('accueil'); */
+            $this->redirectToRoute('accueil'); 
         }
 
         return $this->render('base/contact.html.twig', [
