@@ -30,4 +30,39 @@ class BaseController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+     /**
+     * @Route("/cgv", name="cgv")
+     */
+    public function cgv(){
+        return $this->render('footer/cgv.html.twig', []);
+    }
+
+    /**
+     * @Route("/cgu", name="cgu")
+     */
+    public function cgu(){
+        return $this->render('footer/cgu.html.twig', []);
+    }
+
+    /**
+     * @Route("/cookies", name="cookies")
+     */
+    public function cookies(){
+        return $this->render('footer/cookies.html.twig', []);
+    }
+
+    /**
+     * @Route("/mentions_legales", name="mentions_legales")
+     */
+    public function mentionsLegales(){
+        return $this->render('footer/mentions_legales.html.twig', []);
+    }
+
+    /**
+     * @Route("/protection_des_donnes", name="protection_des_donnes")
+     */
+    public function protectionDesDonnees(){
+        return $this->render('footer/protection_des_donnes.html.twig', []);
+    }
 }
