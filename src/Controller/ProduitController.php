@@ -21,7 +21,6 @@ class ProduitController extends AbstractController
     public function index(ObjectManager $manager)
     {
         $produits = $this->getDoctrine()->getRepository(Produits::class)->findAllDisctinctProduits();
-        $this->addFlash('error', 'OMG UN MESSAGE§§§');
 
         return $this->render('produit/index.html.twig', [
             'produits' => $produits
