@@ -10,12 +10,23 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,800&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        $("document").ready(() => {
+            $("#jsflash").delay(3000).animate({ opacity: 0 }, 5000, () => {
+                $("#jsflash").css('display', 'none');
+            });
+        });
+    </script>
     {% block stylesheets %}
     {% endblock %}
     <title>GEEK'ation</title>
 </head>
 
 <body>
+
     <div id="sidebar">
         <nav class="navbar navbar-expand-lg">
             <div class="row logotop justify-content-center">
@@ -24,14 +35,16 @@
                 </a>
             </div>
 
-<div class="row">
-           <form class="form-inline m-3" action="{{ path('recherche') }}" method="get">
-      <input class="form-control col-9 mr-sm-2" name="s" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-warning col-2 my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
-    </form>
-</div>
             <div class="row">
-               
+                <form class="form-inline m-3" action="{{ path('recherche') }}" method="get">
+                    <input class="form-control col-9 mr-sm-2" name="s" type="search" placeholder="Search"
+                        aria-label="Search">
+                    <button class="btn btn-outline-warning col-2 my-2 my-sm-0" type="submit"><i
+                            class="fa fa-search"></i></button>
+                </form>
+            </div>
+            <div class="row">
+
             </div>
             <div class="row">
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -46,17 +59,33 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('accueil') }}">Accueil</a>
                     </li>
+                    
+                    
+                    
+                    {#  Faire une Boucle pour Cree un Menu dynamique  par rappoert au Type disponible dans la BDD
+                        
+                        {% for cat in categories %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('type_search', {typ: 'console'}) }}">Consoles</a>
+                        <a class="nav-link" href="{{ path('type_search', {typ: cat.type }) }}">{{ cat.type }}</a>
                     </li>
+                    {% endfor %}#}
+
+
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('type_search', {typ: 'console' }) }}">Console</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('type_search', {typ: 'jeu' }) }}">Jeu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('type_search', {typ: 'accessoire' }) }}">Accessoire</a>
+                    </li>
+
+
+
+
                     {# {{ path('type', {type: 'consoles'}) }} #}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('type_search', {typ: 'jeu'}) }}">Jeux
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('type_search', {typ: 'accessoire'}) }}">Accessoires</a>
-                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link" href="{{ path('univers') }}">
                             Univers
@@ -204,18 +233,6 @@
             </div>
         </footer>
     </div>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script>
-        $("document").ready(() => {
-            $("#jsflash").delay(3000).animate({ opacity: 0 }, 5000, () => {
-                $("#jsflash").css('display', 'none');
-            });
-        });
-    </script>
-    <script src="{{ asset('/js/appelAPI.js') }}"></script>
 
     {% block javascript %}
     {% endblock %}
