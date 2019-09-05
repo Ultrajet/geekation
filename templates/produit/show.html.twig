@@ -31,6 +31,8 @@
     {% elseif produit.type == 'console' %}
     <strong>Description de la console :</strong> <span id="description"></span><br>
     <strong>Compagnie :</strong> <span id="compagnie"></span><br>
+    {% else %}
+    <strong>Description de l'accessoire :</strong> <span id="description"></span>
     {% endif %}
 
     <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////// -->
@@ -38,9 +40,9 @@
     <form class="p-2 border">
 
         <label for="datepicker-debut">Debut de Location:</label>
-        <input type="text" id="datepicker-debut" name="datepicker-debut">
+        <input type="text" id="datepicker-debut" name="datepicker-debut" class="mb-2">
         <label for="datepicker-fin">Fin de Location:</label>
-        <input type="text" id="datepicker-fin" name="datepicker-fin">
+        <input type="text" id="datepicker-fin" name="datepicker-fin" class="mb-2">
 
         <button type="submit" class="btn btn-primary">Ajouter au panier</button>
     </form>
@@ -134,56 +136,6 @@
             dateFormat: "dd/mm/yy",
             onSelect: function (selectedDate) {
                 $("#datepicker-debut").datepicker("option", "maxDate", selectedDate);
-            }
-        });
-    });
-
-    // -------------------
-    // AJAX : API GIANTBOMB
-    // -------------------
-
-    // on joint l'API par une requête ajax : c'est le guid du produit qui permet de faire le lien
-    $("document").ready(() => {
-        console.log("jQuery activé!");
-
-        if ('{{ produit.type }}' == 'jeu') {
-            $url = 'game';
-        }
-        else if ('{{ produit.type }}' == 'console') {
-            $url = 'platform';
-        }
-        else if ('{{ produit.type }}' == 'accessoire') {
-            $url = 'accessory';
-        }
-
-        // dans cette requête GET, on demande le produit par le guid, puis on reçoit une réponse en json/jsonp/je-sais-pas-trop-mais-cette-combinaison-de-paramètres-fonctionne
-        $.ajax({
-            method: 'GET',
-            url: 'https://www.giantbomb.com/api/' + $url + '/{{ produit.guid }}',
-            dataType: 'jsonp',
-            jsonp: 'json_callback',
-            data: {
-                api_key: 'e009edce3a7d7316c39b6b6f8aa51b1cbe09ae80',
-                format: 'jsonp'
-            }
-        }).done((data) => {
-            // ici on manipule la réponse envoyée par GiantBomb à travers la variable data
-            // d'abord un petit console.log pour avoir en console la totalité de la réponse à portée de main
-            console.log(data.results)
-
-            // puis on assigne à des éléments du DOM les morceaux de data qui nous intéressent : ici une image du produit, sa description, l'équipe de développement et le genre
-            if ('{{ produit.type }}' == 'jeu') {
-                console.log('jeu ok!');
-                $("#imageproduit").attr("src", data.results.image.medium_url);
-                $("#description").html(data.results.deck);
-                $("#developpeurs").html(data.results.developers[0].name);
-                $("#genre").html(data.results.genres[0].name);
-            }
-            else if ('{{ produit.type }}' == 'console') {
-                console.log('console ok!');
-                $("#imageproduit").attr("src", data.results.image.medium_url);
-                $("#description").html(data.results.deck);
-                $("#compagnie").html(data.results.company.name);
             }
         });
     });

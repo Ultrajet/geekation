@@ -303,10 +303,11 @@ class AdminController extends AbstractController
     /**
      * 
      * @Route("/admin/ajax/univers_list", name="admin_ajax_univers_list")
-     * Route qui permet de récupérer la liste des univers en fonction du type de produi dans le process de creation d'une commande 
+     * Route qui permet de récupérer la liste des univers en fonction du type de produit dans le process de création d'une commande 
      * 
      */
     public function adminAjaxUniversList(Request $request){
+        
         $type = $request -> request -> get('type');
 
         $repo = $this->getDoctrine()->getRepository(Produits::class);
