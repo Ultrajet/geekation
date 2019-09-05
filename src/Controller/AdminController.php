@@ -40,6 +40,14 @@ class AdminController extends AbstractController
     }
 
     /**
+     * @Route("/admin", name="admin")
+     */
+    public function admin()
+    {
+        return $this->redirectToRoute('admin_produits');
+    }
+
+    /**
      * 
      * @Route("/admin/produits/add", name="admin_produits_add")
      * 

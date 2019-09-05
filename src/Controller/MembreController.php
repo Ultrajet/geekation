@@ -127,7 +127,7 @@ class MembreController extends AbstractController
 
         // insertion(s) dans ProduitsCommandes
         foreach ($panier as $produit) {
-            $produitObj = $this->getDoctrine()->getRepository(Produits::class)->findOneBy(['nom' => $produit['nom']]);
+            $produitObj = $this->getDoctrine()->getRepository(Produits::class)->findOneBy(['slug' => $produit['slug']]);
             $produitCommande = new ProduitsCommandes();
             $produitCommande->setDateDebutLocation(DateTime::createFromFormat('d/m/Y', $produit['date_debut']))
                             ->setDateFinLocation(DateTime::createFromFormat('d/m/Y', $produit['date_fin']))

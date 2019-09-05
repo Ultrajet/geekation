@@ -107,7 +107,7 @@
         <!--PARTIE 1 DU SLIDER VIGNETTE-->
         <div class="row row-equal carousel-item active padpad ">
             {% for produit in produits | shuffle | slice (0,6) %}
-            <div class="col-md-2">
+            <div class="col-xl-2 col-lg-4 col-md-6">
                 <div class="card mt-2">
                     <div class="card-img-top card-img-top-250 imageindex">
                         <img class="img-fluid" id="imageproduit-{{ produit.slug }}" src="image/image_test_card.jpg"

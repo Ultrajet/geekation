@@ -101,9 +101,7 @@ class ProduitController extends AbstractController
         // on envoie tout ça dans le template
         return $this->render('produit/show.html.twig', [
             'produit' => $produit,
-            'produitCommande' => $produitCommande,
-            'produitId' => $produitId,
-            'dates' => $dateArray
+            'produitCommande' => $produitCommande
         ]);
     }
 
@@ -135,6 +133,7 @@ class ProduitController extends AbstractController
         $nom = $request->request->get('nom');
         $date_debut = $request->request->get('date_debut');
         $date_fin = $request->request->get('date_fin');
+        $slug = $request->request->get('slug');
 
         // pour le prix, on multiplie le prix unitaire du produit par le nombre de jours de location
         // donc d'abord, on crée des objets DateTime à partir des dates sélectionnées par l'utilisateur
@@ -146,7 +145,7 @@ class ProduitController extends AbstractController
         $prix = $request->request->get('prix') * $dureeLocation;
 
         // avec array_push, on rajoute un nouvel élément à la fin de $panier, qui sera lui-même un tableau array composé des données recueuillies
-        array_push($panier, ['nom' => $nom, 'date_debut' => $date_debut, 'date_fin' => $date_fin, 'prix' => $prix]);
+        array_push($panier, ['nom' => $nom, 'date_debut' => $date_debut, 'date_fin' => $date_fin, 'prix' => $prix, 'slug' => $slug]);
         // prochaine étape : faire en sorte qu'on n'ait plus seulement le nom, le prix et le slug, mais l'objet même de l'exemplaire du produit qu'on souhaite louer
 
         // après avoir manipulé le panier, on le remet à sa place!
