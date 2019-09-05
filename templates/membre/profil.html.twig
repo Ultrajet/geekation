@@ -1,101 +1,119 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <h1 class="col-12 text-center profil">Profil de
-        <strong>{{ app.user.username }}</strong>
-    </h1>
+<h1 class="col-12 text-center profil">Profil de
+    <strong>{{ app.user.username }}</strong>
+</h1>
 
 
-    <table class="col-md-6 col-sm-10 col-xs-6 mx-auto table profilclient">
-        <th colspan="2" class="identifiant">Identifiants de connexion</th>
-        <tr>
-            <td class="vert">Identifiant</td>
-            <td>
-                <strong>{{ app.user.username }}</strong>
-            </td>
-        </tr>
-        <tr>
-            <td class="vert">Mot de passe</td>
-            <td>
-                <a href="#" class="mdp">Modifier le mot de passe</a>
-            </td>
-        </tr>
+<table class="col-md-6 col-sm-10 col-xs-6 mx-auto table profilclient">
+    <th colspan="2" class="identifiant">Identifiants de connexion</th>
+    <tr>
+        <td class="vert">Identifiant</td>
+        <td>
+            <strong>{{ app.user.username }}</strong>
+        </td>
+    </tr>
+    <tr>
+        <td class="vert">Mot de passe</td>
+        <td>
+            <a href="#" class="mdp">Modifier le mot de passe</a>
+        </td>
+    </tr>
 
-        <th colspan="2" class="information">Informations Personnelles</th>
-        <tr>
-            <td class="vert">Nom et prénom</td>
-            <td>
-                <strong>{{ app.user.nom }}</strong>.<strong>{{ app.user.prenom }}</strong>
-            </td>
-        </tr>
-        <tr>
-            <td class="vert">Date de naissance</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td class="vert">Téléphone</td>
-            <td>
-                <strong>{{ app.user.telephone }}</strong>
-            </td>
-        </tr>
-        <tr>
-            <td class="vert">E-mail</td>
-            <td>
-                <strong>{{ app.user.email }}</strong>
-                <a href="#" class="email">Changer l'E-mail</a>
-            </td>
-        </tr>
-
-
-        <th colspan="2" class="adresseclient">Votre adresse</th>
-        <tr>
-            <td class="vert">Adresse</td>
-            <td>
-                <strong>{{ app.user.adresse }}</strong>
-            </td>
-        </tr>
-        <tr>
-            <td class="vert">Code postal</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td class="vert">Ville</td>
-            <td>
-                <strong>{{ app.user.ville }}</strong>
-            </td>
-        </tr>
+    <th colspan="2" class="information">Informations Personnelles</th>
+    <tr>
+        <td class="vert">Nom et prénom</td>
+        <td>
+            <strong>{{ app.user.nom }}</strong>.<strong>{{ app.user.prenom }}</strong>
+        </td>
+    </tr>
+    <tr>
+        <td class="vert">Date de naissance</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td class="vert">Téléphone</td>
+        <td>
+            <strong>{{ app.user.telephone }}</strong>
+        </td>
+    </tr>
+    <tr>
+        <td class="vert">E-mail</td>
+        <td>
+            <strong>{{ app.user.email }}</strong>
+            <a href="#" class="email">Changer l'E-mail</a>
+        </td>
+    </tr>
 
 
-        <th colspan="2" class="docs">Vos documents</th>
-        <tr>
-            <td class="vert">Pièce d'identité</td>
-            <td><img src="#"><br><a href="#" class="ci">Charger votre nouvelle pièce d'identité</a>
-            </td>
-        </tr>
-        <tr>
-            <td class="vert">RIB</td>
-            <td><img src="#"><br><a href="#" class="rib">Charger votre nouveau RIB</a>
-            </td>
-        </tr>
-    </table>
+    <th colspan="2" class="adresseclient">Votre adresse</th>
+    <tr>
+        <td class="vert">Adresse</td>
+        <td>
+            <strong>{{ app.user.adresse }}</strong>
+        </td>
+    </tr>
+    <tr>
+        <td class="vert">Code postal</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td class="vert">Ville</td>
+        <td>
+            <strong>{{ app.user.ville }}</strong>
+        </td>
+    </tr>
 
-    <br>
 
-    <table class="mx-auto col-10 table ">
-        <thead>
-            <th colspan="5" class="vdc">Vos dernieres commandes</th>
-            <tr class="profilclientcommandesthead">
-                <td>N° de la commande</td>
-                <td>Descriptif</td>
-                <td>Date de disponibilité</td>
-                <td>Date de rendu</td>
-                <td>Activité de la commande</td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td></td>
-            </tr>
-        </tbody>
-    </table>
+    <th colspan="2" class="docs">Vos documents</th>
+    <tr>
+        <td class="vert">Pièce d'identité</td>
+        <td><img src="#"><br><a href="#" class="ci">Charger votre nouvelle pièce d'identité</a>
+        </td>
+    </tr>
+    <tr>
+        <td class="vert">RIB</td>
+        <td><img src="#"><br><a href="#" class="rib">Charger votre nouveau RIB</a>
+        </td>
+    </tr>
+</table>
+
+<br>
+
+<table class="mx-auto col-10 table ">
+    <thead>
+        <th colspan="5" class="vdc">Vos dernieres commandes</th>
+    </thead>
+    <tbody>
+
+        {% set total = 0  %}
+        <tr class="profilclientcommandesthead text-center bg-secondary" >
+            <td>N° de la commande</td>
+            <td>Date de la commande</td>
+            <td>Total Commande</td>
+        </tr>
+        <tr class='text-center'>
+            {% for c in app.user.commandes %}
+            <td>{{ c.id }}</td>
+            <td>{{ c.dateEnregistrement | date('d/m/Y') }}</td>
+            <td>{{ c.montant | number_format(2, ',', ' ') }}€</td>
+        </tr>
+         <tr class='text-center bg-secondary'>
+        <td>Produits</td>
+        <td>Date Debut Location</td>
+        <td>Date Fin Location</td>
+        </tr>
+        {% for pc in c.produitsCommandes %}
+        <tr class='text-center'>
+            <td>{{ pc.produit.nom }}</td>
+            <td>{{ pc.dateDebutLocation | date('d/m/Y') }}</td>
+            <td>{{ pc.dateFinLocation | date('d/m/Y') }}</td>
+            {% set total = total +  c.montant %}
+        </tr>
+        {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock %}
