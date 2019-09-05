@@ -314,17 +314,27 @@ strong{
   color: #093357;
 }
 
+.fa-gamepad{
+  color: #489de3;
+}
+
 .soustitrementions{
   background: #7569b0;
 }
 
+/******** PD **********/
 .autretitre, .autretext{
   font-size: 0.9em;
 }
 
-.fa-gamepad{
-  color: #489de3;
+/********* CGV **********/
+.colorcontact{
+  color: #e05951;
 }
+
+
+
+/******* MESSAGE FAKE SITE *****/
 
 .sitefake{
   background: #e05951;
