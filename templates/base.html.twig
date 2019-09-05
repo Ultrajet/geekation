@@ -23,14 +23,15 @@
                 </a>
             </div>
 
-<div class="row">
-           <form class="form-inline m-3">
-      <input class="form-control mr-sm-2" name="s" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-warning my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
-    </form>
-</div>
             <div class="row">
-                <button class="navbar-toggler" type="button"  data-toggle="collapse"
+                <form class="form-inline m-3" action="{{ path('recherche') }}" method="get">
+                    <input class="form-control mr-sm-2" name="s" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-warning my-2 my-sm-0" type="submit"><i
+                            class="fa fa-search"></i></button>
+                </form>
+            </div>
+            <div class="row">
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
@@ -43,15 +44,15 @@
                         <a class="nav-link" href="{{ path('accueil') }}">Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">Consoles</a>
+                        <a class="nav-link" href="{{ path('type_search', {typ: 'console'}) }}">Consoles</a>
                     </li>
                     {# {{ path('type', {type: 'consoles'}) }} #}
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Jeux
+                        <a class="nav-link" href="{{ path('type_search', {typ: 'jeu'}) }}">Jeux
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Accessoires</a>
+                        <a class="nav-link" href="{{ path('type_search', {typ: 'accessoire'}) }}">Accessoires</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link" href="{{ path('univers') }}">
@@ -105,17 +106,17 @@
 
     <div id="cont">
 
-    {% for message in app.flashes('success') %}
-    <div id="jsflash" class="alert alert-success m-0">
-        {{ message | raw }}
-    </div>
-    {% endfor %}
+        {% for message in app.flashes('success') %}
+        <div id="jsflash" class="alert alert-success m-0">
+            {{ message | raw }}
+        </div>
+        {% endfor %}
 
-    {% for message in app.flashes('error') %}
-    <div id="jsflash" class="alert alert-danger m-0">
-        {{ message | raw }}
-    </div>
-    {% endfor %}
+        {% for message in app.flashes('error') %}
+        <div id="jsflash" class="alert alert-danger m-0">
+            {{ message | raw }}
+        </div>
+        {% endfor %}
 
         <div class="row panier justify-content-end">
             <a href="{{ path('gestion_panier') }}" class="cart-lien">
@@ -195,9 +196,9 @@
                     </div>
                 </div>
             </div>
-                    <div class="copyright">
-                        © GEEK'ation - 2019
-                    </div>
+            <div class="copyright">
+                © GEEK'ation - 2019
+            </div>
         </footer>
     </div>
 
@@ -206,7 +207,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script>
         $("document").ready(() => {
-            $("#jsflash").delay(3000).animate({opacity: 0}, 5000, () => {
+            $("#jsflash").delay(3000).animate({ opacity: 0 }, 5000, () => {
                 $("#jsflash").css('display', 'none');
             });
         });
