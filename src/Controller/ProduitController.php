@@ -38,14 +38,14 @@ class ProduitController extends AbstractController
 
         // il faut /produit/{slug} dans l'URL : ce {slug} sert à sélectionner le premier examplaire du produit qui apparait dans la table Produits, et afficher ses infos dans la vue
         $produit = $this->getDoctrine()
-        ->getRepository(Produits::class)
-        ->findOneBy(['slug' => $slug]);
+            ->getRepository(Produits::class)
+            ->findOneBy(['slug' => $slug]);
 
         // par le biais de ce produit sélectionné, on récupère la ou les ProduitsCommandes qui correspondent
         // pour l'instant $produit (qui est un objet) ne contient QU'UN SEUL exemplaire du produit, avec son propre ID
         $produitCommande = $this->getDoctrine()
-        ->getRepository(ProduitsCommandes::class)
-        ->findOneBy(['produit' => ($produit->getId())]);
+            ->getRepository(ProduitsCommandes::class)
+            ->findOneBy(['produit' => ($produit->getId())]);
         // prochaine étape : regrouper dans un array tous les exemplaires du produit pour ensuite avoir tous les ProduitsCommandes liés au produit global
 
         // mmmmh...
@@ -77,14 +77,14 @@ class ProduitController extends AbstractController
 
         // il faut /produit/{slug} dans l'URL : ce {id} sert à sélectionner le premier examplaire du produit qui apparait dans la table Produits, et afficher ses infos dans la vue
         $produit = $this->getDoctrine()
-        ->getRepository(Produits::class)
-        ->findOneBy(['id' => $id]);
+            ->getRepository(Produits::class)
+            ->findOneBy(['id' => $id]);
 
         // par le biais de ce produit sélectionné, on récupère la ou les ProduitsCommandes qui correspondent
         // pour l'instant $produit (qui est un objet) ne contient QU'UN SEUL exemplaire du produit, avec son propre ID
         $produitCommande = $this->getDoctrine()
-        ->getRepository(ProduitsCommandes::class)
-        ->findOneBy(['produit' => ($produit->getId())]);
+            ->getRepository(ProduitsCommandes::class)
+            ->findOneBy(['produit' => ($produit->getId())]);
         // prochaine étape : regrouper dans un array tous les exemplaires du produit pour ensuite avoir tous les ProduitsCommandes liés au produit global
 
         // mmmmh...
@@ -170,7 +170,7 @@ class ProduitController extends AbstractController
         if ($session->get("panier")) {
             $panier = $session->set("panier", []);
         };
- 
+
         return $this->redirectToRoute("gestion_panier");
     }
 
@@ -186,16 +186,51 @@ class ProduitController extends AbstractController
         // l'équivalent de session_destroy(), mais orienté objet (et Symfony-friendly)
         $request->getSession()->clear();
         // utile pour mettre en place un panier qui va toujours réapparaître : au moment où on est redirectToRoute, on revient dans gestion_panier, où on va vérifier s'il y a un panier, puisqu'il n'y en a pas on va en créer un, etc...
- 
+
         return $this->redirectToRoute("gestion_panier");
     }
 
     /**
-     * @Route("/type/{type}", name="type")
+     * @Route("/type", name="type")
      */
-    public function type($type)
+    public function type()
     {
-        return $this->render('produit/index.html.twig', []);
+
+        //1 : Récupérer tous les produits et la liste de toutes les catégories
+        // SELECT * FROM produit 
+        $repository = $this->getDoctrine()->getRepository(Produits::class);
+        $produits = $repository->findAllDisctinctProduits();
+
+        // SELECT DISTINCT p.categorie FROM produit p  ORDER BY p.categorie ASC
+    
+        //2 : Afficher la vue
+
+
+        return $this->render('produit/produit_search.html.twig', [
+            'produits' => $produits,
+        ]);
+    }
+
+    /**
+     * @Route("/type/{typ}", name="type_search")
+     */
+    public function typeSearch($typ)
+    {
+
+        //1 : Récupère les produits grâce à $cat, et la liste des catégories
+        // SELECT * FROM produit WHERE categorie = 'biere blanche'
+        $repo = $this->getDoctrine()->getRepository(Produits::class);
+        $produits = $repo->findBy(['type' => $typ]);
+
+        // On récupere les catégories 
+        $type = $repo->findACategorie();
+
+
+        //2 : On affiche la vue 
+        return $this->render('produit/produit_search.html.twig', [
+            'produits' => $produits,
+            'type' => $type
+        ]);
     }
 
     /**
@@ -215,23 +250,22 @@ class ProduitController extends AbstractController
     }
 
     /**
-     * @Route("/recherche/{term}", name="recherche")
+     * @Route("/recherche/", name="recherche")
      */
     public function recherche(Request $request)
     {
 
-        $term = $request -> query -> get('s');
-		// $term contient la valeur du terme de recherche tapé
-		
-		$repo = $this -> getDoctrine() -> getRepository(Produit::class);
-		$produits = $repo -> findBySearch($term);
-		
-		$categories = $repo -> findAllCategories();
-		
-		return $this -> render('produit/index.html.twig', [
-			'produits' => $produits,
-			'categories' => $categories
-		]);
+        $term = $request->query->get('s');
+        // $term contient la valeur du terme de recherche tapé
 
+        $repo = $this->getDoctrine()->getRepository(Produits::class);
+        $produits = $repo->findBySearch($term);
+
+        $categories = $repo->findACategorie();
+
+        return $this->render('produit/produit_search.html.twig', [
+            'produits' => $produits,
+            'categories' => $categories
+        ]);
     }
 }

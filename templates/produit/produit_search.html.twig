@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+
+{% block content %}
+
+
+    <h1 class="text-center titresearch mt-5">Trouver le produit qu'il vous faut
+    </h1>
+
+    <div class="container-fluid">
+        <div class="row justify-content-around">
+            {% for pro in produits %}
+                <div class="card col-md-3 m-4 cardproduit">
+                    <img src="{{asset('image/spotlight.png')}}" class="card-img-top" alt="...">
+                    <div class="card-body ">
+                        <h5 class="card-title titreproduit ">{{ pro.nom }}</h5><hr>
+                        <p class="card-type typeprod">
+                            <span class="bold">Type de produit :</span>
+                            {{ pro.type }}</p>
+                        <p class="card-univers universprod">
+                            <span class="bold">Univers :</span>
+                            {{ pro.univers }}</p>
+                        <hr>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                                            content.</p>
+                        <div class="text-center mt-3">
+                            <a href="{{ path('produit', { slug : pro.slug } ) }}" class="btn boutonficheproduit">Voir Produits</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

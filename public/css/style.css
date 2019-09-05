@@ -399,12 +399,23 @@ strong{
   display: flex !important;
 }
 
-.bouttonficheproduit{
+.boutonficheproduit{
   font-size: 0.8em !important;
   background: #E05951 !important;
   color: #e2bc00 !important;
   margin-bottom: 0 !important;
   width: 100%;
+  font-weight: bolder;
+}
+
+.boutonficheproduit:hover{
+  font-size: 0.8em !important;
+  background: #e2bc00 !important;
+  color: #7569b0 !important;
+  margin-bottom: 0 !important;
+  width: 100%;
+  font-weight: bolder;
+  transition-duration: 0.5s;
 }
 
 .card-titre {
@@ -426,7 +437,10 @@ strong{
 .card-prix { font-weight: bolder; 
   text-transform: uppercase;
   color: #52ae49;
-  text-align: center;}
+  text-align: center;
+  font-size: 1.5rem;
+  line-height: auto;
+}
 
   .padpad {
     text-align: center;
@@ -806,4 +820,47 @@ text-align: center;
 .imgreturn, .imgreturn2 {
   text-align: center;
 }
+}
+
+
+/*--------------------------------------------------------------------------------------------------*/
+
+/******************************* PAGE SEARCH / PRODUITS *****************************************/
+
+/*-------------------------------------------------------------------------------------------------*/
+
+.titresearch {
+  color: #52ae49;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+  font-size: 3em;
+  font-weight: bolder; 
+text-shadow: 2px 2px 1px black;
+}
+
+.titreproduit {
+  color: #7569b0;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  font-weight: bolder; 
+  text-align: justify; 
+  text-align-last: center; 
+}
+
+.cardproduit {
+  padding: 0 !important;
+}
+
+.typeprod, .universprod {
+  font-weight: lighter; 
+  font-size: 0.8em;
+  padding-top: 0;
+  padding-bottom: 0;
+  line-height: 0.8em;
+}
+
+.bold {
+  font-weight: bolder !important;
+  border-bottom: 1px dotted #52ae49;
 }
