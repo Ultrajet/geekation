@@ -34,6 +34,50 @@ class ProduitsRepository extends ServiceEntityRepository
     }
 
 
+    /**
+     * 
+     * 
+     * 
+     * CATEGORIE
+     * 
+     * 
+     * 
+     * 
+     */
+
+
+    /**
+     * @return Produit[] Returns an array of Produit objects
+     * Fonction pour récupérer toutes les catégories
+     */
+    public function findACategorie()
+    {
+
+        $builder = $this->createQueryBuilder('p');
+        $builder
+            ->select('p.nom')
+            ->distinct(true)
+            ->orderBy('p.nom', 'ASC');
+        return $builder->getQuery()->getResult();
+    }
+
+
+
+
+    /**
+     * 
+     * 
+     * 
+     * PRODUIT COMMAND CRUD
+     * 
+     * 
+     * 
+     * 
+     */
+
+
+
+
     public function findAllDisctinctProduitsType()
     {
         $builder = $this->createQueryBuilder('p');
@@ -72,7 +116,43 @@ class ProduitsRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    
+
+    /**
+     * 
+     * 
+     * 
+     * SEARCH
+     * 
+     * 
+     * 
+     * 
+     */
+
+
+
+    /**
+     *
+     * @return Produit[] Returns an array of Produit objects
+     * Fonction pour récupérer tous les produits en fonction d'un terme de recherche
+     */
+    public function findBySearch($term)
+    {
+
+        $term = '%' . $term . '%';
+        // switch ==> %switch%
+
+        $builder = $this->createQueryBuilder('p');
+        return $builder
+            ->where('p.nom LIKE :term')
+            ->orWhere('p.type LIKE :term')
+            ->orWhere('p.univers LIKE :term')
+            ->orWhere('p.slug LIKE :term')
+            ->setParameter(':term', $term) // bindValue()
+            ->getQuery()
+            ->getResult();
+    }
+
+
     public function findAllByFilter($info)
     {
 
