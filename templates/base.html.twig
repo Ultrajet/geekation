@@ -23,13 +23,14 @@
                 </a>
             </div>
 
-            <div class="rowsearch">
-                <input type="text" placeholder="Recherche...">
-                <div class="search"></div>
-            </div>
-
+<div class="row">
+           <form class="form-inline m-3">
+      <input class="form-control mr-sm-2" name="s" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-warning my-2 my-sm-0 mx-auto" type="submit"><i class="fa fa-search"></i></button>
+    </form>
+</div>
             <div class="row">
-                <button class="navbar-toggler" type="button" name="s" data-toggle="collapse"
+                <button class="navbar-toggler" type="button"  data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
@@ -100,6 +101,9 @@
         </nav>
     </div>
 
+
+    <div id="cont">
+
     {% for message in app.flashes('success') %}
     <div id="jsflash" class="alert alert-success m-0">
         {{ message | raw }}
@@ -112,7 +116,6 @@
     </div>
     {% endfor %}
 
-    <div id="cont">
         <div class="row panier justify-content-end">
             <a href="{{ path('gestion_panier') }}" class="cart-lien">
                 <div class="cart">
@@ -168,8 +171,8 @@
                     <div class="footer-titre">
                         GEEK'ation</div>
                     <div class="adresseboutique">
-                        Adresse de la boutique
-                        <br>75020 - Paris</div>
+                        22 Rue Portefoin
+                        <br>75003 - Paris</div>
                     <br>
                     Nous suivre sur les réseaux sociaux
                     <div class="row justify-content-around">
@@ -189,12 +192,11 @@
                             <i class="fab fa-twitch"></i>
                         </a>
                     </div>
+                </div>
+            </div>
                     <div class="copyright">
                         © GEEK'ation - 2019
                     </div>
-                </div>
-            </div>
-
         </footer>
     </div>
 
