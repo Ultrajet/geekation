@@ -43,8 +43,9 @@
                         <a class="nav-link" href="{{ path('accueil') }}">Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Consoles</a>
+                        <a class="nav-link" href="">Consoles</a>
                     </li>
+                    {# {{ path('type', {type: 'consoles'}) }} #}
                     <li class="nav-item">
                         <a class="nav-link" href="#">Jeux
                         </a>
@@ -130,18 +131,18 @@
 
             <div class="row justify-content-center">
                 <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                    <a href="#" class="footer-liens">
+                    <a href="{{ path('cgu') }}" class="footer-liens">
                         CGU
                     </a>
-                    <a href="#" class="footer-liens">
+                    <a href="{{ path('cgv') }}" class="footer-liens">
                         CGV
                     </a>
-                    <a href="#" class="footer-liens">
+                    <a href="{{ path('protection_des_donnes') }}" class="footer-liens">
                         Protection des données</a>
-                    <a href="#" class="footer-liens">
+                    <a href="{{ path('cookies') }}" class="footer-liens">
                         Cookies
                     </a>
-                    <a href="#" class="footer-liens">
+                    <a href="{{ path('mentions_legales') }}" class="footer-liens">
                         Mentions légales
                     </a>
 
