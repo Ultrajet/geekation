@@ -66,6 +66,22 @@ class ProduitsRepository extends ServiceEntityRepository
      * @return Produit[] Returns an array of Produit objects
      * Fonction pour récupérer toutes les catégories
      */
+    public function findProduitDistinctByUnivers($univers)
+    {
+        $builder = $this->createQueryBuilder('p');
+        $builder
+            ->select('p.univers','p.nom', 'p.type', 'p.slug')
+            ->distinct('p.nom')
+            ->where('p.univers = :univers')
+            ->setParameter(':univers', $univers)
+            ->orderBy('p.nom', 'ASC');
+        return $builder->getQuery()->getResult();
+    }
+
+    /**
+     * @return Produit[] Returns an array of Produit objects
+     * Fonction pour récupérer toutes les catégories
+     */
     public function findAllTypes()
     {
         $builder = $this->createQueryBuilder('p');
