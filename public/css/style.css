@@ -377,7 +377,10 @@ a.footer-socials-messs:hover {
 .card-prix { font-weight: bolder; 
   text-transform: uppercase;
   color: #52ae49;
-  text-align: center;}
+  text-align: center;
+  font-size: 1.5rem;
+  line-height: auto;
+}
 
   .padpad {
     text-align: center;
