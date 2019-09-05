@@ -2,7 +2,7 @@ swiftmailer:
     transport:      gmail
     username:       evogue.dev@gmail.com
     password:       Formation2019
-    host:           localhost
+    host:           localhost:8888
     port:           465
     encryption:     ssl
     auth-mode:      login

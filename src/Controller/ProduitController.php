@@ -217,8 +217,21 @@ class ProduitController extends AbstractController
     /**
      * @Route("/recherche/{term}", name="recherche")
      */
-    public function recherche($term)
+    public function recherche(Request $request)
     {
-        return $this->render('produit/index.html.twig', []);
+
+        $term = $request -> query -> get('s');
+		// $term contient la valeur du terme de recherche tapé
+		
+		$repo = $this -> getDoctrine() -> getRepository(Produit::class);
+		$produits = $repo -> findBySearch($term);
+		
+		$categories = $repo -> findAllCategories();
+		
+		return $this -> render('produit/index.html.twig', [
+			'produits' => $produits,
+			'categories' => $categories
+		]);
+
     }
 }

@@ -58,11 +58,6 @@
                 <a type="submit" id="repeat" name="ajout_produit" href="#">➕Ajouter un Produit</a>
             </div>
         </div>
-        <br>
-        <br>
-        <div>
-            <a type="submit" name="Valide_Command" href="#">Enregistrer la Command</a>
-        </div>
     </div>
 </div>
 
@@ -71,18 +66,7 @@
 
 {% block javascript %}
 
-{#Pour le Repeat#}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
 <script>
-
-    //permet de repet la div  produit  quand on clique sur le bouton
-    $(document).ready(function () {
-        $("#repeat").click(function () {
-            $("#produit_ajout").clone().appendTo("#body");
-        });
-    });
-
 
 
     // Je sélectionne le select et quand la valeur change on fait une action
