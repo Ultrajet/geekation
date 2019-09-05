@@ -24,7 +24,7 @@
                     </tr>
                     {% else %}
                     {% for produit in panier %}
-                        <tr class="paniermiddle text-center">
+                        <tr class= text-center">
                             <td>{{ produit.nom }}</td>
                             <td>{{ produit.date_debut }}</td>
                             <td>{{ produit.date_fin }}</td>
@@ -32,7 +32,7 @@
                         </tr>
                     {% endfor %}
                     {% endif %}
-                    <tr class="col-10 montantcommande" >
+                    <tr class="col-10 montantcommande">
                         <td colspan="3" align="right"><strong>Montant de votre commande</strong></td>
                         <td colspan="1" align="center">{{ prix }}€</td>
                     </tr>

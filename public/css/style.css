@@ -444,6 +444,10 @@ strong{
     margin: 0 auto;
   }
 
+  .imageindex {
+    height: 10vh;
+  }
+
 /*********************** CAROUSEL TOP ***********************************/
 
 .carousel-caption {

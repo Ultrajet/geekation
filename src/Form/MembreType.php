@@ -136,9 +136,6 @@ class MembreType extends AbstractType
                 )    
             ))
 
-            ->add('scan_CNI')
-
-            ->add('RIB')
 
             ->add('sexe',ChoiceType::class,array(
                 'choices' => array(

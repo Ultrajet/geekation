@@ -23,8 +23,6 @@
                     <td>Ville</td>
                     <td>Date de Naissance</td>
                     <td>Telephone</td>
-                    <td>scan CNI</td>
-                    <td>RIB</td>
                     <td>Sexe</td>
                     {# <td>Voir</td> #}
                     <td>Modifier</td>
@@ -43,8 +41,6 @@
                         <td>{{ mbr.ville}}</td>
                         <td>{{ mbr.dateDeNaissance | date('d/m/Y') }}</td>
                         <td>{{ mbr.telephone}}</td>
-                        <td>{{ mbr.scanCNI}}</td>
-                        <td>{{ mbr.RIB}}</td>
                         <td>
                             {% if mbr.sexe == 'h' %}
                                 Homme

@@ -71,16 +71,6 @@ class Membres implements UserInterface
     private $telephone;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $scan_CNI;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $RIB;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Commandes", mappedBy="membre")
      */
     private $commandes;
@@ -231,29 +221,6 @@ class Membres implements UserInterface
         return $this;
     }
 
-    public function getScanCNI(): ?string
-    {
-        return $this->scan_CNI;
-    }
-
-    public function setScanCNI(string $scan_CNI): self
-    {
-        $this->scan_CNI = $scan_CNI;
-
-        return $this;
-    }
-
-    public function getRIB(): ?string
-    {
-        return $this->RIB;
-    }
-
-    public function setRIB(string $RIB): self
-    {
-        $this->RIB = $RIB;
-
-        return $this;
-    }
 
     /**
      * @return Collection|Commandes[]
