@@ -307,8 +307,35 @@ strong{
   color: #e05951;
 }
 
-h2{
+.titrementions{
+  background: #52ae49;
+  border: 2px solid #093357;
+  border-radius: 10px;
+  color: #093357;
+}
+
+.soustitrementions{
   background: #7569b0;
+}
+
+.autretitre, .autretext{
+  font-size: 0.9em;
+}
+
+.fa-gamepad{
+  color: #489de3;
+}
+
+.sitefake{
+  background: #e05951;
+  border: 3px solid #e2bc00;
+  border-radius: 20px;
+  font-size: 2em;
+  font-family: 'Anton', sans-serif;
+}
+
+.teamasq{
+  color: #e2bc00;
 }
 
 
