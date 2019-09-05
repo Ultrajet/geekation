@@ -219,6 +219,11 @@ html, body {
     text-align: center;
     padding: 1vh 2vw;
   }
+
+  .card-titre {
+    font-size: 2em;
+    height: auto !important;
+  }
 }
 
 
@@ -362,7 +367,34 @@ h2{
   background: #E05951 !important;
   color: #e2bc00 !important;
   margin-bottom: 0 !important;
+  width: 100%;
 }
+
+.card-titre {
+  font-weight: bolder; 
+  text-transform: uppercase;
+  color: #093357;
+  text-align: justify;
+  text-align-last: center;
+  letter-spacing: -1px;
+  height: 13vh;
+}
+
+.card-spec {
+  font-weight: lighter;
+  font-size: 0.7rem;
+  text-align: center;
+}
+
+.card-prix { font-weight: bolder; 
+  text-transform: uppercase;
+  color: #52ae49;
+  text-align: center;}
+
+  .padpad {
+    text-align: center;
+    margin: 0 auto;
+  }
 
 /*********************** CAROUSEL TOP ***********************************/
 
