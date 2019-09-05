@@ -84,25 +84,22 @@
        <!-- ------------------------------ PRODUITS TOP  --------------------------------------- #}
 
     <!--TEST SLIDER PRODUIT-->
-        <section
-        class="carousel slide" data-ride="carousel" id="postsCarousel"> <!--FLECHE DE DIRECTION (a regler)-->
-        <div class="container">
-            <div class="row">
-                <div class="col-12 text-right mb-4">
-                    <a class="btn btn-outline-secondary prev" href="" title="prev">
-                        <i class="fa fa-lg fa-chevron-left"></i>
-                    </a>
-                    <a class="btn btn-outline-secondary next" href="" title="next">
-                        <i class="fa fa-lg fa-chevron-right"></i>
-                    </a>
+        <section class="carousel slide" data-ride="carousel" id="postsCarousel"> <!--FLECHE DE DIRECTION (a regler)-->
+            {# <div class="container">
+                <div class="row">
+                    <div class="col-12 text-right mb-4">
+                        <a class="btn btn-outline-secondary prev" href="" title="prev">
+                            <i class="fa fa-lg fa-chevron-left"></i>
+                        </a>
+                        <a class="btn btn-outline-secondary next" href="" title="next">
+                            <i class="fa fa-lg fa-chevron-right"></i>
+                        </a>
+                    </div>
                 </div>
-            </div>
-        </div>
+            </div> #}
 
-        <div
-            class="container-fluid p-t-0 m-t-2 carousel-inner ml-3">
+        <div class="container-fluid p-t-0 m-t-2 carousel-inner ml-3">
             <!--PARTIE 1 DU SLIDER VIGNETTE-->
-
             <div class="row row-equal carousel-item active padpad ">
                 {% for produit in produits | slice (0,6) %}
                     <div class="col-md-2">
