@@ -54,7 +54,7 @@ class ProduitsRepository extends ServiceEntityRepository
     {
         $builder = $this->createQueryBuilder('p');
         $builder
-            ->select('p.type','p.nom', 'p.univers', 'p.slug')
+            ->select('p.type','p.nom', 'p.univers', 'p.slug', 'p.guid')
             ->distinct('p.nom')
             ->where('p.type = :type')
             ->setParameter(':type', $type)
@@ -70,7 +70,7 @@ class ProduitsRepository extends ServiceEntityRepository
     {
         $builder = $this->createQueryBuilder('p');
         $builder
-            ->select('p.univers','p.nom', 'p.type', 'p.slug')
+            ->select('p.univers','p.nom', 'p.type', 'p.slug', 'p.guid')
             ->distinct('p.nom')
             ->where('p.univers = :univers')
             ->setParameter(':univers', $univers)
