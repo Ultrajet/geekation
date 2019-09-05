@@ -46,7 +46,7 @@
     <br>
 
     {# -- ------------------------------ FIN CAROUSEL --------------------------------- -->
-                                <!-- ------------------------------ SPOTLIGHT --------------------------------------- -- #}
+                                    <!-- ------------------------------ SPOTLIGHT --------------------------------------- -- #}
 
     <div class="row spotlight justify-content-around">
         <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
@@ -81,7 +81,7 @@
     <br>
 
     {#  ------------------------------ FIN SPOTLIGHT --------------------------------- -->
-   <!-- ------------------------------ PRODUITS TOP  --------------------------------------- #}
+       <!-- ------------------------------ PRODUITS TOP  --------------------------------------- #}
 
     <!--TEST SLIDER PRODUIT-->
         <section
@@ -100,26 +100,26 @@
         </div>
 
         <div
-            class="container-fluid p-t-0 m-t-2 carousel-inner justify-content-center">
+            class="container-fluid p-t-0 m-t-2 carousel-inner ml-3">
             <!--PARTIE 1 DU SLIDER VIGNETTE-->
 
             <div class="row row-equal carousel-item active padpad ">
                 {% for produit in produits | slice (0,6) %}
                     <div class="col-md-2">
-                        <div class="card">
+                        <div class="card mt-2">
                             <div class="card-img-top card-img-top-250">
                                 <img class="img-fluid" src="image/image_test_card.jpg" alt="Carousel 1">
                             </div>
                             <div class="card-block pt-2 ">
                                 <div class="card-text m-3">
                                     <div class="card-titre">{{ produit.nom }}</div>
-                                    <div class="card-spec">à partir de</div>
+                                    <div class="card-spec mt-3">à partir de</div>
                                     <div class="card-prix">{{ produit.prix }}€</div>
-                                    <div class="btn card-resa">
+                                    <div class="text-center mt-3">
                                         <a class="btn bouttonficheproduit" href="{{ path('produit', {slug: produit.slug}) }}">
                                             <strong>Fiche produit</strong>
                                         </a>
-                                    </div><br>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -129,23 +129,23 @@
 
             <!--PARTIE 2 DU SLIDER VIGNETTE-->
 
-            <div class="row row-equal carousel-item padpad">
+             <div class="row row-equal carousel-item padpad">
                 {% for produit in produits | slice (0,6) %}
                     <div class="col-md-2">
-                        <div class="card">
+                        <div class="card mt-2">
                             <div class="card-img-top card-img-top-250">
-                                <img id="imageproduit" class="img-fluid" src="" alt="Carousel 1">
+                                <img class="img-fluid" src="image/image_test_card.jpg" alt="Carousel 1">
                             </div>
                             <div class="card-block pt-2 ">
-                                <div class="card-text">
-                                    <div class="ml-4 mt-3 card-titre">{{ produit.nom }}</div>
-                                    <div class="ml-4 card-spec">à partir de</div>
-                                    <div class="ml-4 mb-3 card-prix">{{ produit.prix }}€</div>
-                                    <div class="btn card-resa">
+                                <div class="card-text m-3">
+                                    <div class="card-titre">{{ produit.nom }}</div>
+                                    <div class="card-spec mt-3">à partir de</div>
+                                    <div class="card-prix">{{ produit.prix }}€</div>
+                                    <div class="text-center mt-3">
                                         <a class="btn bouttonficheproduit" href="{{ path('produit', {slug: produit.slug}) }}">
                                             <strong>Fiche produit</strong>
                                         </a>
-                                    </div><br>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -159,13 +159,13 @@
 {# ------------------------------ FIN PRODUITS TOP --------------------------------- #}
 
     {# <div class="container">
-                {% for produit in produits %}
-                    <div class="col-3 mx-auto mb-2 p-2 border border-dark text-center">
-                        <p>{{ produit.nom }}</p>
-                        <p>{{ produit.prix }}€</p>
-                        <a class="btn btn-info" href="{{path('produit', {slug: produit.slug})}}">Fiche produit</a>
-                    </div>
-                {% endfor %}
-            </div> #}
+                    {% for produit in produits %}
+                        <div class="col-3 mx-auto mb-2 p-2 border border-dark text-center">
+                            <p>{{ produit.nom }}</p>
+                            <p>{{ produit.prix }}€</p>
+                            <a class="btn btn-info" href="{{path('produit', {slug: produit.slug})}}">Fiche produit</a>
+                        </div>
+                    {% endfor %}
+                </div> #}
 
 {% endblock %}
