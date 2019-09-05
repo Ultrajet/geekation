@@ -46,17 +46,33 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('accueil') }}">Accueil</a>
                     </li>
+                    
+                    
+                    
+                    {#  Faire une Boucle pour Cree un Menu dynamique  par rappoert au Type disponible dans la BDD
+                        
+                        {% for cat in categories %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('type_search', {typ: 'console'}) }}">Consoles</a>
+                        <a class="nav-link" href="{{ path('type_search', {typ: cat.type }) }}">{{ cat.type }}</a>
                     </li>
+                    {% endfor %}#}
+
+
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('type_search', {typ: 'console' }) }}">Console</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('type_search', {typ: 'jeu' }) }}">Jeu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('type_search', {typ: 'accessoire' }) }}">Accessoire</a>
+                    </li>
+
+
+
+
                     {# {{ path('type', {type: 'consoles'}) }} #}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('type_search', {typ: 'jeu'}) }}">Jeux
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('type_search', {typ: 'accessoire'}) }}">Accessoires</a>
-                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link" href="{{ path('univers') }}">
                             Univers

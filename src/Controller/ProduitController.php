@@ -195,16 +195,8 @@ class ProduitController extends AbstractController
      */
     public function type()
     {
-
-        //1 : Récupérer tous les produits et la liste de toutes les catégories
-        // SELECT * FROM produit 
         $repository = $this->getDoctrine()->getRepository(Produits::class);
-        $produits = $repository->findAllDisctinctProduits();
-
-        // SELECT DISTINCT p.categorie FROM produit p  ORDER BY p.categorie ASC
-    
-        //2 : Afficher la vue
-
+        $produits = $repository->findACategorie();
 
         return $this->render('produit/produit_search.html.twig', [
             'produits' => $produits,
@@ -217,19 +209,14 @@ class ProduitController extends AbstractController
     public function typeSearch($typ)
     {
 
-        //1 : Récupère les produits grâce à $cat, et la liste des catégories
-        // SELECT * FROM produit WHERE categorie = 'biere blanche'
-        $repo = $this->getDoctrine()->getRepository(Produits::class);
-        $produits = $repo->findBy(['type' => $typ]);
+        $repository = $this->getDoctrine()->getRepository(Produits::class);
+        
+        $produits = $repository->findProduitDistinctByType($typ);
+        //$categories = $repository->findAllTypes();
 
-        // On récupere les catégories 
-        $type = $repo->findACategorie();
-
-
-        //2 : On affiche la vue 
         return $this->render('produit/produit_search.html.twig', [
             'produits' => $produits,
-            'type' => $type
+            //'categories' => $categories
         ]);
     }
 
@@ -261,7 +248,7 @@ class ProduitController extends AbstractController
         $repo = $this->getDoctrine()->getRepository(Produits::class);
         $produits = $repo->findBySearch($term);
 
-        $categories = $repo->findACategorie();
+        $categories = $repo->findAllTypes();
 
         return $this->render('produit/produit_search.html.twig', [
             'produits' => $produits,
