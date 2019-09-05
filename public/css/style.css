@@ -229,9 +229,6 @@ html, body {
 
 /*********** FOOTER **************/
 
-footer{
-  margin-top: 42vh; 
-}
 
 .footer-titre {
   text-transform: uppercase;
@@ -637,6 +634,11 @@ a {
 .commandesthead {
   background: #093357;
   color: #e4e4e4;
+}
+
+.paniermiddle {
+  height: 40vh !important;
+  overflow-x: auto;
 }
 
 /*--------------------------------------------------------------------------------------------------*/
