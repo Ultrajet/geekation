@@ -27,7 +27,7 @@ class ProduitsRepository extends ServiceEntityRepository
     {
         $builder = $this->createQueryBuilder('p');
         $builder
-            ->select('p.nom', 'p.prix', 'p.type', 'p.univers', 'p.slug')
+            ->select('p.nom', 'p.prix', 'p.type', 'p.univers', 'p.slug', 'p.guid')
             ->distinct(true)
             ->orderBy('p.nom', 'ASC');
         return $builder->getQuery()->getResult();

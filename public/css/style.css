@@ -11,6 +11,8 @@ html, body {
   position: relative;
   overflow-x: hidden;
   font-family: 'Raleway', sans-serif !important;
+  background-color: #e4e4e4!important;
+  color: #
 }
 
 .logoGA {
@@ -103,7 +105,6 @@ html, body {
   #cont {
     padding-left: 280px;
     height: auto;
-    background-color: #e4e4e4!important;
 
   }
   .slideprod {
@@ -405,7 +406,7 @@ strong{
   color: #e2bc00 !important;
   margin-bottom: 0 !important;
   width: 100%;
-  font-weight: bolder;
+  font-weight: bolder !important;
 }
 
 .boutonficheproduit:hover{
@@ -825,7 +826,7 @@ text-align: center;
 
 /*--------------------------------------------------------------------------------------------------*/
 
-/******************************* PAGE SEARCH / PRODUITS *****************************************/
+/******************************* PAGE SEARCH / LISTE PRODUITS *****************************************/
 
 /*-------------------------------------------------------------------------------------------------*/
 
@@ -863,4 +864,45 @@ text-shadow: 2px 2px 1px black;
 .bold {
   font-weight: bolder !important;
   border-bottom: 1px dotted #52ae49;
+}
+
+
+/*--------------------------------------------------------------------------------------------------*/
+
+/******************************* FICHE PRODUIT *****************************************/
+
+/*-------------------------------------------------------------------------------------------------*/
+
+.ficheproduit {
+  background-color: white;
+}
+
+.admininfos {
+  border: 1px solid #e05951;
+}
+
+
+.ficheimg {
+  width: 100%;
+height: 50vh;
+object-fit: contain;
+}
+
+.titreficheprod {
+  background-color: #093357;
+  font-size: 2em;
+  color: #489de3;
+  letter-spacing: -1px;
+  text-transform: uppercase; 
+  text-align: center;
+  font-weight: bolder;
+}
+
+.blockinfosprod {
+  
+}
+
+.inputprod {
+  width: 100%;
+  text-align: center;
 }
