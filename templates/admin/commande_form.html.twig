@@ -7,60 +7,82 @@
 
 {% endblock %}
 
-
 {% block content %}
 
-<h1>Ajout Commande</h1>
+<h1 class="text-center my-2">Ajout Commande</h1>
 
-<div id="body" class="mx-auto p-2 border bg-light" style="width: 30vw">
-    <div>
-        <div id="produit_ajout">
-            <br>
-            <div>
-                <label for="">Membre</label><br />
-                <select name="" id="">
-                    <option value="" selected disabled hidden>Selection</option>
-                    {% for mem in membres %}
-                    <option value="membre">{{ mem.username }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <br>
-            <div>
-                <label for="">Selection Produit</label>
-                <select name="Type">
-                    <option value="" selected disabled hidden>Selection</option>
-                    {% for ty in type %}
-                    <option value="{{ ty.type }}">{{ ty.type | capitalize }}</option>
-                    {% endfor %}
-                </select>
-                <div id="univers" class="mes_divs" style="display:none">
-                    <br>
-                    <select name="Univers">
-                    </select>
-                </div>
-                <div id="produits" class="mes_divs" style="display:none">
-                    <br>
-                    <select name="Produits">
-                    </select>
-                </div>
-            </div>
-            <br>
-            <div>
-                <label for="datepicker-debut">Debut de Location:</label>
-                <input type="text" id="datepicker-debut" name="datepicker-debut">
-                <br>
-                <label for="datepicker-fin">Fin de Location:</label>
-                <input type="text" id="datepicker-fin" name="datepicker-fin">
-            </div>
-            <br>
-            <div>
-                <a type="submit" id="repeat" name="ajout_produit" href="#">➕Ajouter un Produit</a>
-            </div>
-        </div>
-    </div>
+<!-- Formulaire d'ajout de produit -->
+<div class="col-4 mx-auto mb-3 p-2 border border-dark bg-light">
+
+    <form action="">
+
+        <label for="">Sélection produit</label>
+        <select name="type" class="mb-3">
+            <option value="" selected disabled hidden>Sélection</option>
+            {% for ty in type %}
+            <option value="{{ ty.type }}">{{ ty.type | capitalize }}</option>
+            {% endfor %}
+        </select>
+        <select name="univers" style="display:none" class="mb-3">
+        </select>
+        <select name="produits" style="display:none" class="mb-3">
+        </select>
+
+        <label for="datepicker-debut">Debut de Location:</label>
+        <input type="text" id="datepicker-debut" name="datepicker-debut" class="mb-3">
+        <label for="datepicker-fin">Fin de Location:</label>
+        <input type="text" id="datepicker-fin" name="datepicker-fin" class="mb-3">
+
+        <button type="submit" class="btn btn-primary">➕ Ajouter un Produit</button>
+
+    </form>
+
 </div>
 
+<div class="col-10 mx-auto border">
+
+    <div class="row mx-auto">
+        <table class="table table-stripped">
+            <thead class="commandesthead">
+                <tr class="text-center">
+                    <th>Article</th>
+                    <th>Date de début de location</th>
+                    <th>Date de fin de location</th>
+                    <th>Montant de la location</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="4" class="text-center">Veuillez ajouter un produit.</td>
+                </tr>
+                <tr class="col-10 montantcommande">
+                    <td colspan="3" align="right"><strong>Montant de la commande</strong></td>
+                    <td colspan="1" align="center">20€</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="d-flex justify-content-end">
+        <form class="text-center mr-2" action="">
+            <button class="btn btn-warning">Vider</button>
+        </form>
+        <form class="text-center" action="" method="POST">
+
+            <label for="membre" class="d-inline">Membre</label>
+            <select name="membre" class="mb-3">
+                <option value="" selected disabled hidden>Sélection</option>
+                {% for mem in membres %}
+                <option value="{{ mem.username }}">{{ mem.username }}</option>
+                {% endfor %}
+            </select>
+
+            <button class="btn btn-primary">Réserver</button>
+
+        </form>
+
+    </div>
+</div>
 
 {% endblock %}
 
@@ -68,76 +90,74 @@
 
 <script>
 
+    $("document").ready(() => {
 
-    // Je sélectionne le select et quand la valeur change on fait une action
-    $('select[name="Type"]').change(function () {
+        $selectType = $('select[name="type"]');
+        $selectUnivers = $('select[name="univers"]');
+        $selectProduits = $('select[name="produits"]');
 
+        // Je sélectionne le select et quand la valeur change on fait une action
+        $selectType.change(() => {
 
-        var data = {
-            'type': $('select[name="Type"]').val(),
-        }
-        console.log(data);
+            var data = $selectType.val();
 
-        // AJAX POUR Récupérer les univers qui vont avec ce type
-        var url = "{{ path('admin_ajax_univers_list') }}";
-        console.log(url);
-        //on place une option de base qui disparais quand u ne des autre option et selectionner 
-        var content = '<option value="" selected disabled hidden>Selection</option>';
-        $.ajax({
-            url: url,
-            async: false,
-            method: 'post',
-            dataType: 'json',
-            data: data,
-            success: function (response) {
-                console.log(response);
-                for (var i = 0; i < response.length; i++) {
-                    console.log('tour' + i);
-                    content += '<option value="' + response[i]['univers'] + '">' + response[i]['univers'] + '</option>';
+            // AJAX POUR Récupérer les univers qui vont avec ce type
+            var url = "{{ path('admin_ajax_univers_list') }}";
+
+            // on place une option de base qui disparais quand une des autre option et selectionner 
+            var content = '<option value="" selected disabled hidden>Sélection</option>';
+
+            $.ajax({
+                url: url,
+                async: false,
+                method: 'post',
+                dataType: 'json',
+                data: {
+                    'type': data
+                },
+                success: function (response) {
+                    for (var i = 0; i < response.length; i++) {
+                        content += '<option value="' + response[i]['univers'] + '">' + response[i]['univers'] + '</option>';
+                    }
+                    $selectUnivers.html(content);
                 }
-                $('select[name="Univers"]').html(content);
-            }
+            });
+
+            $selectUnivers.show();
+
         });
 
+        // Je sélectionne le select et quand la valeur change on fait une action
+        $selectUnivers.change(function () {
 
-        $('#univers').show();
-
-    });
-
-    // Je sélectionne le select et quand la valeur change on fait une action
-    $('select[name="Univers"]').change(function () {
-
-
-        var data = {
-            'type': $('select[name="Type"]').val(),
-            'univers': $('select[name="Univers"]').val(),
-        }
-        console.log(data);
-
-        // AJAX POUR Récupérer les univers qui vont avec ce type
-        var url = "{{ path('admin_ajax_produit_list') }}";
-        console.log(url);
-        //on place une option de base qui disparais quand u ne des autre option et selectionner 
-        var content = '<option value="" selected disabled hidden>Selection</option>';
-        $.ajax({
-            url: url,
-            async: false,
-            method: 'post',
-            dataType: 'json',
-            data: data,
-            success: function (response) {
-                console.log(response);
-                for (var i = 0; i < response.length; i++) {
-                    console.log('tour' + i);
-                    content += '<option value="' + response[i]['nom'] + '">' + response[i]['nom'] + '</option>';
-                }
-                $('select[name="Produits"]').html(content);
+            var data = {
+                'type': $selectType.val(),
+                'univers': $selectUnivers.val(),
             }
+
+            // AJAX POUR Récupérer les univers qui vont avec ce type
+            var url = "{{ path('admin_ajax_produit_list') }}";
+
+            // on place une option de base qui disparait quand une des autres options est sélectionnée
+            var content = '<option value="" selected disabled hidden>Sélection</option>';
+
+            $.ajax({
+                url: url,
+                async: false,
+                method: 'post',
+                dataType: 'json',
+                data: data,
+                success: function (response) {
+                    for (var i = 0; i < response.length; i++) {
+                        content += '<option value="' + response[i]['nom'] + '">' + response[i]['nom'] + '</option>';
+                    }
+                    $selectProduits.html(content);
+                }
+            });
+
+            $selectProduits.show();
+
         });
-
-
-        $('#produits').show();
-
     });
 
 </script>

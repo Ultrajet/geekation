@@ -302,6 +302,55 @@ a.footer-socials-messs:hover {
   font-size: 0.6em;
 }
 
+/**************** FOOTER - CGU - CGV - ML - PD - COOKIES *******************************/
+
+strong{
+  color: #e05951;
+}
+
+.titrementions{
+  background: #52ae49;
+  border: 2px solid #093357;
+  border-radius: 10px;
+  color: #093357;
+}
+
+.fa-gamepad{
+  color: #489de3;
+}
+
+.soustitrementions{
+  background: #7569b0;
+}
+
+/******** PD **********/
+.autretitre, .autretext{
+  font-size: 0.9em;
+}
+
+/********* CGV **********/
+.colorcontact{
+  color: #e05951;
+}
+
+
+
+/******* MESSAGE FAKE SITE *****/
+
+.sitefake{
+  background: #e05951;
+  border: 3px solid #e2bc00;
+  border-radius: 20px;
+  font-size: 2em;
+  font-family: 'Anton', sans-serif;
+}
+
+.teamasq{
+  color: #e2bc00;
+}
+
+
+
 /*--------------------------------------------------------------------------------------------------*/
 
 /******************************* PAGE ACCUEIL (INDEX) **********************************/

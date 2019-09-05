@@ -84,6 +84,46 @@
     </div>
 
     <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<div class="col-6 mx-auto my-2 p-2 border bg-light">
+
+    <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+    <!-- Liste de variables twig et IDs qui serviront à remplir la page produit d'informations, servez-vous! -->
+
+    <strong>Nom du produit : </strong> {{ produit.nom }}<br>
+    <strong>ID de l'exemplaire en cours : </strong> {{ produit.id }}<br>
+    <strong>Prix : </strong> {{ produit.prix }}€<br>
+    <strong>Type : </strong> {{ produit.type }}<br>
+    <strong>Univers : </strong> {{ produit.univers }}<br>
+    <strong>Slug : </strong> {{ produit.slug }}<br>
+    <strong>GUID : </strong> {{ produit.guid }}<br>
+    <img src="" alt="Image du produit" id="imageproduit" width="100%">
+    {% if produit.type == 'jeu' %}
+    <strong>Description du jeu :</strong> <span id="description"></span><br>
+    <strong>Développeurs :</strong> <span id="developpeurs"></span><br>
+    <strong>Genre :</strong> <span id="genre"></span><br>
+    {% elseif produit.type == 'console' %}
+    <strong>Description de la console :</strong> <span id="description"></span><br>
+    <strong>Compagnie :</strong> <span id="compagnie"></span><br>
+    {% else %}
+    <strong>Description de l'accessoire :</strong> <span id="description"></span>
+    {% endif %}
+
+    <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+    <form class="p-2 border">
+
+        <label for="datepicker-debut">Debut de Location:</label>
+        <input type="text" id="datepicker-debut" name="datepicker-debut" class="mb-2">
+        <label for="datepicker-fin">Fin de Location:</label>
+        <input type="text" id="datepicker-fin" name="datepicker-fin" class="mb-2">
+
+        <button type="submit" class="btn btn-primary">Ajouter au panier</button>
+    </form>
+
+</div>
+
 {% endblock %}
 {% block javascript %}
     <script>
@@ -247,6 +287,8 @@
             } else if ('{{ produit.type }}' == 'accessoire') {
                 $url = 'accessory';
             }
+    });
+</script>
 
             // dans cette requête GET, on demande le produit par le guid, puis on reçoit une réponse en json/jsonp/je-sais-pas-trop-mais-cette-combinaison-de-paramètres-fonctionne
             $.ajax({
