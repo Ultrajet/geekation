@@ -4,33 +4,87 @@
 {% block content %}
 
 
-    <h1 class="text-center titresearch mt-5">Trouver le produit qu'il vous faut
-    </h1>
+<h1 class="text-center titresearch mt-5">Trouver le produit qu'il vous faut
+</h1>
 
-    <div class="container-fluid">
-        <div class="row justify-content-around">
-            {% for pro in produits %}
-                <div class="card col-md-3 m-4 cardproduit">
-                    <img src="{{asset('image/spotlight.png')}}" class="card-img-top" alt="...">
-                    <div class="card-body ">
-                        <h5 class="card-title titreproduit ">{{ pro.nom }}</h5><hr>
-                        
-                        <p class="card-type typeprod">
-                            <span class="bold">Type de produit :</span>
-                            {{ pro.type }}</p>
-                        <p class="card-univers universprod">
-                            <span class="bold">Univers :</span>
-                            {{ pro.univers }}</p>
-                        <hr>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                                            content.</p>
-                        <div class="text-center mt-3">
-                            <a href="{{ path('produit', { slug : pro.slug } ) }}" class="btn boutonficheproduit">Voir Produits</a>
-                        </div>
-                    </div>
+<div class="container-fluid">
+    <div class="row justify-content-around">
+        {% for produit in produits %}
+        <div class="card col-md-3 m-4 cardproduit">
+            <img id="imageproduit-{{ produit.slug }}" src="{{asset('image/spotlight.png')}}" class="card-img-top" alt="...">
+            <div class="card-body ">
+                <h5 class="card-title titreproduit ">{{ produit.nom }}</h5>
+                <hr>
+
+                <p class="card-type typeprod">
+                    <span class="bold">Type de produit :</span>
+                    {{ produit.type }}</p>
+                <p class="card-univers universprod">
+                    <span class="bold">Univers :</span>
+                    {{ produit.univers }}</p>
+                <hr>
+                <p class="card-text" id="description-{{ produit.slug }}"></p>
+                <div class="text-center mt-3">
+                    <a href="{{ path('produit', { slug : produit.slug } ) }}" class="btn boutonficheproduit">Voir
+                        Produits</a>
                 </div>
-            {% endfor %}
+            </div>
         </div>
+        <script>
+            $("document").ready(() => {
+                console.log("jQuery activé!");
+
+                if ('{{ produit.type }}' == 'jeu') {
+                    $url = 'game';
+                }
+                else if ('{{ produit.type }}' == 'console') {
+                    $url = 'platform';
+                }
+                else if ('{{ produit.type }}' == 'accessoire') {
+                    $url = 'accessory';
+                }
+
+                console.log('{{ produit.type }}');
+
+                // dans cette requête GET, on demande le produit par le guid, puis on reçoit une réponse en json/jsonp/je-sais-pas-trop-mais-cette-combinaison-de-paramètres-fonctionne
+                $.ajax({
+                    method: 'GET',
+                    url: 'https://www.giantbomb.com/api/' + $url + '/{{ produit.guid }}',
+                    dataType: 'jsonp',
+                    jsonp: 'json_callback',
+                    data: {
+                        api_key: 'e009edce3a7d7316c39b6b6f8aa51b1cbe09ae80',
+                        format: 'jsonp'
+                    }
+                }).done((data) => {
+                    // ici on manipule la réponse envoyée par GiantBomb à travers la variable data
+                    // d'abord un petit console.log pour avoir en console la totalité de la réponse à portée de main
+                    console.log(data.results);
+
+                    // puis on assigne à des éléments du DOM les morceaux de data qui nous intéressent
+                    if ('{{ produit.type }}' == 'jeu') {
+                        console.log('jeu ok!');
+                        $("#imageproduit-{{ produit.slug }}").attr("src", data.results.image.screen_url);
+                        $("#description-{{ produit.slug }}").html(data.results.deck);
+                        $("#developpeurs").html(data.results.developers[0].name);
+                        $("#genre").html(data.results.genres[0].name);
+                    }
+                    else if ('{{ produit.type }}' == 'console') {
+                        console.log('console ok!');
+                        $("#imageproduit-{{ produit.slug }}").attr("src", data.results.image.screen_url);
+                        $("#description-{{ produit.slug }}").html(data.results.deck);
+                        $("#compagnie").html(data.results.company.name);
+                    }
+                    else {
+                        console.log('accessoire ok!');
+                        $("#imageproduit-{{ produit.slug }}").attr("src", data.results.image.screen_url);
+                        $("#description-{{ produit.slug }}").html(data.results.deck);
+                    }
+                });
+            });
+        </script>
+        {% endfor %}
     </div>
+</div>
 
 {% endblock %}

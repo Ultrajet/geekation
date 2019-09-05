@@ -220,13 +220,7 @@ class ProduitController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/univers/{uni}", name="univers")
-     */
-    public function universCategories($uni)
-    {
-        return $this->render('produit/index.html.twig', []);
-    }
+   
 
     /**
      * @Route("/univers", name="univers")
@@ -234,6 +228,25 @@ class ProduitController extends AbstractController
     public function univers()
     {
         return $this->render('produit/univers.html.twig', []);
+    }
+
+     /**
+     * @Route("/univers/{uni}", name="univers_search")
+     */
+    public function universCategories($uni)
+    {
+
+        $repository = $this->getDoctrine()->getRepository(Produits::class);
+        
+        $produits = $repository->findProduitDistinctByUnivers($uni);
+        //$categories = $repository->findAllTypes();
+
+        return $this->render('produit/produit_search.html.twig', [
+            'produits' => $produits,
+            //'categories' => $categories
+        ]);
+
+        return $this->render('produit/produit_search.html.twig', []);
     }
 
     /**

@@ -54,10 +54,26 @@ class ProduitsRepository extends ServiceEntityRepository
     {
         $builder = $this->createQueryBuilder('p');
         $builder
-            ->select('p.type','p.nom', 'p.univers', 'p.slug')
+            ->select('p.type', 'p.nom', 'p.univers', 'p.slug', 'p.guid')
             ->distinct('p.nom')
             ->where('p.type = :type')
             ->setParameter(':type', $type)
+            ->orderBy('p.nom', 'ASC');
+        return $builder->getQuery()->getResult();
+    }
+
+    /**
+     * @return Produit[] Returns an array of Produit objects
+     * Fonction pour récupérer toutes les catégories
+     */
+    public function findProduitDistinctByUnivers($univers)
+    {
+        $builder = $this->createQueryBuilder('p');
+        $builder
+            ->select('p.univers', 'p.nom', 'p.type', 'p.slug', 'p.guid')
+            ->distinct('p.nom')
+            ->where('p.univers = :univers')
+            ->setParameter(':univers', $univers)
             ->orderBy('p.nom', 'ASC');
         return $builder->getQuery()->getResult();
     }
@@ -158,6 +174,7 @@ class ProduitsRepository extends ServiceEntityRepository
 
         $builder = $this->createQueryBuilder('p');
         return $builder
+            ->groupBy('p.nom')
             ->where('p.nom LIKE :term')
             ->orWhere('p.type LIKE :term')
             ->orWhere('p.univers LIKE :term')
