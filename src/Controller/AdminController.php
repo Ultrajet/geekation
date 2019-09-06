@@ -210,7 +210,7 @@ class AdminController extends AbstractController
     public function adminMembresUpdate($id, Request $request)
     {
         $manager = $this->getDoctrine()->getManager();
-        $membre = $manager->find(MembreS::class, $id);
+        $membre = $manager->find(Membres::class, $id);
 
 
         $form = $this->createForm(MembreType::class, $membre, array(

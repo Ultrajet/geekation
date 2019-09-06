@@ -3,67 +3,73 @@
 {% block content %}
 
 
-        <h1 class="text-center pb-2 pt-3">Gestion des Membres</h1>
-        
-        <div class="col-2 text-center mb-3 ajout_membre mx-auto">
-            <a type="submit" name="ajout_membre" class="btn" href="{{ path('admin_membres_add') }}"><i class="fas fa-plus"></i> Ajouter un Membre</a>
-        </div>
+<h1 class="text-center pb-2 pt-3">Gestion des Membres</h1>
 
-             <div class="overflow_table">      
-        <table class="table table-striped col-md-8 mx-auto">
-            <thead>
-                <tr class="text-center titrecolonne">
-                    <td>Username</td>
-                    <td>Prenom</td>
-                    <td>Nom</td>
-                    <td>Email</td>
-                    <td>adresse</td>
-                    <td>Code Postal</td>
-                    <td>Ville</td>
-                    <td>Date de Naissance</td>
-                    <td>Telephone</td>
-                    <td>Sexe</td>
-                    {# <td>Voir</td> #}
-                    <td>Modifier</td>
-                    <td>Supprimer</td>
-                </tr>
-            </thead>
-            <tbody>
-                {% for mbr in membres %}
-                    <tr class='text-center'>
-                        <td>{{ mbr.username }}</td>
-                        <td>{{ mbr.prenom }}</td>
-                        <td>{{ mbr.nom }}</td>
-                        <td>{{ mbr.email }}</td>
-                        <td>{{ mbr.adresse}}</td>
-                        <td>{{ mbr.codePostal}}</td>
-                        <td>{{ mbr.ville}}</td>
-                        <td>{{ mbr.dateDeNaissance | date('d/m/Y') }}</td>
-                        <td>{{ mbr.telephone}}</td>
-                        <td>
-                            {% if mbr.sexe == 'h' %}
-                                Homme
-                            {% elseif mbr.sexe == 'f' %}
-                                Femme
-                            {% else %}
-                                Non Binaire
-                            {% endif %}
-                        </td>
-                        {# <td>
+<div class="col-2 text-center mb-3 ajout_membre mx-auto">
+    <a type="submit" name="ajout_membre" class="btn" href="{{ path('admin_membres_add') }}"><i class="fas fa-plus"></i>
+        Ajouter un Membre</a>
+</div>
+
+<div class="overflow_table">
+    <table class="table table-striped col-md-8 mx-auto">
+        <thead>
+            <tr class="text-center titrecolonne">
+                <td>Username</td>
+                <td>Prenom</td>
+                <td>Nom</td>
+                <td>Email</td>
+                <td>adresse</td>
+                <td>Code Postal</td>
+                <td>Ville</td>
+                <td>Date de Naissance</td>
+                <td>Telephone</td>
+                <td>Sexe</td>
+                {# <td>Voir</td> #}
+                <td>Modifier</td>
+                <td>Supprimer</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for mbr in membres %}
+            <tr class='text-center'>
+                <td>{{ mbr.username }}</td>
+                <td>{{ mbr.prenom }}</td>
+                <td>{{ mbr.nom }}</td>
+                <td>{{ mbr.email }}</td>
+                <td>{{ mbr.adresse}}</td>
+                <td>{{ mbr.codePostal}}</td>
+                <td>{{ mbr.ville}}</td>
+                <td>{{ mbr.dateDeNaissance | date('d/m/Y') }}</td>
+                <td>{{ mbr.telephone}}</td>
+                <td>
+                    {% if mbr.sexe == 'h' %}
+                    Homme
+                    {% elseif mbr.sexe == 'f' %}
+                    Femme
+                    {% else %}
+                    Non Binaire
+                    {% endif %}
+                </td>
+                {# <td>
                             <a href="{{ path('membres_id', {id : mbr.id} ) }}"><i class="fas fa-eye"></i></a>
                         </td> #}
-                        <td>
-                            <a href="{{ path('admin_membres_update', {id : mbr.id} ) }}"><i class="fas fa-pencil-alt"></i>️</a>
-                        </td>
-                        <td>
-                            <a onclick="return confirm('Etes Vous sur de vouloir supprimer cette article ?')" href="{{ path('admin_membres_delete', {id : mbr.id} ) }}"><i class="fas fa-trash"></i></a>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table></div>
+                <td>
+                    <a href="{{ path('admin_membres_update', {id : mbr.id} ) }}"><i class="fas fa-pencil-alt"></i>️</a>
+                </td>
+                <td>
+                    {% if mbr.commandes.count %}
+                    <a onclick="return confirm('Êtes-vous certain de vouloir supprimer ce membre ?')"
+                        href="{{ path('admin_membres_delete', {id : mbr.id} ) }}"><i class="fas fa-trash"></i></a>
+                    {% else %}<a onclick="return alert('Vous ne pouvez pas supprimer un membre qui a passé des commandes.')"><i class="fas fa-trash"></i></a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 
-    </div>
+</div>
 
 
 {% endblock %}

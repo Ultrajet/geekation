@@ -7,18 +7,6 @@
 
 
 <table class="col-md-6 col-sm-10 col-xs-6 mx-auto table profilclient">
-    <th colspan="2" class="identifiant">Identifiants de connexion</th>
-    <tr>
-        <td class="vert">Identifiant</td>
-        <td>
-            <strong>{{ app.user.username }}</strong>
-        </td>
-    </tr>
-    <tr>
-        <td class="vert">Mot de passe</td>
-
-    </tr>
-
     <th colspan="2" class="information">Informations Personnelles</th>
     <tr>
         <td class="vert">Nom et prénom</td>
@@ -73,21 +61,21 @@
     <tbody>
 
         {% set total = 0  %}
-        <tr class="profilclientcommandesthead text-center bg-secondary" >
-            <td>N° de la commande</td>
-            <td>Date de la commande</td>
-            <td>Total Commande</td>
+        {% for c in app.user.commandes %}
+        <tr class="profilclientcommandesthead text-center bg-info">
+            <th>N° de la commande</th>
+            <th>Date de la commande</th>
+            <th>Total Commande</th>
         </tr>
         <tr class='text-center'>
-            {% for c in app.user.commandes %}
             <td>{{ c.id }}</td>
             <td>{{ c.dateEnregistrement | date('d/m/Y') }}</td>
             <td>{{ c.montant | number_format(2, ',', ' ') }}€</td>
         </tr>
-         <tr class='text-center bg-secondary'>
-        <td>Produits</td>
-        <td>Date Debut Location</td>
-        <td>Date Fin Location</td>
+        <tr class='text-center bg-light'>
+            <th>Produits</th>
+            <th>Date Debut Location</th>
+            <th>Date Fin Location</th>
         </tr>
         {% for pc in c.produitsCommandes %}
         <tr class='text-center'>
