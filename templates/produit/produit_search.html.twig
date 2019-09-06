@@ -55,12 +55,12 @@
                             $url = 'accessory';
                         }
 
-                        console.log('{{ produit.type }}');
+                        console.log($url);
 
                         // dans cette requête GET, on demande le produit par le guid, puis on reçoit une réponse en json/jsonp/je-sais-pas-trop-mais-cette-combinaison-de-paramètres-fonctionne
                         $.ajax({
                             method: 'GET',
-                            url: 'https://www.giantbomb.com/api/' + $url + '/  {{ produit.guid }}',
+                            url: 'https://www.giantbomb.com/api/' + $url + '/{{ produit.guid }}',
                             dataType: 'jsonp',
                             jsonp: 'json_callback',
                             data: {
@@ -75,19 +75,19 @@
                             // puis on assigne à des éléments du DOM les morceaux de data qui nous intéressent
                             if ('{{ produit.type }}' == 'jeu') {
                                 console.log('jeu ok!');
-                                $("#imageproduit-  {{ produit.slug }}").attr("src", data.results.image.screen_url);
-                                $("#description-  {{ produit.slug }}").html(data.results.deck);
+                                $("#imageproduit-{{ produit.slug }}").attr("src", data.results.image.screen_url);
+                                $("#description-{{ produit.slug }}").html(data.results.deck);
                                 $("#developpeurs").html(data.results.developers[0].name);
                                 $("#genre").html(data.results.genres[0].name);
                             } else if ('{{ produit.type }}' == 'console') {
                                 console.log('console ok!');
-                                $("#imageproduit-  {{ produit.slug }}").attr("src", data.results.image.screen_url);
-                                $("#description-  {{ produit.slug }}").html(data.results.deck);
+                                $("#imageproduit-{{ produit.slug }}").attr("src", data.results.image.screen_url);
+                                $("#description-{{ produit.slug }}").html(data.results.deck);
                                 $("#compagnie").html(data.results.company.name);
                             } else {
                                 console.log('accessoire ok!');
-                                $("#imageproduit-  {{ produit.slug }}").attr("src", data.results.image.screen_url);
-                                $("#description-  {{ produit.slug }}").html(data.results.deck);
+                                $("#imageproduit-{{ produit.slug }}").attr("src", data.results.image.screen_url);
+                                $("#description-{{ produit.slug }}").html(data.results.deck);
                             }
                         });
                     });
