@@ -28,7 +28,7 @@
     </tr>
     <tr>
         <td class="vert">Date de naissance</td>
-        <td></td>
+        <td><strong>{{ app.user.dateDeNaissance |date("d/m/Y")  }}</strong></td>
     </tr>
     <tr>
         <td class="vert">Téléphone</td>
@@ -53,7 +53,7 @@
     </tr>
     <tr>
         <td class="vert">Code postal</td>
-        <td></td>
+        <td>{{ app.user.codePostal |number_format(0, '', '') }} </td>
     </tr>
     <tr>
         <td class="vert">Ville</td>
