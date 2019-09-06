@@ -51,7 +51,7 @@
     </div>
     <div class="row mb-5 ficheproduit">
         <div class="col-md-6 col-sm-12 col-xs-12">
-            <form class="col-11 mx-auto m-3 p-3">
+            <form name="ajoutpanier" class="col-11 mx-auto m-3 p-3">
                 <div class="row justify-content-center">
                     <div class="col-6 text-center">
                         <label for="datepicker-debut">Debut de Location:</label>
@@ -92,7 +92,7 @@
     // -----------------------------
 
     $(document).ready(() => { // dans le formulaire  quand on appuis sur submit on lance: ...
-        $("form").on('submit', (e) => { // on empeche l action du submit de ce lancer
+        $("form[name='ajoutpanier']").on('submit', (e) => { // on empeche l action du submit de ce lancer
             e.preventDefault();
 
             if ($("#datepicker-debut").val() == "" || $("#datepicker-fin").val() == "") {
@@ -115,6 +115,7 @@
                     // puis on envois une alrte pour verifier les valeur envoyer
                 }).done(() => {
                     alert("Produit ajouté au panier!");
+                    window.location.href = "{{ path('accueil') }}";
                 })
             }
 
@@ -238,19 +239,6 @@
     // -------------------
 
     // on joint l'API par une requête ajax : c'est le guid du produit qui permet de faire le lien
-    $("document").ready(() => {
-        console.log("jQuery activé!");
-
-        if ('{{ produit.type }}' == 'jeu') {
-            $url = 'game';
-        } else if ('{{ produit.type }}' == 'console') {
-            $url = 'platform';
-        } else if ('{{ produit.type }}' == 'accessoire') {
-            $url = 'accessory';
-        }
-    });
-</script>
-<script>
     $("document").ready(() => {
         console.log("jQuery activé!");
 
