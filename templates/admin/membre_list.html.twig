@@ -60,7 +60,7 @@
                     {% if mbr.commandes.count %}
                     <a onclick="return confirm('Êtes-vous certain de vouloir supprimer ce membre ?')"
                         href="{{ path('admin_membres_delete', {id : mbr.id} ) }}"><i class="fas fa-trash"></i></a>
-                    {% else %}<a onclick="return alert('Vous ne pouvez pas supprimer un membre qui a passé des commandes.')"><i class="fas fa-trash"></i></a>
+                    {% else %}<a onclick="return alert('Vous ne pouvez pas supprimer un membre qui a passé des commandes.')" href="#"><i class="fas fa-trash"></i></a>
                     {% endif %}
                 </td>
             </tr>
