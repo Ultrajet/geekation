@@ -66,6 +66,13 @@ public function Formulaire(Request $request, \Swift_Mailer $mailer){
         return $this->render('footer/cookies.html.twig', []);
     }
 
+     /**
+     * @Route("/apropos", name="apropos")
+     */
+    public function aPropos(){
+        return $this->render('base/propos.html.twig', []);
+    }
+
     /**
      * @Route("/mentions_legales", name="mentions_legales")
      */

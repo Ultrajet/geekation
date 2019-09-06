@@ -478,6 +478,10 @@ a.caroulien:hover {
 
 /*********************** SPOTLIGHT ***********************************/
 
+.card-text {
+text-align: justify;
+text-align-last: center;
+}
 
 a.spotlighttxt {
   background-color: #7569b0 !important;
@@ -725,12 +729,12 @@ a.lien-savoir:hover {
 
 /*-------------------------------------------------------------------------------------------------*/
 
-.ajout_produit, .ajout_membre {
+.ajout_produit, .ajout_membre, .ajout_panier {
   border-radius: 10px;
   margin-left: 73vh;
 }
 
-.ajout_produit a, .ajout_membre a{
+.ajout_produit a, .ajout_membre a, .ajout_panier a{
   background: #52ae49;  
 }
 
@@ -852,6 +856,12 @@ text-shadow: 2px 2px 1px black;
   font-weight: bolder; 
   text-align: justify; 
   text-align-last: center; 
+
+}
+
+.allcontain {
+  height: 7vh;
+  overflow-y: auto;
 }
 
 .cardproduit {
@@ -859,7 +869,7 @@ text-shadow: 2px 2px 1px black;
 }
 
 .typeprod, .universprod {
-  font-weight: lighter; 
+  font-weight: bolder; 
   font-size: 0.8em;
   padding-top: 0;
   padding-bottom: 0;
@@ -871,6 +881,16 @@ text-shadow: 2px 2px 1px black;
   border-bottom: 1px dotted #52ae49;
 }
 
+.alldesc {
+  height: 15vh; 
+  overflow-y: scroll;
+  padding-right: 20px; 
+}
+
+.allbottomlien {
+position: relative;
+  margin-bottom: 0!important;
+}
 
 /*--------------------------------------------------------------------------------------------------*/
 
@@ -910,4 +930,10 @@ object-fit: contain;
 .inputprod {
   width: 100%;
   text-align: center;
+}
+
+.alltopimg {
+  width: 100%;
+  height: 20vh;
+  object-fit: contain;
 }
