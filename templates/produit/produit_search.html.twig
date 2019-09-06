@@ -11,9 +11,9 @@
         <div class="row justify-content-around">
             {% for produit in produits %}
                 <div class="card col-md-3 m-4 cardproduit">
-                    <img id="imageproduit-{{ produit.slug }}" src="{{asset('image/spotlight.png')}}" class="card-img-top" alt="...">
+                    <img id="imageproduit-{{ produit.slug }}" src="{{asset('image/spotlight.png')}}" class="card-img-top alltopimg" alt="...">
                     <div class="card-body ">
-                        <h5 class="card-title titreproduit">{{ produit.nom }}</h5>
+                      <div class="allcontain"><h5 class="card-title titreproduit">{{ produit.nom }}</h5></div>
                         <hr>
                         <div class="row">
                             <div class="card-type typeprod col-6">
@@ -36,8 +36,8 @@
                             </div>
                         </div>
                         <hr>
-                        <p class="card-text" id="description-{{ produit.slug }}"></p>
-                        <div class="text-center mt-3">
+                        <div class="card-text alldesc" id="description-{{ produit.slug }}"></div>
+                        <div class="text-center allbottomlien mt-3">
                             <a href="{{ path('produit', { slug : produit.slug } ) }}" class="btn boutonficheproduit">Voir
                                                                                         Produits</a>
                         </div>

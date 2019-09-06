@@ -856,6 +856,12 @@ text-shadow: 2px 2px 1px black;
   font-weight: bolder; 
   text-align: justify; 
   text-align-last: center; 
+
+}
+
+.allcontain {
+  height: 7vh;
+  overflow-y: auto;
 }
 
 .cardproduit {
@@ -875,6 +881,16 @@ text-shadow: 2px 2px 1px black;
   border-bottom: 1px dotted #52ae49;
 }
 
+.alldesc {
+  height: 15vh; 
+  overflow-y: scroll;
+  padding-right: 20px; 
+}
+
+.allbottomlien {
+position: relative;
+  margin-bottom: 0!important;
+}
 
 /*--------------------------------------------------------------------------------------------------*/
 
@@ -914,4 +930,10 @@ object-fit: contain;
 .inputprod {
   width: 100%;
   text-align: center;
+}
+
+.alltopimg {
+  width: 100%;
+  height: 20vh;
+  object-fit: contain;
 }
