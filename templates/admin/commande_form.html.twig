@@ -14,7 +14,7 @@
 <!-- Formulaire d'ajout de produit -->
 <div class="col-4 mx-auto mb-3 p-2 border border-dark bg-light">
 
-    <form action="">
+    <form name="formproduit" action="" method="POST">
 
         <label for="">Sélection produit</label>
         <select name="type" class="mb-3">
@@ -51,7 +51,7 @@
                     <th>Montant de la location</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="text-center">
                 <tr>
                     <td colspan="4" class="text-center">Veuillez ajouter un produit.</td>
                 </tr>
@@ -92,6 +92,7 @@
 
     $("document").ready(() => {
 
+        $formProduit = $('form[name="formproduit"]');
         $selectType = $('select[name="type"]');
         $selectUnivers = $('select[name="univers"]');
         $selectProduits = $('select[name="produits"]');
@@ -149,7 +150,7 @@
                 data: data,
                 success: function (response) {
                     for (var i = 0; i < response.length; i++) {
-                        content += '<option value="' + response[i]['nom'] + '">' + response[i]['nom'] + '</option>';
+                        content += '<option value="' + response[i]['id'] + '">' + response[i]['nom'] + '</option>';
                     }
                     $selectProduits.html(content);
                 }
@@ -158,6 +159,29 @@
             $selectProduits.show();
 
         });
+
+        $dpd = $("#datepicker-debut");
+        $dpf = $("#datepicker-fin");
+
+        $formProduit.submit((e) => {
+            e.preventDefault();
+            if (!$selectProduits.val() || !$dpd.val() || !$dpf.val()) {
+                alert("Veuillez renseigner tous les champs.");
+            }
+            else {
+                $("tbody").html('<tr><td style="color:blue">' + $selectProduits.val() + '</td><td>' + $dpd.val() + '</td><td>' + $dpf.val() + '</td><td>?montant?</td></tr><tr><td colspan="4" style="color:red">/!\\ CRUD COMMANDE EN TRAVAUX /!\\</td></tr>');
+                // $.ajax({
+                //     method: 'GET',
+                //     url: "{{ path('admin_ajax_produit') }}",
+                //     async: false,
+                //     dataType: json,
+                //     data: {},
+                //     success: () => {
+                //     }
+                // })
+            };
+        });
+
     });
 
 </script>

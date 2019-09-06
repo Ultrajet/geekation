@@ -344,6 +344,20 @@ class AdminController extends AbstractController
 
     }
 
+    /**
+     * @Route("/admin/ajax/produit", name="admin_ajax_produit")
+     */
+    public function adminAjaxProduit(Request $request) {
+
+        $produitRequete = $request->request->get('produit');
+
+        $repo = $this->getDoctrine()->getRepository(Produits::class);
+        $produit = $repo->findBy('');
+
+        return $this->json($produit);
+
+    }
+
 
     /**
      * 

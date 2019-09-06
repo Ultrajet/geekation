@@ -137,8 +137,8 @@ class ProduitsRepository extends ServiceEntityRepository
 
         $builder = $this->createQueryBuilder('p');
         return $builder
-            ->select('p.nom')
-            ->distinct(true)
+            ->select('p.nom', 'p.id')
+            ->groupBy('p.nom')
             ->orderBy('p.nom', 'ASC')
             ->where('p.type = :type')
             ->andWhere('p.univers = :univers')
