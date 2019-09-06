@@ -2,15 +2,13 @@
 
 {% block content %}
 
+        <h1 class="text-center mx-auto pb-2 pt-3">Gestion des Produits</h1>
 
-    <div class="table table-striped">
-        <h1 class="text-center pb-2 pt-3">Gestion des Produits</h1>
-
-        <div class="col-2 text-center mb-3 ajout_produit">
+        <div class="col-2 text-center mb-3 ajout_produit mx-auto">
             <a type="submit" name="ajout_produit" class="btn" href="{{ path('admin_produits_add') }}"><i class="fas fa-plus"></i> Ajouter un Produit</a>
         </div>
 
-        <table class="col-md-8 mx-auto">
+        <table class="table table-striped col-md-8 mx-auto">
             <thead>
                 <tr class="text-center titrecolonne">
                     <td>Id</td>

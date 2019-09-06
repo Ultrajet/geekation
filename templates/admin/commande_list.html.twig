@@ -2,21 +2,22 @@
 
 {% block content %}
 
+  <h1 class="text-center pb-2 pt-3">Gestion des Commandes</h1>
 
-<div class="table table-striped offset-1">
-    <h1>Gestion des Commandes</h1>
-
-    <a type="submit" name="ajout_panier" class="btn btn-success col-2 my-4"
+ <div class="col-2 text-center mb-3 ajout_membre mx-auto">
+    <a type="submit" name="ajout_panier" class="btn text-dark"
         href="{{ path('admin_commandes_add') }}">➕
         Ajouter une commande</a>
+        </div>
 
-    <table>
+
+    <table class="table table-striped col-8 mx-auto">
         <tbody>
             {% for comm in commandes %}
-            <tr class='text-center'>
-                <th colspan="12">COMMANDE NUMERO {{ comm.id }}</th>
+            <tr class="text-center">
+                <th class="titrecolonne" colspan="12">COMMANDE NUMERO {{ comm.id }}</th>
             </tr>
-            <tr class='text-center'>
+            <tr class="text-center alert-primary">
                 <td>Prenom</td>
                 <td>Nom</td>
                 <td>Email</td>
@@ -24,27 +25,27 @@
                 <td>Date Enregistrement</td>
                 <td>Montant</td>
             </tr>
-            <tr>
+            <tr class="text-center">
                 <td>{{ comm.membre.prenom }}</td>
                 <td>{{ comm.membre.nom}}</td>
                 <td>{{ comm.membre.email }}</td>
                 <td>{{ comm.membre.telephone}}</td>
                 <td>{{ comm.dateEnregistrement | date('d/m/Y')}}</td>
-                <td>{{ comm.montant }}</td>
+                <td>{{ comm.montant }} €</td>
             </tr>
-            <tr class='text-center'>
+            <tr class="text-center alert-primary">
                 <td>Produits</td>
                 <td>Date Debut Location</td>
                 <td>Date Fin Location</td>
-                <td colspan='2'>Action</td>
+                <td colspan='3'>Action</td>
             </tr>
             {% for com in comm.produitsCommandes %}
-            <tr class='text-center'>
+            <tr class="text-center">
                 <td>{{ com.produit.nom }}</td>
                 <td>{{ com.dateDebutLocation | date('d/m/Y')}}</td>
                 <td>{{ com.dateFinLocation | date('d/m/Y')}}</td>
-                <td><a href="{# {{ path('admin_commandes_update', {id : com.id} ) }} #}">✏️</a></td>
-                <td><a onclick="return confirm('Etes Vous sur de voiloir supprimer cette commande ?')"
+                <td colspan="3"><a href="{# {{ path('admin_commandes_update', {id : com.id} ) }} #}">✏️</a> 
+                <a onclick="return confirm('Etes-vous sûr de vouloir supprimer cette commande ?')"
                         href="{# {{ path('admin_commandes_delete', {id : com.id} ) }} #}">❌</a></td>
             </tr>
             
