@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
-
+{#recuperation pour le data picker#}
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="{{ asset('Datepicker/Datepicker.css') }}">
 
@@ -16,18 +16,24 @@
 
     <form name="formproduit" action="" method="POST">
 
+
+        {# Boucle pour les selecteur ajax pour trouver le produit par type et univers #}
         <label for="">Sélection produit</label>
+        {#selecteur Type#}
         <select name="type" class="mb-3">
             <option value="" selected disabled hidden>Sélection</option>
             {% for ty in type %}
             <option value="{{ ty.type }}">{{ ty.type | capitalize }}</option>
             {% endfor %}
         </select>
+        {#selecteur univers#}
         <select name="univers" style="display:none" class="mb-3">
         </select>
+        {#selecteur produits par rapport au selection d avant #}
         <select name="produits" style="display:none" class="mb-3">
         </select>
 
+        {#Les dates pickers#}
         <label for="datepicker-debut">Debut de Location:</label>
         <input type="text" id="datepicker-debut" name="datepicker-debut" class="mb-3">
         <label for="datepicker-fin">Fin de Location:</label>
@@ -205,6 +211,7 @@
         });
     });
 
+     //fonction a rajouter sur le Datepicker
     $(function () {
         $("#datepicker-debut").datepicker({
             minDate: 0,
