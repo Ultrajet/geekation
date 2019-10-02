@@ -219,7 +219,7 @@ class AdminController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
+            // si l'utilisateur valide le dossier et que le formulaire est valide alors on entre dans la condition
             $manager->persist($membre);
 
             $manager->flush();
