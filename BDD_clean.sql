@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Sep 05, 2019 at 07:09 AM
+-- Generation Time: Sep 23, 2019 at 02:25 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.8
 
@@ -33,7 +33,8 @@ CREATE TABLE `commandes` (
 
 INSERT INTO `commandes` (`id`, `montant`, `date_enregistrement`, `membre_id`) VALUES
 (1, 19.9, '2019-09-04 00:00:00', 2),
-(2, 9.45, '2019-09-05 07:05:17', 2);
+(2, 9.45, '2019-09-05 07:05:17', 2),
+(3, 19.56, '2019-09-05 13:07:00', 4);
 
 -- --------------------------------------------------------
 
@@ -53,8 +54,6 @@ CREATE TABLE `membres` (
   `ville` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
   `date_de_naissance` date NOT NULL,
   `telephone` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `scan_cni` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `rib` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `sexe` varchar(3) COLLATE utf8mb4_unicode_ci NOT NULL,
   `salt` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `role` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL
@@ -64,9 +63,11 @@ CREATE TABLE `membres` (
 -- Dumping data for table `membres`
 --
 
-INSERT INTO `membres` (`id`, `username`, `password`, `prenom`, `nom`, `email`, `adresse`, `code_postal`, `ville`, `date_de_naissance`, `telephone`, `scan_cni`, `rib`, `sexe`, `salt`, `role`) VALUES
-(1, 'Admin', '$argon2id$v=19$m=65536,t=4,p=1$aR6q/O2ub81/lRR8n9zgPQ$K/LrlVpRR6D245JeayUrKoot3mn2dB7r5cAkllLPm3U', 'Alan', 'Allcorn', 'admin@geekation.com', '78 rue Taitbout', 75009, 'Paris', '1972-11-29', '0607080910', 'CNI', 'RIB', 'h', NULL, 'ROLE_ADMIN'),
-(2, 'Marine', '$argon2id$v=19$m=65536,t=4,p=1$tYpmeqQbgfaFaBOSMBXFjA$gWtg9TBWYUsxyoKdOljKNY5gxyQiBexG9BvJOrIEQBM', 'Marine', 'Pelletier', 'marine@geekation.com', 'Chemin du Parc', 78770, 'Villiers le Mahieu', '1991-09-27', '0123456789', 'CNI', 'RIB', 'f', NULL, 'ROLE_USER');
+INSERT INTO `membres` (`id`, `username`, `password`, `prenom`, `nom`, `email`, `adresse`, `code_postal`, `ville`, `date_de_naissance`, `telephone`, `sexe`, `salt`, `role`) VALUES
+(1, 'Admin', '$argon2id$v=19$m=65536,t=4,p=1$aR6q/O2ub81/lRR8n9zgPQ$K/LrlVpRR6D245JeayUrKoot3mn2dB7r5cAkllLPm3U', 'Alan', 'Allcorn', 'admin@geekation.com', '78 rue Taitbout', 75009, 'Paris', '1972-11-29', '0607080910', 'h', NULL, 'ROLE_ADMIN'),
+(2, 'Marine', '$argon2id$v=19$m=65536,t=4,p=1$tYpmeqQbgfaFaBOSMBXFjA$gWtg9TBWYUsxyoKdOljKNY5gxyQiBexG9BvJOrIEQBM', 'Marine', 'Pelletier', 'marine@geekation.com', 'Chemin du Parc', 78770, 'Villiers le Mahieu', '1991-09-27', '0123456789', 'f', NULL, 'ROLE_USER'),
+(3, 'Antoine', 'cfa31d8130bef0e6643e5de9d0a0cac9', 'Antoine', 'Briquet', 'antoine@geekation.com', '1 Chemin de la Salle', 75010, 'Paris', '1992-05-22', '0123456789', 'h', NULL, 'ROLE_USER'),
+(4, 'Quentin', '$argon2id$v=19$m=65536,t=4,p=1$Jn1ZFDV/IqTy7MFjQXnFUA$8msRRS0ehbUpe5SZbb6zt3lbTyAEmxjUQUonA0fSXaU', 'Quentin', 'Lagadou', 'quentin@geekation.com', '2 Rue de la Salle', 75002, 'Paris', '1995-02-17', '0123456789', 'h', NULL, 'ROLE_USER');
 
 -- --------------------------------------------------------
 
@@ -124,7 +125,7 @@ INSERT INTO `produits` (`id`, `nom`, `prix`, `type`, `univers`, `slug`, `guid`) 
 (13, 'Dragon Ball FighterZ', 0.99, 'jeu', 'sony', 'dragon-ball-fighterz-sony', '3030-59862'),
 (14, 'Dragon Ball FighterZ', 0.99, 'jeu', 'microsoft', 'dragon-ball-fighterz-microsoft', '3030-59862'),
 (15, 'Dragon Ball FighterZ', 0.99, 'jeu', 'nintendo', 'dragon-ball-fighterz-nintendo', '3030-59862'),
-(16, 'Mario Kart 8', 0.99, 'jeu', 'nintendo', 'mario-kart-8-nintendo', '3030-42929'),
+(16, 'Mario Kart 8', 1.09, 'jeu', 'nintendo', 'mario-kart-8-nintendo', '3030-42929'),
 (17, 'Super Mario Party', 0.99, 'jeu', 'nintendo', 'super-mario-party-nintendo', '3030-68947'),
 (18, 'Pokémon: Let\'s Go - Pikachu', 0.99, 'jeu', 'nintendo', 'pokemon-lets-go-pikachu-nintendo', '3030-68738'),
 (19, 'Pokémon: Let\'s Go - Evoli', 0.99, 'jeu', 'nintendo', 'pokemon-lets-go-evoli-nintendo', '3030-68738'),
@@ -170,7 +171,10 @@ CREATE TABLE `produits_commandes` (
 
 INSERT INTO `produits_commandes` (`id`, `date_debut_location`, `date_fin_location`, `produit_id`, `commande_id`) VALUES
 (1, '2019-09-06 07:05:17', '2019-09-09 07:05:17', 10, 2),
-(2, '2019-09-06 07:05:17', '2019-09-09 07:05:17', 34, 2);
+(2, '2019-09-06 07:05:17', '2019-09-09 07:05:17', 34, 2),
+(3, '2019-09-05 13:07:00', '2019-09-09 13:07:00', 34, 3),
+(4, '2019-09-05 13:07:00', '2019-09-09 13:07:00', 1, 3),
+(5, '2019-09-05 13:07:00', '2019-09-09 13:07:00', 16, 3);
 
 --
 -- Indexes for dumped tables
@@ -217,13 +221,13 @@ ALTER TABLE `produits_commandes`
 -- AUTO_INCREMENT for table `commandes`
 --
 ALTER TABLE `commandes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `membres`
 --
 ALTER TABLE `membres`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `produits`
@@ -235,7 +239,7 @@ ALTER TABLE `produits`
 -- AUTO_INCREMENT for table `produits_commandes`
 --
 ALTER TABLE `produits_commandes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables

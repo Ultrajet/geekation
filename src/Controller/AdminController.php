@@ -129,7 +129,7 @@ class AdminController extends AbstractController
             $manager->remove($produits);
             $manager->flush();
 
-            $this->addFlash('success', 'le produit n°' . $id . ' à bien ete supprimer');
+            $this->addFlash('success', 'Le produit n°' . $id . ' a bien été supprimé');
         } else {
 
             $commandes = array();
@@ -192,7 +192,7 @@ class AdminController extends AbstractController
             $manager->flush();
             // va enregistrer $produit en BDD
 
-            $this->addFlash('success', 'Le Membre à bien été enregistré en BDD');
+            $this->addFlash('success', 'Le membre a bien été enregistré en BDD');
             return $this->redirectToRoute('admin_membres');
         }
 
@@ -248,7 +248,7 @@ class AdminController extends AbstractController
 
         $manager->flush();
 
-        $this->addFlash('success', 'le Membre n°' . $id . ' a bien ete supprimer');
+        $this->addFlash('success', 'Le membre n°' . $id . ' a bien été supprimé');
         return $this->redirectToRoute('admin_membres');
     }
 

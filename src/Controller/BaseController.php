@@ -33,10 +33,10 @@ public function Formulaire(Request $request, \Swift_Mailer $mailer){
             if($this -> sendEmail($data, $mailer)){
                 // $mailer : objet swiftmailer
                 $this -> addFlash('success', 'Votre email a été envoyé et sera traité dans les meilleurs délais.');
-                return $this->redirectToRoute("contact");
+                return $this->redirectToRoute("accueil");
             }
             else{
-                $this -> addFlash('errors', 'Un problème a eu lieu durant l\'envoie, veuillez ré-essayer plus tard');
+                $this -> addFlash('errors', 'Un problème a eu lieu durant l\'envoi, veuillez ré-essayer plus tard');
             }
         }
 
