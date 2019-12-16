@@ -8,7 +8,7 @@ use App\Entity\Produits;
 use App\Entity\ProduitsCommandes;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Session\SessionBagInterface;
@@ -18,7 +18,7 @@ class ProduitController extends AbstractController
     /**
      * @Route("/", name="accueil")
      */
-    public function index(ObjectManager $manager)
+    public function index(EntityManagerInterface $manager)
     {
         $produits = $this->getDoctrine()->getRepository(Produits::class)->findAllDisctinctProduits();
 

@@ -10,7 +10,7 @@ use App\Form\MembreType;
 use App\Entity\Commandes;
 use App\Entity\ProduitsCommandes;
 use Symfony\Component\HttpFoundation\Request;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -21,7 +21,7 @@ class MembreController extends AbstractController
     /**
      * @Route("/inscription", name="inscription")
      */
-    public function inscription(Request $request, ObjectManager $manager, userPasswordEncoderInterface $encoder)
+    public function inscription(Request $request, EntityManagerInterface $manager, userPasswordEncoderInterface $encoder)
     {
         $membre = new Membres;
         
@@ -61,7 +61,7 @@ class MembreController extends AbstractController
     /**
     * @Route("/profil", name="profil")
     */
-    public function profil(ObjectManager $manager)
+    public function profil(EntityManagerInterface $manager)
     {
         return $this->render('membre/profil.html.twig', [
            
@@ -109,7 +109,7 @@ class MembreController extends AbstractController
     /**
      * @Route("/commande", name="commande", methods={"POST"})
      */
-    public function commande(SessionInterface $session, ObjectManager $manager)
+    public function commande(SessionInterface $session, EntityManagerInterface $manager)
     {
         $panier = $session->get("panier");
         $prix = 0;
