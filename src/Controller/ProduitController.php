@@ -8,6 +8,7 @@ use App\Entity\Produits;
 use App\Entity\ProduitsCommandes;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session;
+use Symfony\Component\HttpFoundation\Response;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -106,6 +107,16 @@ class ProduitController extends AbstractController
     }
 
     /**
+     * @Route("/testpanier", name="testpanier")
+     */
+    public function testPanier(Request $request)
+    {
+        $session = $request->getSession();
+        $panier = $session->get("panier");
+        return $this->json($panier);
+    }
+
+    /**
      * @Route("/ajoutpanier", name="ajoutpanier", methods={"POST"})
      */
     public function ajoutPanier(Request $request)
@@ -151,7 +162,8 @@ class ProduitController extends AbstractController
         // après avoir manipulé le panier, on le remet à sa place!
         $session->set("panier", $panier);
 
-        return $this->redirectToRoute("gestion_panier");
+        // return $this->redirectToRoute("gestion_panier");
+        return $this->json(['panier' => 'ajouté']);
     }
 
     /**
